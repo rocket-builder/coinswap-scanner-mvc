@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <title>coinswap app</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <link rel="icon" type="image/png" href="/res/logo.png"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" href="css/font/fonts.css">
+    <link rel="stylesheet" href="css/master.css">
+
+    <?php require 'components/add-api-modal.php'; ?>
+    <?php require 'components/edit-api-modal.php'; ?>
+</head>
+<?php require 'components/header.php'; ?>
+
+<body>
+<div class="page-name">
+    <h1 class="main-h">Здравствуйте, <?php echo $user->login; ?>!</h1>
+    <p class="main-description">
+        Здесь вы можете настроить и отфильтровать уведомления которые будет присылать вам наш телеграмм бот.
+    </p>
+    <p style="color: rgba(0, 0, 0, 0.27);">
+      Ваш id <?php echo $user->id; ?>
+    </p>
+    <br>
+
+    <div class="ui three column stackable grid token-fork-container" id="container">
+
+          <!-- <div class="column">
+            <div class="token-fork">
+              <div class="token">
+                TRON <span>TRX</span><br>
+                <span>[</span>Biance smart chain<span>]</span>
+              </div>
+              <div class="exchanges">
+                <input type="text" value="Phemex: 0.00034545342223$"/>
+                <br><br>
+                <input type="text" value="ZB.COM: 0.00034545342223$"/>
+              </div>
+              <div class="profit">
+                <div class="percent">3.5<i class="small icon percent"></i></div>
+              </div>
+              <a class="ui small fluid button token-btn" href="">
+                <i class="icon arrow alternate circle right outline token-open"></i>
+              </a>
+            </div>
+          </div> -->
+
+    </div>
+    <i class="btc big icon" style="padding: 0;margin:0 auto;margin: 1em;border:none;margin-bottom: 1em;"></i>
+</div>
+
+<?php require 'components/footer.php'; ?>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.7/signalr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+<script src="/js/cookie.js"></script>
+<script src="js/master.js"></script>
+<script src="/js/handlers/add-swapper-handler.js"></script>
+<script src="/js/handlers/edit-api-handler.js"></script>
+<script src="/js/handlers/websocket-handler.js"></script>
+</body>
+</html>

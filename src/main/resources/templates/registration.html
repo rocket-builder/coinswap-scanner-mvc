@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>coinswap apphelper</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <link rel="icon" type="image/png" href="/res/logo.png" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" href="css/font/fonts.css">
+    <link rel="stylesheet" href="css/master.css">
+
+    <?php require 'components/reg-info-modal.php'; ?>
+  </head>
+
+  <style type="text/css">
+     body > .grid {
+       height: 100%;
+     }
+     .column {
+       max-width: 450px;
+     }
+   </style>
+  <body>
+
+    <div class="ui middle aligned center aligned grid">
+      <div class="column" id="inp-form">
+        <h2 class="ui image header">
+          <i class="big audio description icon" style="color:#FAE62D;"></i>
+          <div class="content">
+            <h2>coinswap scanner</h2>
+          </div>
+        </h2>
+        <p style="opacity:0.5;padding-top:1em;">Регистрация</p>
+        <form class="ui large form">
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="user circle icon"></i>
+                <input type="text" placeholder="Логин" id="inp-login">
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="key icon"></i>
+                <input type="password" placeholder="Пароль" id="inp-password">
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui left icon action input">
+                <i class="telegram icon"></i>
+                <input placeholder="Telegram ID" id="inp-telegram">
+                <a class="ui button"
+                href="https://tg-me.ru/username_to_id_bot" target="_blank"
+                style="
+                  background-color: transparent;
+                  color:black;
+                  border: 1px solid rgba(34,36,38,.15);
+                  font-size: 0.8em!important;
+                ">получить</a>
+              </div>
+              <p style="color:rgba(34,36,38,.15);user-select:none;padding-top:0.5em;padding-bottom:0.5em;"><i class="exclamation triangle icon"></i>telegram id это число, прим.9434943</p>
+            </div>
+
+            <div class="field">
+              <div class="ui checkbox">
+                <input type="checkbox" id="inp-is-telegram-cheked">
+                <label>Я уже подписался на <a href="https://tg-me.ru/coinswap_info_bot" style="color:black;" target="_blank">@coinswap_info_bot</a></label>
+              </div>
+            </div>
+            <div class="ui blue fluid large submit button" id="btn-reg"
+            style="background:#1FC58E!important;border-radius: 50px;color:black;">Зарегистрироваться</div>
+            <a class="ui fluid large submit button" href="index.php"
+            style="color:black!important;border-radius: 50px;background-color: white;">Вход</a>
+          <div class="ui error message" id="error-reg"></div>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <script src="/js/master.js"></script>
+    <script src="/js/cookie.js"></script>
+    <script src="/js/handlers/login-handler.js"></script>
+    <script src="/js/handlers/registration-handler.js"></script>
+  </body>
+</html>

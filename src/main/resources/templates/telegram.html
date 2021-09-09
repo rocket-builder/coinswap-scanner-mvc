@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <title>coinswap app</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <link rel="icon" type="image/png" href="/res/logo.png"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" href="css/font/fonts.css">
+    <link rel="stylesheet" href="css/master.css">
+</head>
+<?php require 'components/header.php'; ?>
+
+<body>
+<div class="page-name">
+    <h1 class="main-h">Здравствуйте, <?php echo $user->login; ?>!</h1>
+    <p class="main-description">
+        Здесь вы можете указать свой telegram id, для получения уведомлений о работе вашего бота.
+    </p>
+    <p class="main-description" style="background: black;color:#1FC58E;border-radius:30px;padding: 0.3em;">Наш телеграм 🤖 бот: <a href="https://tg-me.ru/coinswap_info_bot" style="color:#1FC58E;" target="_blank">@coinswap_info_bot</a></p>
+    <p style="color: rgba(0, 0, 0, 0.27);">
+      Ваш id <?php echo $user->id; ?>
+    </p>
+    <br>
+
+    <form class="ui big form">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="telegram icon"></i>
+            <input type="text" name="text" placeholder="12345678" id="inp-telegram" style="border-radius: 35px;" value="<?php echo $user->telegramId; ?>">
+          </div>
+        </div>
+    </form>
+
+    <div class="ui blue animated fade button main-btn" id="btn-add-telegram" style="margin: 1em;">
+      <div class="visible content">Сохранить</div>
+      <div class="hidden content">
+        <i class="save icon" style="margin: 0em;padding:0em;"></i>
+      </div>
+    </div>
+
+    <div class="ui form">
+      <div class="ui error message" id="error-add-telegram"></div>
+    </div>
+</div>
+
+<?php require 'components/footer.php'; ?>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+<script src="/js/cookie.js"></script>
+<script src="js/master.js"></script>
+<script src="/js/handlers/add-telegram-handler.js"></script>
+</body>
+</html>
