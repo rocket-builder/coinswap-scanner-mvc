@@ -6,16 +6,16 @@ String.prototype.isDigits = function() {
 };
 
 $('#btn-add-telegram').click(function(){
-
   const telegramId = $('#inp-telegram').val();
 
   if((telegramId !== "" || telegramId === "0") && telegramId.isDigits()){
     $.ajax({
-      type:"POST",
+      type:"PUT",
       contentType: "application/json",
-      dataType: "json",
-      url: api_url + "user/" + getCookie('id') + "/telegram",
-      data: JSON.stringify(telegramId),
+      url: api_url + "user/" + user.id + "/telegram",
+      data: JSON.stringify({
+        telegramId: telegramId
+      }),
       success: function(response) {
           console.log(response);
 

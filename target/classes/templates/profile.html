@@ -1,32 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>coinswap app</title>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-
-    <link rel="icon" type="image/png" href="/res/logo.png"/>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
-    <link rel="stylesheet" href="css/font/fonts.css">
-    <link rel="stylesheet" href="css/master.css">
-
-    <?php require 'components/add-api-modal.php'; ?>
-    <?php require 'components/edit-api-modal.php'; ?>
+    <div th:replace="components/head"></div>
+    <title>coinswap scanner</title>
 </head>
-<?php require 'components/header.php'; ?>
-
 <body>
+<div th:replace="components/header"></div>
+
 <div class="page-name">
-    <h1 class="main-h">Здравствуйте, <?php echo $user->login; ?>!</h1>
+    <h1 class="main-h" th:text="'Здравствуйте ' + ${session.user.login} + '!'"></h1>
     <p class="main-description">
-        Здесь вы можете настроить и отфильтровать уведомления которые будет присылать вам наш телеграмм бот.
+        Здесь вы можете настроить и отфильтровать вилки которые будет присылать вам наш телеграмм бот.
     </p>
-    <p style="color: rgba(0, 0, 0, 0.27);">
-      Ваш id <?php echo $user->id; ?>
-    </p>
+    <p style="color: rgba(0, 0, 0, 0.27);"
+       th:text="'Ваш id ' + ${session.user.id}"></p>
+    <br>
     <br>
 
     <div class="ui three column stackable grid token-fork-container" id="container">
@@ -55,15 +43,12 @@
     <i class="btc big icon" style="padding: 0;margin:0 auto;margin: 1em;border:none;margin-bottom: 1em;"></i>
 </div>
 
-<?php require 'components/footer.php'; ?>
+<div th:replace="components/footer"></div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.7/signalr.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-<script src="/js/cookie.js"></script>
-<script src="js/master.js"></script>
-<script src="/js/handlers/add-swapper-handler.js"></script>
-<script src="/js/handlers/edit-api-handler.js"></script>
-<script src="/js/handlers/websocket-handler.js"></script>
+<script th:src="@{/js/master.js}"></script>
+<script th:src="@{/js/handlers/websocket-handler.js}"></script>
 </body>
 </html>

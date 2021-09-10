@@ -36,6 +36,34 @@ h1, h2, h3 {
     font-weight: 800!important;
 }
 
+textarea.user-info{
+    width:100%;
+    height:100%;
+    border:none;
+    font-weight:700;
+    background:rgba(0,0,0,.05);
+    resize:none;
+    outline:none;
+    border-radius:30px;
+    padding:1em;
+}
+
+.segment{
+    border: none!important;
+    border-radius: 0px!important;
+    box-shadow: none!important;
+}
+
+.ui.table tr td {
+    border-top: 1px solid rgba(34,36,38,.1)!important;
+}
+.ui.celled.table tr td, .ui.celled.table tr th {
+    border-left: 1px solid rgba(34,36,38,.1)!important;
+}
+.ui.table thead th {
+    border-bottom: none!important;
+}
+
 ::-webkit-scrollbar { /* chrome based */
     width: 0px;  /* ширина scrollbar'a */
     background: transparent;  /* опционально */
@@ -49,7 +77,7 @@ h1, h2, h3 {
 .token-fork-container{
   min-width: 60%;
   max-width: 60%!important;
-  max-height: 28em!important;
+  height: 28em!important;
   background: #fbfbfb;
   border-radius: 40px;
   padding: 1em!important;

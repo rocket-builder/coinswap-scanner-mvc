@@ -4,52 +4,34 @@ $('#btn-login').click(() => {
     let login = $('#inp-login').val().trim();
     let password = $('#inp-password').val().trim();
 
-    $('#inp-form').prepend('<div class="ui active inverted dimmer" id="loader"><div class="ui loader"></div></div>');
+    $('#inp-form').prepend(loader);
     $.ajax({
-      type:"POST",
-      url:api_url + "login",
+      type: "POST",
+      url: "/login",
       contentType: "application/json",
       data: JSON.stringify({
         login: login,
         password: password
       }),
       dataType: "json",
-      success: function(response) {
-          console.log(response);
+      success: function(user){
+        console.log(user);
 
-          setCookie('id', response.id);
-          setCookie('login', login);
-          setCookie('password', response.password);
+        let view = "/profile";
+        if(user.role === "ADMIN"){
+          view = "/admin";
+        }
 
-          $('#loader').transition({
-            animation  : 'fade out',
-            onComplete : function() {
-              $('.loader').remove();
-            }
-          });
-
-          location.replace('profile.html');
+        location.replace(view);
       },
       error: function(error) {
         console.log(error);
-        $('#loader').transition({
-          animation  : 'fade out',
-          onComplete : function() {
-            $('#loader').remove();
-          }
-        });
+        hideLoader();
         $('#error-login').html(error.responseText).transition('shake');
       }
     });
   } else {
-    $('#loader').transition({
-      animation  : 'fade out',
-      onComplete : function() {
-        $('#loader').remove();
-
-
-      }
-    });
+    hideLoader();
     $('#error-login').html('Заполните все поля').transition('shake');
   }
 });

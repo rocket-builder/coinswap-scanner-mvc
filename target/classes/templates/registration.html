@@ -1,31 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title>coinswap apphelper</title>
+    <div th:replace="components/head"></div>
+    <title>coinswap scanner</title>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <div th:replace="components/reg-info-modal"></div>
 
-    <link rel="icon" type="image/png" href="/res/logo.png" />
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
-    <link rel="stylesheet" href="css/font/fonts.css">
-    <link rel="stylesheet" href="css/master.css">
-
-    <?php require 'components/reg-info-modal.php'; ?>
+    <style type="text/css">
+      body > .grid {
+        height: 100%;
+      }
+      .column {
+        max-width: 450px;
+      }
+    </style>
   </head>
-
-  <style type="text/css">
-     body > .grid {
-       height: 100%;
-     }
-     .column {
-       max-width: 450px;
-     }
-   </style>
   <body>
-
     <div class="ui middle aligned center aligned grid">
       <div class="column" id="inp-form">
         <h2 class="ui image header">
@@ -64,15 +54,9 @@
               <p style="color:rgba(34,36,38,.15);user-select:none;padding-top:0.5em;padding-bottom:0.5em;"><i class="exclamation triangle icon"></i>telegram id это число, прим.9434943</p>
             </div>
 
-            <div class="field">
-              <div class="ui checkbox">
-                <input type="checkbox" id="inp-is-telegram-cheked">
-                <label>Я уже подписался на <a href="https://tg-me.ru/coinswap_info_bot" style="color:black;" target="_blank">@coinswap_info_bot</a></label>
-              </div>
-            </div>
             <div class="ui blue fluid large submit button" id="btn-reg"
             style="background:#1FC58E!important;border-radius: 50px;color:black;">Зарегистрироваться</div>
-            <a class="ui fluid large submit button" href="index.php"
+            <a class="ui fluid large submit button" href="/login"
             style="color:black!important;border-radius: 50px;background-color: white;">Вход</a>
           <div class="ui error message" id="error-reg"></div>
         </form>
@@ -81,9 +65,8 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-    <script src="/js/master.js"></script>
-    <script src="/js/cookie.js"></script>
-    <script src="/js/handlers/login-handler.js"></script>
-    <script src="/js/handlers/registration-handler.js"></script>
+    <script th:src="@{/js/master.js}"></script>
+    <script th:src="@{/js/handlers/login-handler.js}"></script>
+    <script th:src="@{/js/handlers/registration-handler.js}"></script>
   </body>
 </html>

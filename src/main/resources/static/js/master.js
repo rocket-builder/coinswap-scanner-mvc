@@ -1,24 +1,26 @@
-const cors = "https://cors-anywhere.herokuapp.com/";
-//const api_url = "https://crypto-assist-api.herokuapp.com/";
-const api_url = "http://127.0.0.1:8081/";
+//const api_url = "http://127.0.0.1:8081/";
+const api_url = "/";
 
-$('#btn-logout').click(() => {
+const loaderSmall = '<div class="ui active inverted dimmer" id="loader"><div class="ui loader small"></div></div>';
+const loader = '<div class="ui active inverted dimmer" id="loader"><div class="ui loader"></div></div>';
+const user = getSessionUser();
 
-  console.log('click');
+function getSessionUser(){
+  let usr = null;
   $.ajax({
-    url:"php/controllers/logout-controller.php",
-    type:"POST",
-    data: {},
-    success: function(response) {
-        console.log(response);
-
-        location.replace('index.html');
+    type: 'GET',
+    url: api_url + "session/user",
+    dataType: "json",
+    success: function(data) {
+      usr = data;
     },
-    error: function(error) {
-      console.log(error);
-    }
+    async: false
   });
-});
+
+  console.log(usr);
+  return usr;
+}
+
 
 $('.ui.dropdown').dropdown();
 
@@ -34,3 +36,12 @@ $('.btn-copy-code').click(function() {
   document.execCommand("copy");
   $(this).transition('jiggle');
 });
+
+function hideLoader(){
+  $('#loader').transition({
+    animation  : 'fade out',
+    onComplete : function() {
+      $('#loader').remove();
+    }
+  });
+}

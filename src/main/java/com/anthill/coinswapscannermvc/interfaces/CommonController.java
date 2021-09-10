@@ -13,7 +13,7 @@ public interface CommonController<E extends AbstractEntity> {
     ResponseEntity<E> save(@RequestBody E entity) throws Exception;
 
     @PutMapping
-    ResponseEntity<E> update(@RequestBody E entity) throws ResourceNotFoundedException;
+    ResponseEntity<E> update(@RequestBody E entity) throws ResourceNotFoundedException, Exception;
 
     @GetMapping("/{id}")
     ResponseEntity<E> findById(@PathVariable("id") long id) throws ResourceNotFoundedException;

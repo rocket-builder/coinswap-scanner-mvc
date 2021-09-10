@@ -1,37 +1,31 @@
 $('.btn-ban-user').click(function(){
 
-  let id = $(this).attr("id").split("_")[1];
+  var id = $(this).attr("user-id");
+  let banned = $(this).attr('banned') === 'true';
+  console.log(banned);
 
+  let userBanned = !banned;
+  console.log(userBanned);
+
+  //TODO do it work with one button
   $.ajax({
-    type:"POST",
-    url:cors + api_url + "user("+id+").ban?token=" + getCookie('id'),
+    type:"PUT",
+    contentType: "application/json",
+    url:api_url + "user/"+id+"/banned",
+    data: JSON.stringify({
+      id: id,
+      banned: userBanned
+    }),
     success: function(response) {
         console.log(response);
 
+        //let color =
+        //$('.btn-ban-user[user-id='+id+'] > i').css('color', '')
+        //TODO Rerender btn and status
         location.reload();
     },
     error: function(error) {
-      console.log(error);
-      $('#error-add-keys').html(error.responseText).transition('shake');
-    }
-  });
-});
-
-$('.btn-unban-user').click(function(){
-
-  let id = $(this).attr("id").split("_")[1];
-
-  $.ajax({
-    type:"POST",
-    url:cors + api_url + "user("+id+").unban?token=" + getCookie('id'),
-    success: function(response) {
-        console.log(response);
-
-        location.reload();
-    },
-    error: function(error) {
-      console.log(error);
-      $('#error-add-keys').html(error.responseText).transition('shake');
+      console.error(error);
     }
   });
 });

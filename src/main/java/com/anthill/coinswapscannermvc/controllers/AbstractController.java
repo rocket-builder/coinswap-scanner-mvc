@@ -6,6 +6,7 @@ import com.anthill.coinswapscannermvc.interfaces.CommonController;
 import com.anthill.coinswapscannermvc.repos.CommonRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -28,14 +29,14 @@ public abstract class AbstractController<E extends AbstractEntity, R extends Com
     }
 
     @Override
-    public ResponseEntity<E> update(@RequestBody E entity) throws ResourceNotFoundedException {
+    public ResponseEntity<E> update(@RequestBody E entity) throws Exception {
         E res = repos.save(entity);
 
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<E> findById(@RequestParam long id) throws ResourceNotFoundedException {
+    public ResponseEntity<E> findById(@PathVariable("id") long id) throws ResourceNotFoundedException {
         E entity = repos.findById(id);
         if(entity != null){
             return new ResponseEntity<>(entity, HttpStatus.OK);
@@ -51,7 +52,7 @@ public abstract class AbstractController<E extends AbstractEntity, R extends Com
     }
 
     @Override
-    public ResponseEntity<E> deleteById(@RequestParam long id) throws ResourceNotFoundedException {
+    public ResponseEntity<E> deleteById(@PathVariable("id") long id) throws ResourceNotFoundedException {
         E entity = repos.findById(id);
         if(entity != null){
             repos.delete(entity);
