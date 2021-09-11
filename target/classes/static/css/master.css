@@ -64,13 +64,12 @@ textarea.user-info{
     border-bottom: none!important;
 }
 
-::-webkit-scrollbar { /* chrome based */
-    width: 0px;  /* ширина scrollbar'a */
-    background: transparent;  /* опционально */
-}
+/*::-webkit-scrollbar { !* chrome based *!*/
+/*    width: 0px;  !* ширина scrollbar'a *!*/
+/*    background: transparent;  !* опционально *!*/
+/*}*/
 
-.token-fork-container::-webkit-scrollbar {
-    width: 0px!important;
+.token-fork-container::-webkit-scrollbar-track {
     background: transparent!important;
 }
 
@@ -87,6 +86,24 @@ textarea.user-info{
 .icon.token-open{
   margin: 0!important;
 }
+.token-btn{
+  background: rgba(0,0,0,.05)!important;
+}
+.token-btn:hover{
+    background: rgba(0,0,0,.05)!important;
+}
+.exit-btn{
+    min-width: 2em!important;
+    border-radius: 50px!important;
+    background: rgba(0,0,0,.05)!important;
+}
+.exit-btn:hover{
+    background: rgba(0,0,0,.05)!important;
+}
+.exit-btn > i.icon{
+    margin-bottom: 1px!important;
+    margin-left: 6px!important;
+}
 @media (max-width: 1919px) {
   .token-fork-container{
     max-width: 90%!important;
@@ -95,7 +112,6 @@ textarea.user-info{
 .token-fork{
   background: white;
   border: none!important;
-  box-shadow: none!important;
   border-radius: 25px!important;
   color: #191414!important;
   box-shadow: 0px 4px 12px 0px #0D234308!important;
@@ -119,7 +135,7 @@ textarea.user-info{
   margin: 0 auto!important;
   width: 100%;
 }
-.token-fork > .exchanges > input{
+.token-fork > .exchanges > textarea{
   background:#fbfbfb;
   padding: 0.5em!important;
   border-radius: 25px;
@@ -129,6 +145,24 @@ textarea.user-info{
   width: 100%;
   pointer-events: none;
   text-align: left;
+  resize: none;
+}
+.token-fork > .exchanges > p > span{
+    font-weight: 800;
+    color: rgba(0, 0, 0, 0.25);
+}
+.token-fork > .exchanges > p {
+    font-size: 0.7em;
+    padding-left: 1em;
+}
+.token-fork > .exchanges > .input > input{
+    border-radius: 25px!important;
+    height: 1.4em!important;
+    border: 1px solid rgba(0, 0, 0, 0.25)!important;
+    background: #fbfbfb!important;
+}
+.icon.input > .icon{
+    opacity: 1!important;
 }
 .token-fork > .token > span{
   color: #f0d800;
@@ -138,7 +172,10 @@ textarea.user-info{
   border-radius: 25px!important;
   margin: 0.5em 0 0 0!important;
 }
-
+.time-icon{
+  margin-left: -10px!important;
+  color: #f0d800!important;
+}
 .marker {
   font-family: 'Permanent Marker', cursive!important;
   /* font-family: "Jamstreet Graffiti"!important; */

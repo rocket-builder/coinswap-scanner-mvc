@@ -10,34 +10,38 @@
 <div class="page-name">
     <h1 class="main-h" th:text="'Здравствуйте ' + ${session.user.login} + '!'"></h1>
     <p class="main-description">
-        Здесь вы можете настроить и отфильтровать вилки которые будет присылать вам наш телеграмм бот.
+        Здесь вы можете получить информацию о входящих вилках нашего сканера.
     </p>
     <p style="color: rgba(0, 0, 0, 0.27);"
        th:text="'Ваш id ' + ${session.user.id}"></p>
     <br>
+    <p>
+        <i class="big lightbulb icon" id="signal-lamp" style="color:#f0d800;"></i>
+    </p>
     <br>
 
     <div class="ui three column stackable grid token-fork-container" id="container">
 
-          <!-- <div class="column">
-            <div class="token-fork">
-              <div class="token">
-                TRON <span>TRX</span><br>
-                <span>[</span>Biance smart chain<span>]</span>
-              </div>
-              <div class="exchanges">
-                <input type="text" value="Phemex: 0.00034545342223$"/>
-                <br><br>
-                <input type="text" value="ZB.COM: 0.00034545342223$"/>
-              </div>
-              <div class="profit">
-                <div class="percent">3.5<i class="small icon percent"></i></div>
-              </div>
-              <a class="ui small fluid button token-btn" href="">
-                <i class="icon arrow alternate circle right outline token-open"></i>
-              </a>
-            </div>
-          </div> -->
+<!--          <div class="column">-->
+<!--            <div class="token-fork">-->
+<!--              <div class="token">-->
+<!--                TRON <span>TRX</span><br>-->
+<!--                <span>[</span>Biance smart chain<span>]</span>-->
+<!--              </div>-->
+<!--              <div class="exchanges">-->
+<!--                <textarea rows="2">Phemex: TRX/USDT&#13;&#10;0.00034545342223$</textarea>-->
+<!--                  <p><i class="clock icon time-icon"></i><span>21.09.2021 12:34:33</span></p>-->
+<!--                <textarea rows="2">B.COM: TRX/USDC&#13;&#10;0.00034545342223$</textarea>-->
+<!--                  <p><i class="clock icon time-icon"></i><span>21.09.2021 12:34:32</span></p>-->
+<!--              </div>-->
+<!--              <div class="profit">-->
+<!--                <div class="percent">3.5<i class="small icon percent"></i></div>-->
+<!--              </div>-->
+<!--              <a class="ui small fluid button token-btn" href="">-->
+<!--                <i class="icon arrow alternate circle right outline token-open"></i>-->
+<!--              </a>-->
+<!--            </div>-->
+<!--          </div>-->
 
     </div>
     <i class="btc big icon" style="padding: 0;margin:0 auto;margin: 1em;border:none;margin-bottom: 1em;"></i>

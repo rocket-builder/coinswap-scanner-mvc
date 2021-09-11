@@ -2,6 +2,7 @@ package com.anthill.coinswapscannermvc.controllers.mvc;
 
 import com.anthill.coinswapscannermvc.beans.User;
 import com.anthill.coinswapscannermvc.enums.Role;
+import com.anthill.coinswapscannermvc.exceptions.AccessDeniedException;
 import com.anthill.coinswapscannermvc.exceptions.IncorrectPasswordException;
 import com.anthill.coinswapscannermvc.exceptions.LoginAlreadyTakenException;
 import com.anthill.coinswapscannermvc.exceptions.UserNotFoundedException;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 @Controller
 public class AuthorizationController {
@@ -39,12 +41,12 @@ public class AuthorizationController {
     @GetMapping("/logout")
     public String logout(HttpSession session){
         session.invalidate();
-        return "index";
+        return "redirect:/";
     }
 
     @PostMapping("/login")
     public ResponseEntity<User> login(@RequestBody User userAuth, HttpSession session) throws UserNotFoundedException,
-            IncorrectPasswordException {
+            IncorrectPasswordException, AccessDeniedException {
         User authorized = userRepos.findByLogin(userAuth.getLogin());
 
         if(authorized == null){
@@ -52,6 +54,11 @@ public class AuthorizationController {
         }
         if(!authorized.getPassword().equals(MD5.getHash(userAuth.getPassword()))){
             throw new IncorrectPasswordException();
+        }
+        if(authorized.getRole().equals(Role.USER)){
+            if(authorized.isBanned() || authorized.getSubscribe().before(new Date())){
+                throw new AccessDeniedException();
+            }
         }
 
         session.setAttribute("user", authorized);
