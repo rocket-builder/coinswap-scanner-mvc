@@ -5,9 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,6 +16,9 @@ import java.util.Date;
 public class User extends AbstractEntity {
 
     private String login, password;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    Settings settings = new Settings();
 
     @Enumerated(EnumType.STRING)
     private Role role = Role.USER;

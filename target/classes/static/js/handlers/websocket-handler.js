@@ -8,8 +8,11 @@ function getTokenForkHTML(fork) {
     if (percent >= 20){
         color = "#FF8C00";
     }
-    if(percent >= 50){
+    if (percent >= 50){
         color = "#DC143C";
+    }
+    if(percent >= 100){
+        color = "#8A2BE2";
     }
 
   let html = '<div class="column forked">' +
