@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="components/head"></div>
+    <title>coinswap scanner</title>
+</head>
+<body>
+<div th:replace="components/header"></div>
+
+<div class="page-name">
+    <h1 class="main-h" th:text="'Здравствуйте ' + ${session.user.login} + '!'"></h1>
+    <p class="main-description">
+        Здесь вы можете настроить фильр для вилок
+    </p>
+    <p class="main-description" style="background: black;color:#1FC58E;border-radius:30px;padding: 0.3em;">Наш телеграм 🤖 бот: <a href="https://tg-me.ru/coinswap_info_bot" style="color:#1FC58E;" target="_blank">@coinswap_info_bot</a></p>
+    <p style="color: rgba(0, 0, 0, 0.27);"
+       th:text="'Ваш id ' + ${session.user.id}"></p>
+    <br>
+    <p style="font-size: 2em;color: rgba(0, 0, 0, 0.25);">Не беспокойтесь, это будет добавлено позже <i class="handshake outline icon"></i></p>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+
+<div th:replace="components/footer"></div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+<script th:src="@{/js/master.js}"></script>
+<script th:src="@{/js/handlers/add-telegram-handler.js}"></script>
+</body>
+</html>
