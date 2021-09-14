@@ -76,11 +76,12 @@ textarea.user-info{
 .token-fork-container{
   min-width: 65%;
   max-width: 65%!important;
-  height: 31em!important;
+  height: 31.2em!important;
   background: #fbfbfb;
   border-radius: 40px;
   padding: 1em!important;
   overflow: auto!important;
+  box-shadow: inset 0 0 24px rgba(0,0,0,0.025);
 }
 
 .icon.token-open{
@@ -108,6 +109,21 @@ textarea.user-info{
   .token-fork-container{
     max-width: 90%!important;
   }
+}
+.settings-form{
+    min-width: 30%!important;
+    max-width: 90%!important;
+    min-height: 20em!important;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, .06)!important;
+    box-shadow: 0 0 24px 0 rgba(0, 0, 0, .08)!important;
+    border-radius: 25px!important;
+    padding: 3.5em!important;
+}
+.settings-form-actions{
+    display: flex!important;
+    flex-direction: column!important;
+    padding: 4em 0 0 0!important;
 }
 .token-fork{
   background: white;
@@ -237,12 +253,18 @@ text-align: center;
   transition: 0.5s !important;
 }
 
-.field{
+.ui.form > .field{
   font-size: 1.25em!important;
 }
+.settings-form > .fields > .field > input{
+    border: 1px solid rgba(0, 0, 0, .06) !important;
+    border-radius: 25px!important;
+    box-shadow: inset 0 0 5px 0 rgba(0,0,0,0.05)!important;!important;
+}
 
-label{
+.field > label{
   font-size: 1.25em!important;
+  font-weight: 600!important;
 }
 
 .button{

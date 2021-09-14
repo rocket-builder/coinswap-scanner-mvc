@@ -3,12 +3,10 @@ package com.anthill.coinswapscannermvc.controllers.rest;
 import com.anthill.coinswapscannermvc.beans.User;
 import com.anthill.coinswapscannermvc.constants.ResponseMessage;
 import com.anthill.coinswapscannermvc.controllers.AbstractController;
-import com.anthill.coinswapscannermvc.exceptions.IncorrectPasswordException;
 import com.anthill.coinswapscannermvc.exceptions.LoginAlreadyTakenException;
 import com.anthill.coinswapscannermvc.exceptions.UserNotFoundedException;
 import com.anthill.coinswapscannermvc.repos.UserRepos;
 import com.anthill.coinswapscannermvc.security.MD5;
-import org.apache.commons.codec.digest.Md5Crypt;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +22,17 @@ public class UserController extends AbstractController<User, UserRepos> {
 
     protected UserController(UserRepos repos) {
         super(repos);
+    }
+
+    @GetMapping("/current")
+    public ResponseEntity<User> getCurrent(HttpSession session) throws UserNotFoundedException {
+        User sessionUser = (User) session.getAttribute("user");
+        if(sessionUser != null){
+            User user = repos.findById(sessionUser.getId());
+
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        }
+        throw new UserNotFoundedException();
     }
 
     @Override

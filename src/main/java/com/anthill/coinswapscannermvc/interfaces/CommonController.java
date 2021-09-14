@@ -5,6 +5,7 @@ import com.anthill.coinswapscannermvc.exceptions.ResourceNotFoundedException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public interface CommonController<E extends AbstractEntity> {
@@ -13,7 +14,7 @@ public interface CommonController<E extends AbstractEntity> {
     ResponseEntity<E> save(@RequestBody E entity) throws Exception;
 
     @PutMapping
-    ResponseEntity<E> update(@RequestBody E entity) throws ResourceNotFoundedException, Exception;
+    ResponseEntity<E> update(@RequestBody E entity) throws Exception;
 
     @GetMapping("/{id}")
     ResponseEntity<E> findById(@PathVariable("id") long id) throws ResourceNotFoundedException;

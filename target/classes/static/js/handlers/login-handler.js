@@ -13,16 +13,8 @@ $('#btn-login').click(() => {
         login: login,
         password: password
       }),
-      dataType: "json",
-      success: function(user){
-        console.log(user);
-
-        let view = "/profile";
-        if(user.role === "ADMIN"){
-          view = "/admin";
-        }
-
-        location.replace(view);
+      success: function(){
+        location.reload();
       },
       error: function(error) {
         console.log(error);

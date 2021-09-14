@@ -15,11 +15,8 @@ if($('#inp-login').val() !== '' && $('#inp-password').val() !== '') {
       password: password,
       telegramId: telegram
     }),
-    dataType: "json",
-    success: function(user) {
-      console.log(user);
-
-      location.replace("/profile");
+    success: function(){
+      location.reload();
     },
     error: function(error) {
       hideLoader();

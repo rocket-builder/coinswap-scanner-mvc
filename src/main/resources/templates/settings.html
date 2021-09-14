@@ -12,12 +12,50 @@
     <p class="main-description">
         Здесь вы можете настроить фильр для вилок
     </p>
-    <p class="main-description" style="background: black;color:#1FC58E;border-radius:30px;padding: 0.3em;">Наш телеграм 🤖 бот: <a href="https://tg-me.ru/coinswap_info_bot" style="color:#1FC58E;" target="_blank">@coinswap_info_bot</a></p>
     <p style="color: rgba(0, 0, 0, 0.27);"
        th:text="'Ваш id ' + ${session.user.id}"></p>
-    <br>
-    <p style="font-size: 2em;color: rgba(0, 0, 0, 0.25);">Не беспокойтесь, это будет добавлено позже <i class="handshake outline icon"></i></p>
-    <br>
+    <div class="ui form settings-form" id="settings-form">
+        <div class="two fields">
+            <div class="field">
+                <label>Min profit <i class="percent icon"></i></label>
+                <input id="inp-min-profit" type="number" step="0.01" placeholder="Min percent" th:value="${session.user.settings.minProfitPercent}">
+            </div>
+            <div class="field">
+                <label>Max profit <i class="percent icon"></i></label>
+                <input id="inp-max-profit" type="number" step="0.01" placeholder="Max percent" th:value="${session.user.settings.maxProfitPercent}">
+            </div>
+        </div>
+        <div class="two fields">
+            <div class="field">
+                <label>Min token volume</label>
+                <input id="inp-min-token-volume" type="number" step="0.01" placeholder="Min volume" th:value="${session.user.settings.minTokenVolume}">
+            </div>
+            <div class="field">
+                <label>Max token volume</label>
+                <input id="inp-max-token-volume" type="number" step="0.01" placeholder="Max volume" th:value="${session.user.settings.maxTokenVolume}">
+            </div>
+        </div>
+        <div class="two fields">
+            <div class="field">
+                <label>Min pair volume 24h</label>
+                <input id="inp-min-pair-volume" type="number" step="0.01" placeholder="Min volume" th:value="${session.user.settings.minTokenVolume}">
+            </div>
+            <div class="field">
+                <label>Max pair volume 24h</label>
+                <input id="inp-max-pair-volume" type="number" step="0.01" placeholder="Max volume" th:value="${session.user.settings.maxTokenVolume}">
+            </div>
+        </div>
+        <p style="font-size: 1em;color: rgba(0, 0, 0, 0.25);">Не беспокойтесь, другие настройки будут добавлены позже <i class="handshake outline icon"></i></p>
+        <div class="ui segment settings-form-actions">
+            <div class="ui blue vertical animated button main-btn" id="btn-save-settings" th:attr="settings-id=${session.user.settings.id}">
+                <div class="hidden content"><i class="plus icon"></i><i class="save icon"></i></div>
+                <div class="visible content">
+                    Сохранить
+                </div>
+            </div>
+            <div class="ui error message" id="error-save-settings"></div>
+        </div>
+    </div>
     <br>
     <br>
     <br>
@@ -28,6 +66,6 @@
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
 <script th:src="@{/js/master.js}"></script>
-<script th:src="@{/js/handlers/add-telegram-handler.js}"></script>
+<script th:src="@{/js/handlers/save-settings-handler.js}"></script>
 </body>
 </html>

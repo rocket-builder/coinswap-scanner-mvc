@@ -1,52 +1,56 @@
 
-$('#btn-save-settings').click(async function() {
+$('#btn-save-settings').click(function() {
 
-  let url = api_url + 'user/' + getCookie('id');
-  let response = await fetch(url);
-  let user = await response.json();
+  const settingsId = $(this).attr('settings-id');
+  const settings = getSettingsFromFields(settingsId);
+  console.log(settings);
 
-  let swappers = [];
-   $('.account[swapper-id]').each((i, swapper) => {
-     let id = $(swapper).attr('swapper-preset-id');
-     let swapperId = $(swapper).attr('swapper-id');
+  // if(!validateSettings(settings)){
+  //   $('#error-save-settings').html("Минимум не может быть больше максимума").transition('shake');
+  //   return;
+  // }
 
-     let active = $(swapper).find('input[type="checkbox"]').parent().hasClass('checked');
-     let tokenAmount = $(swapper).find('.inp-token-amount').val();
-     let liquidity = $(swapper).find('.inp-liquidity-percent').val();
-
-     let item = {
-       id: id,
-       swapper: {
-         id: swapperId
-       },
-       active: active,
-       minLiquidity: liquidity,
-       minTokenAmount: tokenAmount
-     };
-
-     swappers.push(item);
-   });
-
-   console.log(swappers);
-
-   let settings = {
-     swappers: swappers
-   };
-
+  $('#settings-form').addClass('loading');
   $.ajax({
     type:"PUT",
     contentType: "application/json",
     dataType: "json",
-    url: api_url + "settings/user/" + getCookie('id'),
+    url: api_url + "user/settings",
     data: JSON.stringify(settings),
     success: function(response) {
         console.log(response);
-
-        $('#btn-save-settings').transition('flash');
+        $('#settings-form').removeClass('loading');
     },
     error: function(error) {
       console.log(error);
-      $('#error-add-telegram').html(error.responseText).transition('shake');
+      $('#settings-form').removeClass('loading');
+      $('#error-save-settings').html(error.responseText).transition('shake');
     }
   });
 });
+
+function getSettingsFromFields(id) {
+  return {
+    id: id,
+    minProfitPercent: $('#inp-min-profit').val(),
+    maxProfitPercent: $('#inp-max-profit').val(),
+
+    minTokenVolume: $('#inp-min-token-volume').val(),
+    maxTokenVolume: $('#inp-max-token-volume').val(),
+
+    minPairVolume: $('#inp-min-pair-volume').val(),
+    maxPairVolume: $('#inp-max-pair-volume').val()
+  };
+}
+
+// function validateSettings(settings) {
+//   let valid = false;
+//   if(
+//       Number(settings.minProfitPercent) <= Number(settings.maxProfitPercent) || Number(settings.maxProfitPercent) === 0 &&
+//       Number(settings.minTokenVolume) <= Number(settings.maxTokenVolume) || Number(settings.maxTokenVolume) === 0 &&
+//       Number(settings.minPairVolume) <= Number(settings.maxPairVolume) || Number(settings.maxPairVolume) === 0
+//   ){
+//     valid = true;
+//   }
+//   return valid;
+// }

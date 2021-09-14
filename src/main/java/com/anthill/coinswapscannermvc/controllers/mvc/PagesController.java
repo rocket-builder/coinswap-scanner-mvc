@@ -1,8 +1,10 @@
 package com.anthill.coinswapscannermvc.controllers.mvc;
 
+import com.anthill.coinswapscannermvc.beans.Settings;
 import com.anthill.coinswapscannermvc.beans.User;
 import com.anthill.coinswapscannermvc.enums.Role;
 import com.anthill.coinswapscannermvc.exceptions.AccessDeniedException;
+import com.anthill.coinswapscannermvc.repos.SettingsRepos;
 import com.anthill.coinswapscannermvc.repos.UserRepos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,8 @@ public class PagesController {
 
     @Autowired
     UserRepos userRepos;
+    @Autowired
+    SettingsRepos settingsRepos;
 
     @GetMapping("/telegram")
     public String telegram(HttpSession session){
@@ -33,8 +37,17 @@ public class PagesController {
     }
 
     @GetMapping("/settings")
-    public String settings(HttpSession session){
-        return getViewByUserSession("settings", session);
+    public String settings(HttpSession session) throws AccessDeniedException {
+        User user = (User) session.getAttribute("user");
+        if(user == null){
+            throw new AccessDeniedException();
+        }
+
+        Settings settings = settingsRepos.findById(user.getSettings().getId());
+        user.setSettings(settings);
+
+        session.setAttribute("user", user);
+        return "settings";
     }
 
     @GetMapping("/admin")

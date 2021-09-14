@@ -20,7 +20,24 @@ function getSessionUser(){
   console.log(usr);
   return usr;
 }
+function getCurrentUser(){
+  let usr = null;
+  $.ajax({
+    type: 'GET',
+    url: api_url + "user/current",
+    dataType: "json",
+    success: function(data) {
+      usr = data;
+    },
+    async: false
+  });
 
+  console.log(usr);
+  return usr;
+}
+String.prototype.isEmpty = function () {
+  return (!this || /^\s*$/.test(this));
+}
 
 $('.ui.dropdown').dropdown();
 

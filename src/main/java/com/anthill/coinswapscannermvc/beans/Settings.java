@@ -11,9 +11,12 @@ import javax.persistence.Entity;
 @Entity
 public class Settings extends AbstractEntity{
 
-    private double minProfitPercent = 5;
-    private double maxProfitPercent = 200;
+    private double minProfitPercent;
+    private double maxProfitPercent;
 
-    private double minTokenVolume = 10;
-    private double maxTokenVolume = 100000000;
+    private double minTokenVolume;
+    private double maxTokenVolume;
+
+    private double minPairVolume;
+    private double maxPairVolume;
 }

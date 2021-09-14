@@ -45,7 +45,7 @@ public class AuthorizationController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<User> login(@RequestBody User userAuth, HttpSession session) throws UserNotFoundedException,
+    public String login(@RequestBody User userAuth, HttpSession session) throws UserNotFoundedException,
             IncorrectPasswordException, AccessDeniedException {
         User authorized = userRepos.findByLogin(userAuth.getLogin());
 
@@ -62,11 +62,11 @@ public class AuthorizationController {
         }
 
         session.setAttribute("user", authorized);
-        return new ResponseEntity<>(authorized, HttpStatus.OK);
+        return getViewByRole(authorized);
     }
 
     @PostMapping("/registration")
-    public ResponseEntity<User> registration(@RequestBody User user, HttpSession session) throws LoginAlreadyTakenException {
+    public String registration(@RequestBody User user, HttpSession session) throws LoginAlreadyTakenException {
         if(userRepos.existsByLogin(user.getLogin())){
             throw new LoginAlreadyTakenException();
         }
@@ -76,6 +76,16 @@ public class AuthorizationController {
         User saved = userRepos.save(user);
 
         session.setAttribute("user", saved);
-        return new ResponseEntity<>(saved, HttpStatus.OK);
+        return getViewByRole(saved);
+    }
+
+    private String getViewByRole(User user){
+        String view;
+        switch (user.getRole()){
+            case ADMIN: view = "admin"; break;
+            case USER:
+            default: view = "profile"; break;
+        }
+        return view;
     }
 }

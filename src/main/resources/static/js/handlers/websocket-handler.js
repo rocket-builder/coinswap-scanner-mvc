@@ -1,10 +1,8 @@
 const socketUrl = "https://coinswap-scanner.herokuapp.com/ws/forks";
+const currentUser = getCurrentUser();
 
-function getTokenForkHTML(fork) {
-
-    let percent = Number(fork.profitPercent);
+function getColorByProfit(percent) {
     let color = "#1FC58E";
-
     if (percent >= 20){
         color = "#FF8C00";
     }
@@ -14,6 +12,45 @@ function getTokenForkHTML(fork) {
     if(percent >= 100){
         color = "#8A2BE2";
     }
+
+    return color;
+}
+
+Number.prototype.isRangeMatch = function(min, max){
+    let value = Number(this);
+
+    if(Number(min) + Number(max) === 0){
+        return true;
+    }
+    if(Number(min) === 0 && value <= Number(max)){
+        return true;
+    }
+    if(value >= Number(min) && Number(max) === 0){
+        return true;
+    }
+
+    return value >= Number(min) && value <= Number(max);
+}
+function isFilteredFork(fork) {
+    let settings = currentUser.settings;
+    let matched = false;
+
+    if(
+        fork.profitPercent.isRangeMatch(settings.minProfitPercent, settings.maxProfitPercent) &&
+
+        fork.firstPair.volume24h.isRangeMatch(settings.minPairVolume, settings.maxPairVolume) &&
+        fork.secondPair.volume24h.isRangeMatch(settings.minPairVolume, settings.maxPairVolume) &&
+
+        fork.token.quote.usdPrice.volume24h.isRangeMatch(settings.minTokenVolume, settings.maxTokenVolume)
+    ){
+        matched = true;
+    }
+    return matched;
+}
+function getTokenForkHTML(fork) {
+
+    let percent = Number(fork.profitPercent);
+    let color = getColorByProfit(percent);
 
   let html = '<div class="column forked">' +
       '        <div class="token-fork">' +
@@ -48,11 +85,16 @@ const hubConnection = new signalR.HubConnectionBuilder()
 hubConnection.on("Send", function (fork) {
       console.log(fork);
 
-      let html = getTokenForkHTML(fork);
-      $('#container').prepend(html);
-      $('.forked').first().transition('fade in', '300ms');
+      let matched = isFilteredFork(fork);
+      console.log("matched: " + matched);
 
-      $('#signal-lamp').transition('flash', '300ms');
+      if(matched){
+          let html = getTokenForkHTML(fork);
+          $('#container').prepend(html);
+          $('.forked').first().transition('fade in', '300ms');
+
+          $('#signal-lamp').transition('flash', '300ms');
+      }
 });
 
 hubConnection.start();
