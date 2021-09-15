@@ -1,6 +1,41 @@
 const socketUrl = "https://coinswap-scanner.herokuapp.com/ws/forks";
 const currentUser = getCurrentUser();
 
+var forks = [];
+function initStorage() {
+    let json = localStorage.getItem("forks");
+
+    if(json === null || json === undefined) {
+        json = JSON.stringify(forks);
+        localStorage.setItem("forks", json);
+
+        console.log('init storage');
+    } else {
+        forks = JSON.parse(json);
+        console.log('retrieve storage');
+        console.log(forks);
+    }
+}
+initStorage();
+renderForksFromStorage();
+
+function saveForkInStorage(fork) {
+    forks.push(fork);
+    let json = JSON.stringify(forks);
+
+    localStorage.setItem("forks", json);
+    console.log('saved');
+}
+
+function renderForksFromStorage() {
+    let html = "";
+    forks.forEach((fork) => {
+        html += getTokenForkHTML(fork);
+    });
+
+    $('#container').prepend(html);
+}
+
 function getColorByProfit(percent) {
     let color = "#1FC58E";
     if (percent >= 20){
@@ -48,31 +83,30 @@ function isFilteredFork(fork) {
     return matched;
 }
 function getTokenForkHTML(fork) {
-
     let percent = Number(fork.profitPercent);
     let color = getColorByProfit(percent);
 
-  let html = '<div class="column forked">' +
-      '        <div class="token-fork">' +
-      '        <div class="token">' +
-      '        '+fork.token.title+' <span>'+fork.token.symbol+'</span><br>' +
-      '        <span>[</span>'+fork.token.platform.title+'<span>]</span>' +
-      '        <p><i class="chart line icon"></i>$'+fork.token.quote.usdPrice.volume24h.toLocaleString()+'</p>' +
-      '    </div>' +
-      '    <div class="exchanges">' +
-      '        <textarea rows="3">'+fork.firstPair.exchange.title+': '+fork.firstPair.title+'&#13;&#10;VOL: $'+fork.firstPair.volume24h.toLocaleString()+'&#13;&#10;P: $'+fork.firstPair.price+'</textarea>' +
-      '        <textarea rows="3">'+fork.secondPair.exchange.title+': '+fork.secondPair.title+'&#13;&#10;VOL: $'+fork.secondPair.volume24h.toLocaleString()+'&#13;&#10;P: $'+fork.secondPair.price+'</textarea>' +
-      '    </div>' +
-      '    <div class="profit">' +
-      '        <div class="percent" style="color:'+color+';">'+fork.profitPercent+'<i class="small icon percent"></i></div>' +
-      '    </div>' +
-      '    <a class="ui small fluid button token-btn" href="'+fork.url+'" target="_blank">' +
-      '        <i class="icon eye token-open"></i>' +
-      '        </a>' +
-      '        </div>' +
-      '        </div>';
+    let html = '<div class="column forked">' +
+        '        <div class="token-fork">' +
+        '        <div class="token">' +
+        '        ' + fork.token.title + ' <span>' + fork.token.symbol + '</span><br>' +
+        '        <span>[</span>' + fork.token.platform.title + '<span>]</span>' +
+        '        <p><i class="chart line icon"></i>$' + fork.token.quote.usdPrice.volume24h.toLocaleString() + '</p>' +
+        '    </div>' +
+        '    <div class="exchanges">' +
+        '        <textarea rows="3">' + fork.firstPair.exchange.title + ': ' + fork.firstPair.title + '&#13;&#10;VOL: $' + fork.firstPair.volume24h.toLocaleString() + '&#13;&#10;P: $' + fork.firstPair.price + '</textarea>' +
+        '        <textarea rows="3">' + fork.secondPair.exchange.title + ': ' + fork.secondPair.title + '&#13;&#10;VOL: $' + fork.secondPair.volume24h.toLocaleString() + '&#13;&#10;P: $' + fork.secondPair.price + '</textarea>' +
+        '    </div>' +
+        '    <div class="profit">' +
+        '        <div class="percent" style="color:' + color + ';">' + fork.profitPercent + '<i class="small icon percent"></i></div>' +
+        '    </div>' +
+        '    <a class="ui small fluid button token-btn" href="' + fork.url + '" target="_blank">' +
+        '        <i class="icon eye token-open"></i>' +
+        '        </a>' +
+        '        </div>' +
+        '        </div>';
 
-  return html;
+    return html;
 }
 
 const hubConnection = new signalR.HubConnectionBuilder()
@@ -94,6 +128,8 @@ hubConnection.on("Send", function (fork) {
           $('.forked').first().transition('fade in', '300ms');
 
           $('#signal-lamp').transition('flash', '300ms');
+
+          saveForkInStorage(fork);
       }
 });
 
