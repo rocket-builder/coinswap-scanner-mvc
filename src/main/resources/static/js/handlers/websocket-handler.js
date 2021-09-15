@@ -29,7 +29,7 @@ function saveForkInStorage(fork) {
 
 function renderForksFromStorage() {
     let html = "";
-    forks.forEach((fork) => {
+    forks.reverse().forEach((fork) => {
         html += getTokenForkHTML(fork);
     });
 

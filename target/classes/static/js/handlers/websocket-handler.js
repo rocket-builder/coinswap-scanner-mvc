@@ -4,7 +4,6 @@ const currentUser = getCurrentUser();
 var forks = [];
 function initStorage() {
     let json = localStorage.getItem("forks");
-    console.log(json);
 
     if(json === null || json === undefined) {
         json = JSON.stringify(forks);
@@ -30,7 +29,7 @@ function saveForkInStorage(fork) {
 
 function renderForksFromStorage() {
     let html = "";
-    forks.forEach((fork) => {
+    forks.reverse().forEach((fork) => {
         html += getTokenForkHTML(fork);
     });
 
