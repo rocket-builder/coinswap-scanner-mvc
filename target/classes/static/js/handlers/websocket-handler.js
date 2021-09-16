@@ -1,5 +1,6 @@
 const socketUrl = "https://coinswap-scanner.herokuapp.com/ws/forks";
 const currentUser = getCurrentUser();
+const maxForkCount = 100;
 
 var forks = [];
 function initStorage() {
@@ -29,11 +30,16 @@ function saveForkInStorage(fork) {
 
 function renderForksFromStorage() {
     let html = "";
-    forks.reverse().forEach((fork) => {
+
+    forks.sort(function(a,b){
+        return new Date(b.recieveDate) - new Date(a.recieveDate);
+    })
+        .slice(0, maxForkCount - 1)
+        .forEach((fork) => {
         html += getTokenForkHTML(fork);
     });
 
-    $('#container').prepend(html);
+    $('#container').append(html);
 }
 
 function getColorByProfit(percent) {
@@ -86,8 +92,9 @@ function getTokenForkHTML(fork) {
     let percent = Number(fork.profitPercent);
     let color = getColorByProfit(percent);
 
-    let html = '<div class="column forked">' +
+    let html = '<div class="column forked" fork-id="'+fork.id+'">' +
         '        <div class="token-fork">' +
+        '           <input class="fork-lifetime" size="6" maxlength="9" value="'+getCurrentLifetimeString(fork.recieveDate)+'" receive-date="'+fork.recieveDate+'" disabled/>' +
         '        <div class="token">' +
         '        ' + fork.token.title + ' <span>' + fork.token.symbol + '</span><br>' +
         '        <span>[</span>' + fork.token.platform.title + '<span>]</span>' +
@@ -105,7 +112,6 @@ function getTokenForkHTML(fork) {
         '        </a>' +
         '        </div>' +
         '        </div>';
-
     return html;
 }
 
@@ -117,19 +123,28 @@ const hubConnection = new signalR.HubConnectionBuilder()
             .build();
 
 hubConnection.on("Send", function (fork) {
+      fork.id = generateUUID();
       console.log(fork);
 
       let matched = isFilteredFork(fork);
       console.log("matched: " + matched);
 
       if(matched){
+          saveForkInStorage(fork);
+
           let html = getTokenForkHTML(fork);
           $('#container').prepend(html);
-          $('.forked').first().transition('fade in', '300ms');
+
+          $('[fork-id='+fork.id+']').transition('fade in', '300ms');
 
           $('#signal-lamp').transition('flash', '300ms');
 
-          saveForkInStorage(fork);
+          forkLifetimeTimerInit(fork);
+
+          if($('.forked').length > maxForkCount){
+              console.log('delete last fork');
+              $('.forked').last().remove();
+          }
       }
 });
 

@@ -76,7 +76,7 @@ textarea.user-info{
 .token-fork-container{
   min-width: 65%;
   max-width: 65%!important;
-  height: 31.2em!important;
+  height: 31.22em!important;
   background: #fbfbfb;
   border-radius: 40px;
   padding: 1em!important;
@@ -124,6 +124,13 @@ textarea.user-info{
     display: flex!important;
     flex-direction: column!important;
     padding: 4em 0 0 0!important;
+}
+.token-fork > .fork-lifetime{
+    color: rgba(0,0,0,0.25);
+    border: none;
+    font-weight: 300;
+    float: right;
+    background: transparent;
 }
 .token-fork{
   background: white;
