@@ -4,6 +4,7 @@ const api_url = "/";
 const loaderSmall = '<div class="ui active inverted dimmer" id="loader"><div class="ui loader small"></div></div>';
 const loader = '<div class="ui active inverted dimmer" id="loader"><div class="ui loader"></div></div>';
 const user = getSessionUser();
+const currentUser = getCurrentUser();
 
 function getSessionUser(){
   let usr = null;

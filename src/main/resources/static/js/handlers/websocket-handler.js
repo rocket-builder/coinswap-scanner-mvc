@@ -1,6 +1,50 @@
 const socketUrl = "https://coinswap-scanner.herokuapp.com/ws/forks";
-const currentUser = getCurrentUser();
-const maxForkCount = 100;
+const maxForkCount = currentUser.settings.maxForkCountOnPage;
+
+Array.prototype.removeById = function(forkId){
+    const index = this.findIndex(fork => fork.id.trim() === forkId.trim());
+    if (index > -1) {
+        this.splice(index, 1);
+    }
+}
+Number.prototype.isRangeMatch = function(min, max){
+    let value = Number(this);
+
+    if(Number(min) + Number(max) === 0){
+        return true;
+    }
+    if(Number(min) === 0 && value <= Number(max)){
+        return true;
+    }
+    if(value >= Number(min) && Number(max) === 0){
+        return true;
+    }
+
+    return value >= Number(min) && value <= Number(max);
+}
+String.prototype.isBannedPair = function (bannedPairs) {
+    return bannedPairs.find(pair => pair.title.trim() === this.trim()) !== undefined;
+}
+
+function isFilteredFork(fork) {
+    let settings = currentUser.settings;
+    let matched = false;
+
+    if(
+        fork.profitPercent.isRangeMatch(settings.minProfitPercent, settings.maxProfitPercent) &&
+
+        fork.firstPair.volume24h.isRangeMatch(settings.minPairVolume, settings.maxPairVolume) &&
+        fork.secondPair.volume24h.isRangeMatch(settings.minPairVolume, settings.maxPairVolume) &&
+
+        fork.token.quote.usdPrice.volume24h.isRangeMatch(settings.minTokenVolume, settings.maxTokenVolume) &&
+
+        !fork.firstPair.title.isBannedPair(settings.bannedPairs) &&
+        !fork.secondPair.title.isBannedPair(settings.bannedPairs)
+    ){
+        matched = true;
+    }
+    return matched;
+}
 
 var forks = [];
 function initStorage() {
@@ -25,7 +69,15 @@ function saveForkInStorage(fork) {
     let json = JSON.stringify(forks);
 
     localStorage.setItem("forks", json);
-    console.log('saved');
+    console.log('saved in storage');
+}
+
+function removeForkFromStorageById(forkId) {
+    forks.removeById(forkId);
+    let json = JSON.stringify(forks);
+
+    localStorage.setItem("forks", json);
+    console.log('deleted from storage');
 }
 
 function renderForksFromStorage() {
@@ -36,7 +88,9 @@ function renderForksFromStorage() {
     })
         .slice(0, maxForkCount - 1)
         .forEach((fork) => {
-        html += getTokenForkHTML(fork);
+            if(isFilteredFork(fork)){
+                html += getTokenForkHTML(fork);
+            }
     });
 
     $('#container').append(html);
@@ -55,38 +109,6 @@ function getColorByProfit(percent) {
     }
 
     return color;
-}
-
-Number.prototype.isRangeMatch = function(min, max){
-    let value = Number(this);
-
-    if(Number(min) + Number(max) === 0){
-        return true;
-    }
-    if(Number(min) === 0 && value <= Number(max)){
-        return true;
-    }
-    if(value >= Number(min) && Number(max) === 0){
-        return true;
-    }
-
-    return value >= Number(min) && value <= Number(max);
-}
-function isFilteredFork(fork) {
-    let settings = currentUser.settings;
-    let matched = false;
-
-    if(
-        fork.profitPercent.isRangeMatch(settings.minProfitPercent, settings.maxProfitPercent) &&
-
-        fork.firstPair.volume24h.isRangeMatch(settings.minPairVolume, settings.maxPairVolume) &&
-        fork.secondPair.volume24h.isRangeMatch(settings.minPairVolume, settings.maxPairVolume) &&
-
-        fork.token.quote.usdPrice.volume24h.isRangeMatch(settings.minTokenVolume, settings.maxTokenVolume)
-    ){
-        matched = true;
-    }
-    return matched;
 }
 function getTokenForkHTML(fork) {
     let percent = Number(fork.profitPercent);
@@ -107,8 +129,14 @@ function getTokenForkHTML(fork) {
         '    <div class="profit">' +
         '        <div class="percent" style="color:' + color + ';">' + fork.profitPercent + '<i class="small icon percent"></i></div>' +
         '    </div>' +
-        '    <a class="ui small fluid button token-btn" href="' + fork.url + '" target="_blank">' +
-        '        <i class="icon eye token-open"></i>' +
+        '    <a class="ui small button token-btn btn-delete-fork" onclick="deleteFork(this)">' +
+        '        <i class="icon trash alternate outline token-open"></i>' +
+        '        </a>' +
+        '    <a class="ui small button token-btn btn-ban-fork" fork-pairs="'+fork.firstPair.title+';'+fork.secondPair.title+'" onclick="banPairs(this)">' +
+        '        <i class="icon eye slash outline token-open"></i>' +
+        '        </a>' +
+        '    <a class="ui small button token-btn open-link" href="' + fork.url + '" target="_blank">' +
+        '        <i class="icon arrow right token-open"></i>' +
         '        </a>' +
         '        </div>' +
         '        </div>';
@@ -120,6 +148,7 @@ const hubConnection = new signalR.HubConnectionBuilder()
               skipNegotiation: true,
               transport: signalR.HttpTransportType.WebSockets
             })
+            //.withAutomaticReconnect()
             .build();
 
 hubConnection.on("Send", function (fork) {
@@ -148,4 +177,22 @@ hubConnection.on("Send", function (fork) {
       }
 });
 
-hubConnection.start();
+function start() {
+    try{
+        hubConnection.start();
+    } catch (error) {
+        console.log(error);
+        reconnect();
+    }
+}
+function reconnect(){
+    setTimeout(function () {
+        hubConnection.start();
+    }, 5000);
+}
+hubConnection.onclose(function() {
+    console.log('restart signalR connection');
+    reconnect();
+});
+
+start();

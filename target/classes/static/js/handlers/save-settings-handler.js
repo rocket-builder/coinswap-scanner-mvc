@@ -10,7 +10,7 @@ $('#btn-save-settings').click(function() {
   //   return;
   // }
 
-  $('#settings-form').addClass('loading');
+  $('.ui.form').addClass('loading');
   $.ajax({
     type:"PUT",
     contentType: "application/json",
@@ -19,7 +19,7 @@ $('#btn-save-settings').click(function() {
     data: JSON.stringify(settings),
     success: function(response) {
         console.log(response);
-        $('#settings-form').removeClass('loading');
+        $('.ui.form').removeClass('loading');
     },
     error: function(error) {
       console.log(error);
@@ -39,9 +39,34 @@ function getSettingsFromFields(id) {
     maxTokenVolume: $('#inp-max-token-volume').val(),
 
     minPairVolume: $('#inp-min-pair-volume').val(),
-    maxPairVolume: $('#inp-max-pair-volume').val()
+    maxPairVolume: $('#inp-max-pair-volume').val(),
+
+    maxForkCountOnPage: $('#inp-max-forks-count').val(),
+
+    bannedPairs: currentUser.settings.bannedPairs
   };
 }
+
+$('#btn-clear-banned-pairs').click(function () {
+  currentUser.settings.bannedPairs = [];
+
+  $(this).addClass('loading');
+  $.ajax({
+    type:"PUT",
+    contentType: "application/json",
+    dataType: "json",
+    url: api_url + "user/settings",
+    data: JSON.stringify(currentUser.settings),
+    success: function(response) {
+      console.log(response);
+      $('#btn-clear-banned-pairs').removeClass('loading');
+    },
+    error: function(error) {
+      console.log(error);
+      $('#btn-clear-banned-pairs').removeClass('loading');
+    }
+  });
+});
 
 // function validateSettings(settings) {
 //   let valid = false;

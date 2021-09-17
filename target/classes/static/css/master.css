@@ -87,10 +87,11 @@ textarea.user-info{
 .icon.token-open{
   margin: 0!important;
 }
-.token-btn{
+.token-btn.open-link{
+  float: right;
   background: #FAE62D!important;
 }
-.token-btn:hover{
+.token-btn.open-link:hover{
     background: #FAE62D!important;
 }
 .exit-btn{
@@ -109,10 +110,13 @@ textarea.user-info{
   .token-fork-container{
     max-width: 90%!important;
   }
+  .settings-form{
+    max-width: 90%!important;
+  }
 }
 .settings-form{
     min-width: 30%!important;
-    max-width: 90%!important;
+    max-width: 30%;
     min-height: 20em!important;
     background: white;
     border: 1px solid rgba(0, 0, 0, .06)!important;
@@ -198,6 +202,18 @@ textarea.user-info{
   padding: 0.25em!important;
   border-radius: 25px!important;
   margin: 0.5em 0 0 0!important;
+  width: 32%!important;
+}
+.btn-ban-fork{
+    background: transparent!important;
+}
+.btn-delete-fork{
+    background: transparent!important;
+    transition: 0.5s;
+}
+.btn-delete-fork:hover{
+    color: red!important;
+    transition: 0.5s;
 }
 .time-icon{
   margin-left: -10px!important;
