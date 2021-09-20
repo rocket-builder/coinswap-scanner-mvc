@@ -151,30 +151,34 @@ const hubConnection = new signalR.HubConnectionBuilder()
             //.withAutomaticReconnect()
             .build();
 
-hubConnection.on("Send", function (fork) {
-      fork.id = generateUUID();
-      console.log(fork);
+hubConnection.on("Send", function (forkList) {
+      console.log(forkList);
 
-      let matched = isFilteredFork(fork);
-      console.log("matched: " + matched);
+      forkList.items.forEach((fork) => {
+          fork.id = generateUUID();
+          console.log(fork);
 
-      if(matched){
-          saveForkInStorage(fork);
+          let matched = isFilteredFork(fork);
+          console.log("matched: " + matched);
 
-          let html = getTokenForkHTML(fork);
-          $('#container').prepend(html);
+          if(matched){
+              saveForkInStorage(fork);
 
-          $('[fork-id='+fork.id+']').transition('fade in', '300ms');
+              let html = getTokenForkHTML(fork);
+              $('#container').prepend(html);
 
-          $('#signal-lamp').transition('flash', '300ms');
+              $('[fork-id='+fork.id+']').transition('fade in', '300ms');
 
-          forkLifetimeTimerInit(fork);
+              forkLifetimeTimerInit(fork);
 
-          if($('.forked').length > maxForkCount){
-              console.log('delete last fork');
-              $('.forked').last().remove();
+              if($('.forked').length > maxForkCount){
+                  console.log('delete last fork');
+                  $('.forked').last().remove();
+              }
+
+              $('#signal-lamp').transition('flash', '300ms');
           }
-      }
+      });
 });
 
 function start() {

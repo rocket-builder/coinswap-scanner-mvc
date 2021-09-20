@@ -151,30 +151,34 @@ const hubConnection = new signalR.HubConnectionBuilder()
             //.withAutomaticReconnect()
             .build();
 
-hubConnection.on("Send", function (fork) {
-      fork.id = generateUUID();
-      console.log(fork);
+hubConnection.on("Send", function (forkList) {
+      console.log(forkList);
 
-      let matched = isFilteredFork(fork);
-      console.log("matched: " + matched);
+      $('#signal-lamp').transition('flash', '300ms');
 
-      if(matched){
-          saveForkInStorage(fork);
+      forkList.items.forEach((fork) => {
+          fork.id = generateUUID();
+          console.log(fork);
 
-          let html = getTokenForkHTML(fork);
-          $('#container').prepend(html);
+          let matched = isFilteredFork(fork);
+          console.log("matched: " + matched);
 
-          $('[fork-id='+fork.id+']').transition('fade in', '300ms');
+          if(matched){
+              saveForkInStorage(fork);
 
-          $('#signal-lamp').transition('flash', '300ms');
+              let html = getTokenForkHTML(fork);
+              $('#container').prepend(html);
 
-          forkLifetimeTimerInit(fork);
+              $('[fork-id='+fork.id+']').transition('fade in', '300ms');
 
-          if($('.forked').length > maxForkCount){
-              console.log('delete last fork');
-              $('.forked').last().remove();
+              forkLifetimeTimerInit(fork);
+
+              if($('.forked').length > maxForkCount){
+                  console.log('delete last fork');
+                  $('.forked').last().remove();
+              }
           }
-      }
+      });
 });
 
 function start() {
