@@ -154,7 +154,7 @@ const hubConnection = new signalR.HubConnectionBuilder()
 hubConnection.on("Send", function (forkList) {
       console.log(forkList);
 
-      forkList.items.forEach((fork) => {
+      forkList.forEach((fork) => {
           fork.id = generateUUID();
           console.log(fork);
 

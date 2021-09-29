@@ -154,9 +154,7 @@ const hubConnection = new signalR.HubConnectionBuilder()
 hubConnection.on("Send", function (forkList) {
       console.log(forkList);
 
-      $('#signal-lamp').transition('flash', '300ms');
-
-      forkList.items.forEach((fork) => {
+      forkList.forEach((fork) => {
           fork.id = generateUUID();
           console.log(fork);
 
@@ -177,6 +175,8 @@ hubConnection.on("Send", function (forkList) {
                   console.log('delete last fork');
                   $('.forked').last().remove();
               }
+
+              $('#signal-lamp').transition('flash', '300ms');
           }
       });
 });
