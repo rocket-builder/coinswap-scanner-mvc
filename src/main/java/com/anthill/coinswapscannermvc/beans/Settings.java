@@ -19,11 +19,11 @@ public class Settings extends AbstractEntity{
     private double minProfitPercent;
     private double maxProfitPercent;
 
-    private double minTokenVolume;
-    private double maxTokenVolume;
+    private int minTokenVolume;
+    private int maxTokenVolume;
 
-    private double minPairVolume;
-    private double maxPairVolume;
+    private int minPairVolume;
+    private int maxPairVolume;
 
     private int maxForkCountOnPage = 100;
 
