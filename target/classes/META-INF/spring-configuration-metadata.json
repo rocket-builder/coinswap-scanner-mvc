@@ -1,0 +1,11 @@
+{
+  "groups": [],
+  "properties": [
+    {
+      "name": "signalr.url",
+      "type": "java.lang.String",
+      "description": "URl for signalR java client."
+    }
+  ],
+  "hints": []
+}
