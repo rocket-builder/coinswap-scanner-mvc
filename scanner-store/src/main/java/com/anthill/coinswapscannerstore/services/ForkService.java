@@ -1,12 +1,14 @@
 package com.anthill.coinswapscannerstore.services;
 
 import com.anthill.coinswapscannerstore.beans.Fork;
-import com.anthill.coinswapscannerstore.repos.ForkRepos;
 import com.microsoft.signalr.HubConnection;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -16,32 +18,48 @@ import java.util.stream.Collectors;
 public class ForkService {
 
     private final HubConnection hubConnection;
-    private final ForkRepos forkRepos;
     private final ScheduledExecutorService executorService;
+    private final RedisService redis;
 
-    public ForkService(HubConnection hubConnection, ForkRepos forkRepos,
-                       ScheduledExecutorService executorService) {
+    public ForkService(HubConnection hubConnection, ScheduledExecutorService executorService,
+                       RedisService redis) {
         this.hubConnection = hubConnection;
-        this.forkRepos = forkRepos;
         this.executorService = executorService;
+        this.redis = redis;
+    }
+
+    public void save(Fork fork){
+        redis.hSet(Fork.class.getSimpleName(), UUID.randomUUID().toString(), fork);
+    }
+    public void save(List<Fork> forks){
+        Map<String, Object> forksMap = forks.stream()
+                .collect(Collectors.toMap(
+                        fork -> UUID.randomUUID().toString(), fork -> fork));
+
+        redis.hSetAll(Fork.class.getSimpleName(), forksMap);
     }
 
     public Iterable<Fork> findAll(){
-        return forkRepos.findAll();
+        return redis.hGetAll(Fork.class.getSimpleName())
+                .values()
+                .stream()
+                .filter(o -> o instanceof Fork)
+                .map(f -> (Fork) f)
+                .collect(Collectors.toList());
     }
 
     public void deleteAll(){
-        forkRepos.deleteAll();
+        redis.flushAll();
     }
 
     public void init(){
         hubConnection.on("Send", (forks) -> {
+            var forksList = Arrays.stream(forks).collect(Collectors.toList());
 
-            Arrays.stream(forks).forEach(fork -> {
-                log.info(fork.getId() + "-> Fork: " + fork);
-            });
-            forkRepos.saveAll(
-                    Arrays.stream(forks).collect(Collectors.toList()));
+            forksList.forEach(fork ->
+                    log.info("Fork: " + fork));
+
+            save(forksList);
         }, Fork[].class);
 
         hubConnection.onClosed((ex) -> {

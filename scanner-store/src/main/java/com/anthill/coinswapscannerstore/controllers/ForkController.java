@@ -16,7 +16,7 @@ public class ForkController {
 
     public ForkController(ForkService forkService) {
         this.forkService = forkService;
-        //this.forkService.init();
+        this.forkService.init();
     }
 
     @GetMapping()
