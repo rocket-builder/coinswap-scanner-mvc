@@ -1,37 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1dace837-c407-4795-8ec7-ff457828a6d5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_devtools_2_5_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scanner-mvc/coinswap-scanner-mvc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/coinswap-scanner-mvc.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scanner-mvc/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scanner-mvc/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scanner-mvc/src/main/resources/static/js/handlers/websocket-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/resources/static/js/handlers/websocket-handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scanner-mvc/src/main/resources/static/js/master.js" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/resources/static/js/master.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scanner-mvc/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scanner-mvc/target/classes/static/js/handlers/websocket-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/target/classes/static/js/handlers/websocket-handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scanner-mvc/target/classes/static/js/master.js" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/target/classes/static/js/master.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/beans/Exchange.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/beans/coinmarket/Exchange.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/beans/Fork.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/beans/coinmarket/Fork.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/beans/ForkList.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/beans/coinmarket/ForkList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/beans/Pair.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/beans/coinmarket/Pair.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/beans/Platform.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/beans/coinmarket/Platform.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/beans/Quote.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/beans/coinmarket/Quote.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/beans/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/beans/coinmarket/Token.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/beans/UsdPrice.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/beans/coinmarket/UsdPrice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/configuration/ExecutorServiceConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/configuration/ExecutorServiceConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/configuration/RedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/configuration/RedisConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/configuration/SignalRConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/configuration/SignalRConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/controllers/ForkController.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/controllers/rest/ForkController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/interfaces/IRedisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/interfaces/IRedisService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/services/ForkService.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/services/ForkService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/services/RedisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/services/RedisService.java" afterDir="false" />
-    </list>
+    <list default="true" id="1dace837-c407-4795-8ec7-ff457828a6d5" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -140,6 +110,7 @@
       <workItem from="1633874093900" duration="41000" />
       <workItem from="1633876162866" duration="24000" />
       <workItem from="1633975063481" duration="3650000" />
+      <workItem from="1634839763044" duration="343000" />
     </task>
     <task id="LOCAL-00001" summary="first build">
       <created>1631304184725</created>
