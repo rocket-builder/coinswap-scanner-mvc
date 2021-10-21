@@ -1,4 +1,6 @@
-const socketUrl = "https://coinswap-scanner.herokuapp.com/ws/forks";
+const socketUrl = "https://coinswap-scanner.azurewebsites.net/ws/forks";
+//const socketUrl = "https://localhost:5001/ws/forks";
+
 const maxForkCount = currentUser.settings.maxForkCountOnPage;
 
 Array.prototype.removeById = function(forkId){
@@ -154,7 +156,7 @@ const hubConnection = new signalR.HubConnectionBuilder()
 hubConnection.on("Send", function (forkList) {
       console.log(forkList);
 
-      forkList.forEach((fork) => {
+      forkList.items.forEach((fork) => {
           fork.id = generateUUID();
           console.log(fork);
 

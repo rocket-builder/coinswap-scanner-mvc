@@ -1,6 +1,7 @@
 package com.anthill.coinswapscannermvc.services;
 
 import com.anthill.coinswapscannermvc.beans.coinmarket.Fork;
+import com.anthill.coinswapscannermvc.dto.ForkListDto;
 import com.anthill.coinswapscannermvc.repos.ForkRepos;
 import com.microsoft.signalr.HubConnection;
 import lombok.extern.slf4j.Slf4j;
@@ -28,10 +29,10 @@ public class ForkService {
     public void init(){
         hubConnection.on("Send", (forks) -> {
 
-            Arrays.stream(forks).forEach(fork -> {
+            forks.getItems().forEach(fork -> {
                 System.out.println("Fork: " + fork.getUrl());
             });
-        }, Fork[].class);
+        }, ForkListDto.class);
 
         hubConnection.onClosed((ex) -> {
             ex.printStackTrace();
