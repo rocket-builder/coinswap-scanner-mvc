@@ -1,4 +1,4 @@
-package com.anthill.coinswapscannerstore.configuration;
+package com.anthill.coinswapscannermvc.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

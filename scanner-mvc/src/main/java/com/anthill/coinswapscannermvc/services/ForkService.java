@@ -1,12 +1,11 @@
-package com.anthill.coinswapscannerstore.services;
+package com.anthill.coinswapscannermvc.services;
 
-import com.anthill.coinswapscannerstore.beans.Fork;
-import com.anthill.coinswapscannerstore.beans.ForkList;
+import com.anthill.coinswapscannermvc.beans.coinmarket.Fork;
+import com.anthill.coinswapscannermvc.beans.coinmarket.ForkList;
 import com.microsoft.signalr.HubConnection;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;

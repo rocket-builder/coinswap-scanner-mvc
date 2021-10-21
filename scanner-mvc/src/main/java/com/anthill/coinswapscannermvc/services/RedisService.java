@@ -1,6 +1,6 @@
-package com.anthill.coinswapscannerstore.services;
+package com.anthill.coinswapscannermvc.services;
 
-import com.anthill.coinswapscannerstore.interfaces.IRedisService;
+import com.anthill.coinswapscannermvc.interfaces.IRedisService;
 import org.springframework.data.redis.connection.RedisServerCommands;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;

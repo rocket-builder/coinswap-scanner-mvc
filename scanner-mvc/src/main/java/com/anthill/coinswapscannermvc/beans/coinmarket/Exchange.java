@@ -1,4 +1,4 @@
-package com.anthill.coinswapscannerstore.beans;
+package com.anthill.coinswapscannermvc.beans.coinmarket;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

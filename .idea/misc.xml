@@ -6,7 +6,6 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/scanner-store/pom.xml" />
         <option value="$PROJECT_DIR$/scanner-mvc/pom.xml" />
       </list>
     </option>

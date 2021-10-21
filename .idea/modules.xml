@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/scanner-mvc/coinswap-scanner-mvc.iml" filepath="$PROJECT_DIR$/scanner-mvc/coinswap-scanner-mvc.iml" />
-      <module fileurl="file://$PROJECT_DIR$/scanner-store/coinswap-scanner-store.iml" filepath="$PROJECT_DIR$/scanner-store/coinswap-scanner-store.iml" />
     </modules>
   </component>
 </project>

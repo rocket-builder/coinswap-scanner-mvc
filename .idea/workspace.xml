@@ -1,7 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1dace837-c407-4795-8ec7-ff457828a6d5" name="Default Changelist" comment="" />
+    <list default="true" id="1dace837-c407-4795-8ec7-ff457828a6d5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_devtools_2_5_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scanner-mvc/coinswap-scanner-mvc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/coinswap-scanner-mvc.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scanner-mvc/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scanner-mvc/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scanner-mvc/src/main/resources/static/js/handlers/websocket-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/resources/static/js/handlers/websocket-handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scanner-mvc/src/main/resources/static/js/master.js" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/resources/static/js/master.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scanner-mvc/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scanner-mvc/target/classes/static/js/handlers/websocket-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/target/classes/static/js/handlers/websocket-handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scanner-mvc/target/classes/static/js/master.js" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/target/classes/static/js/master.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/beans/Exchange.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/beans/coinmarket/Exchange.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/beans/Fork.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/beans/coinmarket/Fork.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/beans/ForkList.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/beans/coinmarket/ForkList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/beans/Pair.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/beans/coinmarket/Pair.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/beans/Platform.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/beans/coinmarket/Platform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/beans/Quote.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/beans/coinmarket/Quote.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/beans/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/beans/coinmarket/Token.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/beans/UsdPrice.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/beans/coinmarket/UsdPrice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/configuration/ExecutorServiceConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/configuration/ExecutorServiceConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/configuration/RedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/configuration/RedisConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/configuration/SignalRConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/configuration/SignalRConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/controllers/ForkController.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/controllers/rest/ForkController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/interfaces/IRedisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/interfaces/IRedisService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/services/ForkService.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/services/ForkService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scanner-store/src/main/java/com/anthill/coinswapscannerstore/services/RedisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/scanner-mvc/src/main/java/com/anthill/coinswapscannermvc/services/RedisService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,6 +75,9 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.anthill.coinswapscannermvc" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.anthill.coinswapscannerstore.configuration" />
     </key>
@@ -55,13 +88,6 @@
       <recent name="C:\Users\rocket\Documents\GitHub\coinswap-scanner-mvc\src\main\java\com\anthill\coinswapscannermvc\controllers" />
       <recent name="C:\Users\rocket\Documents\GitHub\coinswap-scanner-mvc\src\main\java\com\anthill\coinswapscannermvc\repos" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="configurationTypes">
-      <set>
-        <option value="SpringBootApplicationConfigurationType" />
-      </set>
-    </option>
   </component>
   <component name="RunManager" selected="Spring Boot.CoinswapScannerMvcApplication">
     <configuration name="CoinswapScannerMvcApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -169,6 +195,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1631643055730" />
+    <state x="274" y="336" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1634838253788">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="274" y="336" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1634838253788" />
+    <state x="552" y="293" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1634838255333">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="552" y="293" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1536.824@0.0.1536.824" timestamp="1634838255333" />
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1631286314311">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -185,45 +219,45 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" width="440" height="490" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1631210943862" />
-    <state width="1024" height="210" key="GridCell.Tab.0.bottom" timestamp="1634836973176">
+    <state width="1493" height="292" key="GridCell.Tab.0.bottom" timestamp="1634839098481">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1634836973176" />
+    <state width="1493" height="292" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1634839098481" />
     <state width="1877" height="285" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1633306615452" />
-    <state width="1024" height="210" key="GridCell.Tab.0.center" timestamp="1634836973176">
+    <state width="1493" height="292" key="GridCell.Tab.0.center" timestamp="1634839098481">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1634836973176" />
+    <state width="1493" height="292" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1634839098481" />
     <state width="1877" height="285" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1633306615452" />
-    <state width="1024" height="210" key="GridCell.Tab.0.left" timestamp="1634836973176">
+    <state width="1493" height="292" key="GridCell.Tab.0.left" timestamp="1634839098481">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1634836973176" />
+    <state width="1493" height="292" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1634839098481" />
     <state width="1877" height="285" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1633306615452" />
-    <state width="1024" height="210" key="GridCell.Tab.0.right" timestamp="1634836973176">
+    <state width="1493" height="292" key="GridCell.Tab.0.right" timestamp="1634839098481">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1634836973176" />
+    <state width="1493" height="292" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1634839098481" />
     <state width="1877" height="285" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1633306615452" />
-    <state width="1024" height="210" key="GridCell.Tab.1.bottom" timestamp="1634836973176">
+    <state width="1493" height="292" key="GridCell.Tab.1.bottom" timestamp="1634839098482">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="210" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1634836973176" />
+    <state width="1493" height="292" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1634839098482" />
     <state width="1877" height="285" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1633306615452" />
-    <state width="1024" height="210" key="GridCell.Tab.1.center" timestamp="1634836973176">
+    <state width="1493" height="292" key="GridCell.Tab.1.center" timestamp="1634839098481">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="210" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1634836973176" />
+    <state width="1493" height="292" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1634839098481" />
     <state width="1877" height="285" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1633306615452" />
-    <state width="1024" height="210" key="GridCell.Tab.1.left" timestamp="1634836973176">
+    <state width="1493" height="292" key="GridCell.Tab.1.left" timestamp="1634839098481">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="210" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1634836973176" />
+    <state width="1493" height="292" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1634839098481" />
     <state width="1877" height="285" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1633306615452" />
-    <state width="1024" height="210" key="GridCell.Tab.1.right" timestamp="1634836973176">
+    <state width="1493" height="292" key="GridCell.Tab.1.right" timestamp="1634839098481">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="210" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1634836973176" />
+    <state width="1493" height="292" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1634839098481" />
     <state width="1877" height="285" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1633306615452" />
     <state width="1493" height="261" key="GridCell.Tab.2.bottom" timestamp="1633743617548">
       <screen x="0" y="0" width="1536" height="824" />
@@ -245,10 +279,19 @@
     </state>
     <state width="1493" height="261" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1633743617548" />
     <state width="1877" height="348" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1631652567181" />
-    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1631828743385">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="650" y="278" key="MultipleFileMergeDialog" timestamp="1634837683864">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="650" y="278" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1634837683864" />
+    <state x="442" y="200" key="Vcs.Push.Dialog.v2" timestamp="1634837611743">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="442" y="200" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1634837611743" />
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1631828743385" />
+    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1634837696807">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1634837696807" />
     <state x="374" y="22" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1633731911760">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -257,10 +300,15 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="769" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1631825192422" />
-    <state x="667" y="229" width="585" height="606" key="find.popup" timestamp="1631914699568">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="534" y="181" width="621" height="530" key="find.popup" timestamp="1634838697193">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="534" y="181" width="621" height="530" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1634838697193" />
     <state x="667" y="229" width="585" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1631914699568" />
+    <state x="513" y="200" key="git4idea.merge.GitMergeDialog" timestamp="1634837666138">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="513" y="200" key="git4idea.merge.GitMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1634837666138" />
     <state x="637" y="308" key="git4idea.merge.GitPullDialog" timestamp="1631304522738">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
