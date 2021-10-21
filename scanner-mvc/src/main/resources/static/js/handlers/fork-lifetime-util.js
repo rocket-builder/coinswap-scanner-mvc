@@ -1,6 +1,6 @@
 function forkLifetimeTimerInit(fork) {
     let receiveDate = new Date(fork.recieveDate);
-    console.log(receiveDate);
+    //console.log(receiveDate);
 
     let lifetime = getCurrentLifetimeString(receiveDate);
     $('[fork-id='+fork.id+'] > input.fork-lifetime').val(lifetime);

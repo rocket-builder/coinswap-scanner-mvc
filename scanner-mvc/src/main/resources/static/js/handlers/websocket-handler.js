@@ -1,4 +1,4 @@
-const socketUrl = "https://coinswap-scanner.herokuapp.com/ws/forks";
+const socketUrl = "https://coinswap-scanner.azurewebsites.net/ws/forks";
 const maxForkCount = currentUser.settings.maxForkCountOnPage;
 
 Array.prototype.removeById = function(forkId){
@@ -47,28 +47,57 @@ function isFilteredFork(fork) {
 }
 
 var forks = [];
+var init = Boolean(sessionStorage.getItem("init"));
+
 function initStorage() {
-    let json = localStorage.getItem("forks");
+    if(init === false){
+        $('#container').addClass("form loading");
 
-    if(json === null || json === undefined) {
-        json = JSON.stringify(forks);
-        localStorage.setItem("forks", json);
+        fetch(store_url + "fork")
+            .then(response => response.json())
+            .then(storedForks => {
+                storedForks.map(f => {
+                    f.id = generateUUID(); return f;});
+                console.log(storedForks);
 
-        console.log('init storage');
+                forks = storedForks;
+
+                let json = JSON.stringify(forks);
+                sessionStorage.setItem("forks", json);
+                sessionStorage.setItem("init", "true");
+
+                $('#container').removeClass("form loading");
+                renderFilteredForks(forks);
+
+                $('#container').transition("fade in");
+                console.log("init storage")
+            })
+            .then(() =>
+                startSignalR());
     } else {
-        forks = JSON.parse(json);
-        console.log('retrieve storage');
+        forks = JSON.parse(sessionStorage.getItem("forks"));
         console.log(forks);
+
+        renderFilteredForks(forks);
+        console.log("retrieve storage");
+
+        startSignalR();
     }
 }
 initStorage();
-renderForksFromStorage();
 
 function saveForkInStorage(fork) {
     forks.push(fork);
     let json = JSON.stringify(forks);
 
-    localStorage.setItem("forks", json);
+    sessionStorage.setItem("forks", json);
+    console.log('saved in storage');
+}
+function saveForksInStorage(forksArr) {
+    forks.pushArray(forksArr);
+    let json = JSON.stringify(forks);
+
+    sessionStorage.setItem("forks", json);
     console.log('saved in storage');
 }
 
@@ -76,11 +105,11 @@ function removeForkFromStorageById(forkId) {
     forks.removeById(forkId);
     let json = JSON.stringify(forks);
 
-    localStorage.setItem("forks", json);
+    sessionStorage.setItem("forks", json);
     console.log('deleted from storage');
 }
 
-function renderForksFromStorage() {
+function renderFilteredForks(forks) {
     let html = "";
 
     forks.sort(function(a,b){
@@ -89,11 +118,13 @@ function renderForksFromStorage() {
         .slice(0, maxForkCount - 1)
         .forEach((fork) => {
             if(isFilteredFork(fork)){
-                html += getTokenForkHTML(fork);
+                html += getForkHTML(fork);
+
+                forkLifetimeTimerInit(fork);
             }
     });
 
-    $('#container').append(html);
+    $('#container').prepend(html);
 }
 
 function getColorByProfit(percent) {
@@ -110,7 +141,7 @@ function getColorByProfit(percent) {
 
     return color;
 }
-function getTokenForkHTML(fork) {
+function getForkHTML(fork) {
     let percent = Number(fork.profitPercent);
     let color = getColorByProfit(percent);
 
@@ -154,23 +185,14 @@ const hubConnection = new signalR.HubConnectionBuilder()
 hubConnection.on("Send", function (forkList) {
       console.log(forkList);
 
-      forkList.forEach((fork) => {
+      forkList.items.forEach((fork) => {
           fork.id = generateUUID();
-          console.log(fork);
+          saveForkInStorage(fork);
 
           let matched = isFilteredFork(fork);
           console.log("matched: " + matched);
 
           if(matched){
-              saveForkInStorage(fork);
-
-              let html = getTokenForkHTML(fork);
-              $('#container').prepend(html);
-
-              $('[fork-id='+fork.id+']').transition('fade in', '300ms');
-
-              forkLifetimeTimerInit(fork);
-
               if($('.forked').length > maxForkCount){
                   console.log('delete last fork');
                   $('.forked').last().remove();
@@ -179,9 +201,12 @@ hubConnection.on("Send", function (forkList) {
               $('#signal-lamp').transition('flash', '300ms');
           }
       });
+      renderFilteredForks(forkList.items);
+
+      $('#container').transition('fade in', '300ms');
 });
 
-function start() {
+function startSignalR() {
     try{
         hubConnection.start();
     } catch (error) {
@@ -198,5 +223,3 @@ hubConnection.onclose(function() {
     console.log('restart signalR connection');
     reconnect();
 });
-
-start();

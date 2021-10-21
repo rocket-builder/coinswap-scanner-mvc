@@ -1,6 +1,7 @@
 package com.anthill.coinswapscannerstore.services;
 
 import com.anthill.coinswapscannerstore.beans.Fork;
+import com.anthill.coinswapscannerstore.beans.ForkList;
 import com.microsoft.signalr.HubConnection;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ public class ForkService {
     private final HubConnection hubConnection;
     private final ScheduledExecutorService executorService;
     private final RedisService redis;
+    private final long forkTtl = 60 * 60; //1h
 
     public ForkService(HubConnection hubConnection, ScheduledExecutorService executorService,
                        RedisService redis) {
@@ -29,14 +31,15 @@ public class ForkService {
     }
 
     public void save(Fork fork){
-        redis.hSet(Fork.class.getSimpleName(), UUID.randomUUID().toString(), fork);
+        redis.hSet(Fork.class.getSimpleName(),
+                UUID.randomUUID().toString(), fork, forkTtl);
     }
     public void save(List<Fork> forks){
         Map<String, Object> forksMap = forks.stream()
                 .collect(Collectors.toMap(
                         fork -> UUID.randomUUID().toString(), fork -> fork));
 
-        redis.hSetAll(Fork.class.getSimpleName(), forksMap);
+        redis.hSetAll(Fork.class.getSimpleName(), forksMap, forkTtl);
     }
 
     public Iterable<Fork> findAll(){
@@ -54,13 +57,13 @@ public class ForkService {
 
     public void init(){
         hubConnection.on("Send", (forks) -> {
-            var forksList = Arrays.stream(forks).collect(Collectors.toList());
+            var forksList = forks.getItems();
 
             forksList.forEach(fork ->
                     log.info("Fork: " + fork));
 
             save(forksList);
-        }, Fork[].class);
+        }, ForkList.class);
 
         hubConnection.onClosed((ex) -> {
             ex.printStackTrace();
