@@ -1,7 +1,7 @@
-package com.anthill.coinswapscannerstore.controllers;
+package com.anthill.coinswapscannermvc.controllers.rest;
 
-import com.anthill.coinswapscannerstore.beans.Fork;
-import com.anthill.coinswapscannerstore.services.ForkService;
+import com.anthill.coinswapscannermvc.beans.coinmarket.Fork;
+import com.anthill.coinswapscannermvc.services.ForkService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

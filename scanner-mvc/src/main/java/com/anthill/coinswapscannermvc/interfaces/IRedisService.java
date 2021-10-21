@@ -1,4 +1,4 @@
-package com.anthill.coinswapscannerstore.interfaces;
+package com.anthill.coinswapscannermvc.interfaces;
 
 
 import java.util.List;

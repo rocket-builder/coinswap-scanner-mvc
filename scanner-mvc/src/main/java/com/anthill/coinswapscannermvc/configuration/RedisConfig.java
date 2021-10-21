@@ -1,4 +1,4 @@
-package com.anthill.coinswapscannerstore.configuration;
+package com.anthill.coinswapscannermvc.configuration;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

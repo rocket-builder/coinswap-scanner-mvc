@@ -1,4 +1,4 @@
-package com.anthill.coinswapscannerstore.configuration;
+package com.anthill.coinswapscannermvc.configuration;
 
 import com.microsoft.signalr.HubConnection;
 import com.microsoft.signalr.HubConnectionBuilder;

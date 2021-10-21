@@ -1,6 +1,5 @@
 //const api_url = "http://127.0.0.1:8081/";
 const api_url = "/";
-const store_url = "http://127.0.0.1:8080/";
 
 const loaderSmall = '<div class="ui active inverted dimmer" id="loader"><div class="ui loader small"></div></div>';
 const loader = '<div class="ui active inverted dimmer" id="loader"><div class="ui loader"></div></div>';
