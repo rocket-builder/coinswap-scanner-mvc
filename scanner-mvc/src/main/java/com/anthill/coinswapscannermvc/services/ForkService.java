@@ -20,7 +20,9 @@ public class ForkService {
     private final HubConnection hubConnection;
     private final ScheduledExecutorService executorService;
     private final RedisService redis;
+
     private final long forkTtl = 60 * 60; //1h
+    private final String forkKey = Fork.class.getSimpleName();
 
     public ForkService(HubConnection hubConnection, ScheduledExecutorService executorService,
                        RedisService redis) {
@@ -30,19 +32,20 @@ public class ForkService {
     }
 
     public void save(Fork fork){
-        redis.hSet(Fork.class.getSimpleName(),
-                UUID.randomUUID().toString(), fork, forkTtl);
+        redis.hSet(forkKey, UUID.randomUUID().toString(), fork);
+        resetExpiration();
     }
     public void save(List<Fork> forks){
         Map<String, Object> forksMap = forks.stream()
                 .collect(Collectors.toMap(
                         fork -> UUID.randomUUID().toString(), fork -> fork));
 
-        redis.hSetAll(Fork.class.getSimpleName(), forksMap, forkTtl);
+        redis.hSetAll(forkKey, forksMap);
+        resetExpiration();
     }
 
     public Iterable<Fork> findAll(){
-        return redis.hGetAll(Fork.class.getSimpleName())
+        return redis.hGetAll(forkKey)
                 .values()
                 .stream()
                 .filter(o -> o instanceof Fork)
@@ -71,5 +74,11 @@ public class ForkService {
         });
 
         hubConnection.start();
+    }
+
+    private void resetExpiration(){
+        if(redis.getExpire(forkKey) <= 0){
+            redis.expire(forkKey, forkTtl);
+        }
     }
 }

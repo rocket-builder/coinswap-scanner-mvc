@@ -1,11 +1,13 @@
 package com.anthill.coinswapscannermvc.configuration;
 
+import com.anthill.coinswapscannermvc.beans.coinmarket.Fork;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.lettuce.core.ClientOptions;
 import io.lettuce.core.api.sync.RedisServerCommands;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.cache.RedisCacheManagerBuilderCustomizer;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -95,7 +97,7 @@ public class RedisConfig {
                         RedisSerializationContext
                                 .SerializationPair
                                 .fromSerializer(redisSerializer()))
-                .entryTtl(Duration.ofDays(1)); //cache time time live to one day
+                .entryTtl(Duration.ofHours(1)); //cache time time live to one hour
 
         return new RedisCacheManager(cacheWriter, cacheConfig);
     }

@@ -1,4 +1,6 @@
+//const socketUrl = "https://coinswap-scanner.azurewebsites.net/ws/forks";
 const socketUrl = "https://coinswap-scanner.azurewebsites.net/ws/forks";
+
 const maxForkCount = currentUser.settings.maxForkCountOnPage;
 
 const hubConnection = new signalR.HubConnectionBuilder()
