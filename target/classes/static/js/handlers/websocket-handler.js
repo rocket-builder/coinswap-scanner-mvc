@@ -15,25 +15,18 @@ const hubConnection = new signalR.HubConnectionBuilder()
 hubConnection.on("Send", function (forkList) {
     console.log(forkList);
 
-    forkList.items.forEach((fork) => {
-        fork.id = generateUUID();
-        saveForkInStorage(fork);
-
-        let matched = isFilteredFork(fork);
-        console.log("matched: " + matched);
-
-        if(matched){
-            if($('.forked').length > maxForkCount){
-                console.log('delete last fork');
-                $('.forked').last().remove();
-            }
-
-            $('#signal-lamp').transition('flash', '300ms');
-        }
+    forkList.items.forEach(f => {
+        f.id = generateUUID();
+        saveForkInStorage(f);
     });
-    renderFilteredForks(forkList.items);
 
-    $('#container').transition('fade in', '300ms');
+    let forks = forkList.items.filter(f => isFilteredFork(f));
+    if(forks.length > 0){
+        $('#signal-lamp').transition('flash', '300ms');
+        renderFilteredForks(forks);
+
+        $('#container').transition('fade in', '300ms');
+    }
 });
 
 function startSignalR() {
@@ -132,8 +125,8 @@ function initStorage() {
         console.log(forks);
 
         renderFilteredForks(forks);
-        console.log("retrieve storage");
 
+        console.log("retrieve storage");
         startSignalR();
     }
 }
@@ -144,7 +137,7 @@ function saveForkInStorage(fork) {
     let json = JSON.stringify(forks);
 
     sessionStorage.setItem("forks", json);
-    console.log('saved in storage');
+    //console.log('saved in storage');
 }
 
 function removeForkFromStorageById(forkId) {
@@ -152,25 +145,23 @@ function removeForkFromStorageById(forkId) {
     let json = JSON.stringify(forks);
 
     sessionStorage.setItem("forks", json);
-    console.log('deleted from storage');
+    //console.log('deleted from storage');
 }
 
 function renderFilteredForks(forks) {
-    let html = "";
+    let sorted =
+        forks.sort((a,b) =>
+            new Date(b.recieveDate) - new Date(a.recieveDate));
+    sorted.slice(0, maxForkCount - 1);
 
-    forks.sort(function(a,b){
-        return new Date(b.recieveDate) - new Date(a.recieveDate);
-    })
-        .slice(0, maxForkCount - 1)
-        .forEach((fork) => {
-            if(isFilteredFork(fork)){
-                html += getForkHTML(fork);
+    let filtered = sorted.filter(f => isFilteredFork(f));
 
-                forkLifetimeTimerInit(fork);
-            }
-    });
+    let html = filtered.map(f => getForkHTML(f)).join("");
 
     $('#container').prepend(html);
+
+    resetForksLifetimeInterval();
+    //filtered.forEach(f => forkLifetimeTimerInit(f));
 }
 
 function getColorByProfit(percent) {

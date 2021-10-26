@@ -5,6 +5,7 @@ function forkLifetimeTimerInit(fork) {
     let lifetime = getCurrentLifetimeString(receiveDate);
     $('[fork-id='+fork.id+'] > input.fork-lifetime').val(lifetime);
 }
+
 function getCurrentLifetimeString(receiveDate) {
     let currentLifetime = new Date() - receiveDate;
 
@@ -22,7 +23,7 @@ function getTimeString(currentLifetime) {
 
     return hoursString + ':' + minutesString + ':' + secondsString;
 }
-function allTimersTick(){
+function resetForksLifetime(){
     $('.fork-lifetime').each(function () {
         let dateString = $(this).attr('receive-date').toString();
         let receiveDate = new Date(dateString);
@@ -32,4 +33,6 @@ function allTimersTick(){
     });
 }
 
-window.setInterval(allTimersTick, 1000);
+function resetForksLifetimeInterval(){
+    window.setInterval(resetForksLifetime, 1000);
+}

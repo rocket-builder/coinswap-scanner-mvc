@@ -21,7 +21,7 @@ public class ForkService {
     private final ScheduledExecutorService executorService;
     private final RedisService redis;
 
-    private final long forkTtl = 60 * 60; //1h
+    private final long forkTtl = 60 * 40; //40m
     private final String forkKey = Fork.class.getSimpleName();
 
     public ForkService(HubConnection hubConnection, ScheduledExecutorService executorService,
