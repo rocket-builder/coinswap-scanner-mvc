@@ -1,5 +1,6 @@
 //const socketUrl = "https://coinswap-scanner.azurewebsites.net/ws/forks";
-const socketUrl = "https://coinswap-scanner.azurewebsites.net/ws/forks";
+//const socketUrl = "https://localhost:5001/ws/forks";
+const socketUrl = "https://coinswapscanner.ngrok.io/ws/forks";
 
 const maxForkCount = currentUser.settings.maxForkCountOnPage;
 
