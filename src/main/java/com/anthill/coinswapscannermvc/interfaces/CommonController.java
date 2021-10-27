@@ -1,28 +1,23 @@
 package com.anthill.coinswapscannermvc.interfaces;
 
-import com.anthill.coinswapscannermvc.beans.AbstractEntity;
 import com.anthill.coinswapscannermvc.exceptions.ResourceNotFoundedException;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
-public interface CommonController<E extends AbstractEntity> {
+public interface CommonController<T> {
 
-    @PostMapping
-    ResponseEntity<E> save(@RequestBody E entity) throws Exception;
+    ResponseEntity<T> save(@RequestBody T entity) throws Exception;
 
-    @PutMapping
-    ResponseEntity<E> update(@RequestBody E entity) throws Exception;
+    ResponseEntity<T> update(@RequestBody T entity) throws Exception;
 
-    @GetMapping("/{id}")
-    ResponseEntity<E> findById(@PathVariable("id") long id) throws ResourceNotFoundedException;
-    @GetMapping
-    ResponseEntity<List<E>> findAll();
+    ResponseEntity<T> findById(@PathVariable("id") long id) throws ResourceNotFoundedException;
 
-    @DeleteMapping("/{id}")
-    ResponseEntity<E> deleteById(@PathVariable("id") long id) throws ResourceNotFoundedException;
-    @DeleteMapping
-    ResponseEntity<E> delete(E entity) throws ResourceNotFoundedException;
+    ResponseEntity<List<T>> findAll();
+
+    ResponseEntity<T> deleteById(@PathVariable("id") long id) throws ResourceNotFoundedException;
+
+    ResponseEntity<T> delete(@RequestBody T entity) throws ResourceNotFoundedException;
 }

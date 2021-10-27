@@ -1,3 +1,5 @@
+const storeUrl = "https://coinswap-scanner-store.herokuapp.com/";
+
 //const socketUrl = "https://coinswap-scanner.azurewebsites.net/ws/forks";
 //const socketUrl = "https://localhost:5001/ws/forks";
 const socketUrl = "https://coinswapscanner.ngrok.io/ws/forks";
@@ -99,7 +101,7 @@ function initStorage() {
     if(init === false){
         $('#container').addClass("form loading");
 
-        fetch(api_url + "fork")
+        fetch(storeUrl + "forks")
             .then(response => response.json())
             .then(storedForks => {
                 storedForks.map(f => {
