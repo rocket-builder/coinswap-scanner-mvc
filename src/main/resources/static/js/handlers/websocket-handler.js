@@ -4,6 +4,9 @@ const storeUrl = "https://coinswap-scanner-store.herokuapp.com/";
 //const socketUrl = "https://localhost:5001/ws/forks";
 const socketUrl = "https://coinswapscanner.ngrok.io/ws/forks";
 
+const forksStoreUrl = storeUrl + "forks";
+const cacheStore = "forks";
+
 const maxForkCount = currentUser.settings.maxForkCountOnPage;
 
 const hubConnection = new signalR.HubConnectionBuilder()
@@ -16,11 +19,7 @@ const hubConnection = new signalR.HubConnectionBuilder()
 
 hubConnection.on("Send", function (forkList) {
     console.log(forkList);
-
-    forkList.items.forEach(f => {
-        f.id = generateUUID();
-        saveForkInStorage(f);
-    });
+    saveForksInStorage(forkList.items);
 
     let forks = forkList.items.filter(f => isFilteredFork(f));
     if(forks.length > 0){
@@ -95,47 +94,50 @@ function isFilteredFork(fork) {
 }
 
 var forks = [];
+var cachedForks = [];
 var init = Boolean(sessionStorage.getItem("init"));
 
 function initStorage() {
     if(init === false){
         $('#container').addClass("form loading");
 
-        fetch(storeUrl + "forks")
-            .then(response => response.json())
-            .then(storedForks => {
-                storedForks.map(f => {
-                    f.id = generateUUID(); return f;});
-                console.log(storedForks);
+        caches.open(cacheStore).then(async (cache) => {
+            await cache.add(forksStoreUrl);
+            cache.match(forksStoreUrl)
+                .then(response => response.json())
+                .then(cachedForks => {
+                    sessionStorage.setItem("init", "true");
+                    sessionStorage.setItem("forks", "[]");
 
-                forks = storedForks;
+                    console.log(cachedForks);
+                    renderFilteredForks(cachedForks);
 
-                let json = JSON.stringify(forks);
-                sessionStorage.setItem("forks", json);
-                sessionStorage.setItem("init", "true");
-
-                $('#container').removeClass("form loading");
-                renderFilteredForks(forks);
-
-                $('#container').transition("fade in");
-                console.log("init storage")
-            })
-            .then(() =>
-                startSignalR());
+                    $('#container').removeClass("form loading");
+                });
+        }).then(() =>
+            startSignalR());
     } else {
-        forks = JSON.parse(sessionStorage.getItem("forks"));
-        console.log(forks);
+        caches.open(cacheStore).then(async (cache) => {
+            cache.match(forksStoreUrl)
+                .then(response => response.json())
+                .then(cachedForks => {
+                    forks = JSON.parse(sessionStorage.getItem("forks"));
 
-        renderFilteredForks(forks);
+                    cachedForks.pushArray(forks);
 
-        console.log("retrieve storage");
-        startSignalR();
+                    console.log(cachedForks);
+                    console.log("retrieve storage");
+
+                    renderFilteredForks(cachedForks);
+                }).then(() =>
+                    startSignalR());
+        });
     }
 }
 initStorage();
 
-function saveForkInStorage(fork) {
-    forks.push(fork);
+function saveForksInStorage(forksList) {
+    forks.pushArray(forksList);
     let json = JSON.stringify(forks);
 
     sessionStorage.setItem("forks", json);
@@ -154,16 +156,15 @@ function renderFilteredForks(forks) {
     let sorted =
         forks.sort((a,b) =>
             new Date(b.recieveDate) - new Date(a.recieveDate));
-    sorted.slice(0, maxForkCount - 1);
-
-    let filtered = sorted.filter(f => isFilteredFork(f));
+    let filtered = sorted
+        .slice(0, maxForkCount)
+        .filter(f => isFilteredFork(f));
 
     let html = filtered.map(f => getForkHTML(f)).join("");
 
     $('#container').prepend(html);
 
     resetForksLifetimeInterval();
-    //filtered.forEach(f => forkLifetimeTimerInit(f));
 }
 
 function getColorByProfit(percent) {
