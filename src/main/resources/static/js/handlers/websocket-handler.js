@@ -157,8 +157,8 @@ function renderFilteredForks(forks) {
         forks.sort((a,b) =>
             new Date(b.recieveDate) - new Date(a.recieveDate));
     let filtered = sorted
-        .slice(0, maxForkCount)
-        .filter(f => isFilteredFork(f));
+        .filter(f => isFilteredFork(f))
+        .slice(0, maxForkCount);
 
     let html = filtered.map(f => getForkHTML(f)).join("");
 
