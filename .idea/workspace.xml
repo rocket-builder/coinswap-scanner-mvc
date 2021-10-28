@@ -2,55 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1dace837-c407-4795-8ec7-ff457828a6d5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_8_7.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_microsoft_signalr_signalr_6_0_0_rc_1_21452_15.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okhttp3_okhttp_3_14_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okio_okio_1_17_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_lettuce_lettuce_core_6_1_5_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_buffer_4_1_67_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_codec_4_1_67_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_common_4_1_67_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_handler_4_1_67_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_resolver_4_1_67_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_transport_4_1_67_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_projectreactor_reactor_core_3_4_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_reactivex_rxjava3_rxjava_3_0_11.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_pool2_2_9_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_reactivestreams_reactive_streams_1_0_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_configuration_processor_2_5_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_redis_2_5_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_websocket_2_5_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_keyvalue_2_5_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_redis_2_5_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_support_5_3_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_messaging_5_3_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_oxm_5_3_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_websocket_5_3_9.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coinswap-scanner-mvc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/coinswap-scanner-mvc.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/anthill/coinswapscannermvc/beans/coinmarket/Exchange.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/anthill/coinswapscannermvc/beans/coinmarket/Fork.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/anthill/coinswapscannermvc/beans/coinmarket/ForkList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/anthill/coinswapscannermvc/beans/coinmarket/Pair.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/anthill/coinswapscannermvc/beans/coinmarket/Platform.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/anthill/coinswapscannermvc/beans/coinmarket/Quote.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/anthill/coinswapscannermvc/beans/coinmarket/Token.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/anthill/coinswapscannermvc/beans/coinmarket/UsdPrice.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/anthill/coinswapscannermvc/configuration/ExecutorServiceConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/anthill/coinswapscannermvc/configuration/RedisConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/anthill/coinswapscannermvc/configuration/SignalRConfiguration.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/anthill/coinswapscannermvc/controllers/AbstractController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/anthill/coinswapscannermvc/controllers/AbstractController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/anthill/coinswapscannermvc/controllers/rest/ForkController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/anthill/coinswapscannermvc/interfaces/CommonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/anthill/coinswapscannermvc/interfaces/CommonController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/anthill/coinswapscannermvc/interfaces/IRedisService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/anthill/coinswapscannermvc/services/ForkService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/anthill/coinswapscannermvc/services/RedisService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/handlers/fork-card-actions-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/handlers/fork-card-actions-handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/handlers/fork-db-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/handlers/fork-db-utils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/handlers/websocket-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/handlers/websocket-handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/anthill/coinswapscannermvc/CoinswapScannerMvcApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/anthill/coinswapscannermvc/CoinswapScannerMvcApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/spring-configuration-metadata.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/handlers/fork-card-actions-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/handlers/fork-card-actions-handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/handlers/fork-db-utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/handlers/fork-db-utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/handlers/websocket-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/handlers/websocket-handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/profile.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +56,9 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -207,7 +172,11 @@
       <workItem from="1635165991868" duration="4552000" />
       <workItem from="1635178592099" duration="8350000" />
       <workItem from="1635259274001" duration="15405000" />
-      <workItem from="1635344840177" duration="3746000" />
+      <workItem from="1635344840177" duration="15690000" />
+      <workItem from="1635362730597" duration="3019000" />
+      <workItem from="1635429402169" duration="251000" />
+      <workItem from="1635429687461" duration="672000" />
+      <workItem from="1635430639233" duration="309000" />
     </task>
     <task id="LOCAL-00001" summary="first build">
       <created>1631304184725</created>
@@ -259,6 +228,14 @@
     <option name="LAST_COMMIT_MESSAGE" value="add fork lifetime, add forks count limit to 100 on page" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="746" y="391" key="#Jetty_Server" timestamp="1635430686907">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="746" y="391" key="#Jetty_Server/0.0.1920.1040@0.0.1920.1040" timestamp="1635430686907" />
+    <state x="697" y="314" key="#Spring_dmServer" timestamp="1635430923741">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="697" y="314" key="#Spring_dmServer/0.0.1920.1040@0.0.1920.1040" timestamp="1635430923741" />
     <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser" timestamp="1631643055730">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -287,50 +264,50 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="574" y="146" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1631828737451" />
-    <state x="740" y="275" width="440" height="490" key="FileChooserDialogImpl" timestamp="1635345893805">
+    <state x="740" y="275" width="440" height="490" key="FileChooserDialogImpl" timestamp="1635430823123">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" width="440" height="490" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1635345893805" />
-    <state width="1877" height="329" key="GridCell.Tab.0.bottom" timestamp="1635283106731">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="740" y="275" width="440" height="490" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1635430823123" />
+    <state width="1493" height="128" key="GridCell.Tab.0.bottom" timestamp="1635367127929">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="387" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1635193393119" />
-    <state width="1877" height="329" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1635283106731" />
-    <state width="1877" height="329" key="GridCell.Tab.0.center" timestamp="1635283106731">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1493" height="128" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1635367127929" />
+    <state width="1877" height="329" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1635363041843" />
+    <state width="1493" height="128" key="GridCell.Tab.0.center" timestamp="1635367127929">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="387" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1635193393118" />
-    <state width="1877" height="329" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1635283106731" />
-    <state width="1877" height="329" key="GridCell.Tab.0.left" timestamp="1635283106731">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1493" height="128" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1635367127929" />
+    <state width="1877" height="329" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1635363041843" />
+    <state width="1493" height="128" key="GridCell.Tab.0.left" timestamp="1635367127929">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="387" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1635193393118" />
-    <state width="1877" height="329" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1635283106731" />
-    <state width="1877" height="329" key="GridCell.Tab.0.right" timestamp="1635283106731">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1493" height="128" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1635367127929" />
+    <state width="1877" height="329" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1635363041842" />
+    <state width="1493" height="128" key="GridCell.Tab.0.right" timestamp="1635367127929">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="387" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1635193393119" />
-    <state width="1877" height="329" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1635283106731" />
-    <state width="1877" height="329" key="GridCell.Tab.1.bottom" timestamp="1635283106731">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1493" height="128" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1635367127929" />
+    <state width="1877" height="329" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1635363041843" />
+    <state width="1493" height="128" key="GridCell.Tab.1.bottom" timestamp="1635367127929">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="387" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1635193393119" />
-    <state width="1877" height="329" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1635283106731" />
-    <state width="1877" height="329" key="GridCell.Tab.1.center" timestamp="1635283106731">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1493" height="128" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1635367127929" />
+    <state width="1877" height="329" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1635363041843" />
+    <state width="1493" height="128" key="GridCell.Tab.1.center" timestamp="1635367127929">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="387" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1635193393119" />
-    <state width="1877" height="329" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1635283106731" />
-    <state width="1877" height="329" key="GridCell.Tab.1.left" timestamp="1635283106731">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1493" height="128" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1635367127929" />
+    <state width="1877" height="329" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1635363041843" />
+    <state width="1493" height="128" key="GridCell.Tab.1.left" timestamp="1635367127929">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="387" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1635193393119" />
-    <state width="1877" height="329" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1635283106731" />
-    <state width="1877" height="329" key="GridCell.Tab.1.right" timestamp="1635283106731">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1493" height="128" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1635367127929" />
+    <state width="1877" height="329" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1635363041843" />
+    <state width="1493" height="128" key="GridCell.Tab.1.right" timestamp="1635367127929">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="387" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1635193393119" />
-    <state width="1877" height="329" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1635283106731" />
+    <state width="1493" height="128" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1635367127929" />
+    <state width="1877" height="329" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1635363041843" />
     <state width="1493" height="261" key="GridCell.Tab.2.bottom" timestamp="1633743617548">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -355,6 +332,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="650" y="278" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1634837683864" />
+    <state x="440" y="94" key="SettingsEditor" timestamp="1635430885188">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1635430885188" />
     <state x="442" y="200" key="Vcs.Push.Dialog.v2" timestamp="1634837611743">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -372,11 +353,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="769" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1631825192422" />
-    <state x="534" y="181" width="621" height="530" key="find.popup" timestamp="1634838697193">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="667" y="229" width="585" height="606" key="find.popup" timestamp="1635362858200">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="534" y="181" width="621" height="530" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1634838697193" />
-    <state x="667" y="229" width="585" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1631914699568" />
+    <state x="667" y="229" width="585" height="606" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1635362858200" />
     <state x="513" y="200" key="git4idea.merge.GitMergeDialog" timestamp="1634837666138">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -385,11 +366,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="637" y="308" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1631304522738" />
-    <state x="478" y="65" key="new project wizard" timestamp="1633979497863">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="597" y="140" key="new project wizard" timestamp="1635430945069">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="478" y="65" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1633979497863" />
-    <state x="597" y="140" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1631214372086" />
+    <state x="597" y="140" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1635430945069" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1635170357438">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

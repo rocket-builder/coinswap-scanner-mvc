@@ -28,7 +28,7 @@ public abstract class AbstractController<E extends AbstractEntity, R extends Com
     }
 
     @Override
-    public ResponseEntity<E> update(@RequestBody E entity) throws Exception {
+    public ResponseEntity<E> update(@RequestBody E entity) {
         E res = repos.save(entity);
 
         return new ResponseEntity<>(res, HttpStatus.OK);

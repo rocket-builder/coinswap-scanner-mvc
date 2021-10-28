@@ -1,4 +1,5 @@
-//const socketUrl = "https://coinswap-scanner.azurewebsites.net/ws/forks";
+const storeUrl = "https://coinswap-scanner-store.herokuapp.com/";
+
 //const socketUrl = "https://localhost:5001/ws/forks";
 const socketUrl = "https://coinswapscanner.ngrok.io/ws/forks";
 
@@ -22,7 +23,7 @@ hubConnection.on("Send", function (forkList) {
 
     let forks = forkList.items.filter(f => isFilteredFork(f));
     if(forks.length > 0){
-        $('#signal-lamp').transition('flash', '300ms');
+        $('#signal-lamp').transition('flash', '200ms');
         renderFilteredForks(forks);
 
         $('#container').transition('fade in', '300ms');
@@ -90,62 +91,6 @@ function isFilteredFork(fork) {
         matched = true;
     }
     return matched;
-}
-
-var forks = [];
-var init = Boolean(sessionStorage.getItem("init"));
-
-function initStorage() {
-    if(init === false){
-        $('#container').addClass("form loading");
-
-        fetch(api_url + "fork")
-            .then(response => response.json())
-            .then(storedForks => {
-                storedForks.map(f => {
-                    f.id = generateUUID(); return f;});
-                console.log(storedForks);
-
-                forks = storedForks;
-
-                let json = JSON.stringify(forks);
-                sessionStorage.setItem("forks", json);
-                sessionStorage.setItem("init", "true");
-
-                $('#container').removeClass("form loading");
-                renderFilteredForks(forks);
-
-                $('#container').transition("fade in");
-                console.log("init storage")
-            })
-            .then(() =>
-                startSignalR());
-    } else {
-        forks = JSON.parse(sessionStorage.getItem("forks"));
-        console.log(forks);
-
-        renderFilteredForks(forks);
-
-        console.log("retrieve storage");
-        startSignalR();
-    }
-}
-initStorage();
-
-function saveForkInStorage(fork) {
-    forks.push(fork);
-    let json = JSON.stringify(forks);
-
-    sessionStorage.setItem("forks", json);
-    //console.log('saved in storage');
-}
-
-function removeForkFromStorageById(forkId) {
-    forks.removeById(forkId);
-    let json = JSON.stringify(forks);
-
-    sessionStorage.setItem("forks", json);
-    //console.log('deleted from storage');
 }
 
 function renderFilteredForks(forks) {

@@ -22,7 +22,7 @@ function removeForkFromPageById(forkId) {
 }
 function deleteFork(component){
     let forkId = $(component).parents().eq(1).attr('fork-id');
-    removeForkFromStorageById(forkId);
+    removeFromDbByKey(database, forkId);
     removeForkFromPageById(forkId);
     console.log('fork ' + forkId + " deleted");
 }
