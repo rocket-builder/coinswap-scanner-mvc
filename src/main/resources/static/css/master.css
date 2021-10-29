@@ -114,6 +114,9 @@ textarea.user-info{
     max-width: 90%!important;
   }
 }
+.no-display{
+    display: none!important;
+}
 .settings-form{
     min-width: 30%!important;
     max-width: 30%;
@@ -166,18 +169,40 @@ textarea.user-info{
   margin: 0 auto!important;
   width: 100%;
 }
-.token-fork > .exchanges > textarea{
+.token-fork > .exchanges .pair{
   background:rgba(0,0,0,.05);
   padding: 1em!important;
   border-radius: 25px;
-  color: inherit;
+  color: inherit !important;
   border: none;
   outline: none;
   width: 100%;
-  pointer-events: none;
   text-align: left;
   resize: none;
+  font-size: 0.9em;
 }
+.pair a {
+    color: inherit!important;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+}
+.pair a:after {
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: #FAE62D;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+.pair a:hover:after {
+    width: 100%;
+    left: 0;
+}
+
 .token-fork > .exchanges > p > span{
     font-weight: 800;
     color: rgba(0, 0, 0, 0.25);

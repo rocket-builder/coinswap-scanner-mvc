@@ -1,3 +1,10 @@
+$('#open-settings-btn').click(function () {
+  $('#settings-form')
+      .modal({
+        closable: false
+      })
+      .modal('show');
+});
 
 $('#btn-save-settings').click(function() {
 
@@ -20,6 +27,15 @@ $('#btn-save-settings').click(function() {
     success: function(response) {
         console.log(response);
         $('.ui.form').removeClass('loading');
+
+        user.settings = response;
+        currentUser.settings = response;
+        console.log("updated: " + currentUser);
+
+        if($('#settings-form').hasClass('settings-need-filter')){
+          refreshForksFromSettings();
+          $('#settings-form').modal('hide');
+        }
     },
     error: function(error) {
       console.log(error);

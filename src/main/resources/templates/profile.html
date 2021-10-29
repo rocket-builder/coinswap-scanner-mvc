@@ -5,6 +5,7 @@
     <title>coinswap scanner</title>
 </head>
 <body>
+<div th:replace="components/setttings-form('transition hidden settings-need-filter')"></div>
 <div th:replace="components/header"></div>
 
 <div class="page-name">
@@ -16,10 +17,11 @@
        th:text="'Ваш id ' + ${session.user.id}"></p>
     <br>
     <p>
+        <i class="big paper plane outline icon" id="tg-btn" style="color: rgba(0, 0, 0, 0.27);"></i>
         <i class="big lightbulb icon" id="signal-lamp" style="color:#f0d800;"></i>
+        <i class="big cog icon" id="open-settings-btn" style="color: rgba(0, 0, 0, 0.27);cursor: pointer;"></i>
     </p>
     <br>
-
     <div class="ui three column stackable grid token-fork-container" id="container">
 <!--        <div class="column">-->
 <!--            <div class="token-fork">-->
@@ -54,5 +56,6 @@
 <script th:src="@{/js/handlers/fork-db-utils.js}"></script>
 <script th:src="@{/js/handlers/websocket-handler.js}"></script>
 <script th:src="@{/js/handlers/fork-card-actions-handler.js}"></script>
+<script th:src="@{/js/handlers/save-settings-handler.js}"></script>
 </body>
 </html>

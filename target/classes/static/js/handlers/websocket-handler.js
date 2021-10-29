@@ -21,10 +21,12 @@ hubConnection.on("Send", function (forkList) {
     console.log(forkList);
     saveForksInStorage(forkList.items);
 
-    let forks = forkList.items.filter(f => isFilteredFork(f));
+    let forks = forkList.items
+        .filter(f => isFilteredFork(f));
     if(forks.length > 0){
         $('#signal-lamp').transition('flash', '300ms');
         renderFilteredForks(forks);
+        resetForksLifetimeInterval();
 
         $('#container').transition('fade in', '300ms');
     }
@@ -95,6 +97,7 @@ function isFilteredFork(fork) {
 
 var forks = [];
 var cachedForks = [];
+
 var init = Boolean(sessionStorage.getItem("init"));
 
 function initStorage() {
@@ -105,43 +108,56 @@ function initStorage() {
             await cache.add(forksStoreUrl);
             cache.match(forksStoreUrl)
                 .then(response => response.json())
-                .then(cachedForks => {
+                .then(storageForks => {
                     sessionStorage.setItem("init", "true");
                     sessionStorage.setItem("forks", "[]");
 
-                    console.log(cachedForks);
-                    renderFilteredForks(cachedForks);
+                    console.log(storageForks);
+                    renderFilteredForks(storageForks);
 
                     $('#container').removeClass("form loading");
+
+                    cachedForks = storageForks;
                 });
         }).then(() =>
-            startSignalR());
+            startSignalR())
+          .then(() =>
+            resetForksLifetimeInterval());
     } else {
         caches.open(cacheStore).then(async (cache) => {
             cache.match(forksStoreUrl)
                 .then(response => response.json())
                 .then(cachedForks => {
                     forks = JSON.parse(sessionStorage.getItem("forks"));
+                    let forRender = forks.concat(cachedForks);
 
-                    cachedForks.pushArray(forks);
-
-                    console.log(cachedForks);
+                    console.log(forRender);
                     console.log("retrieve storage");
 
-                    renderFilteredForks(cachedForks);
+                    renderFilteredForks(forRender);
                 }).then(() =>
-                    startSignalR());
+                    startSignalR())
+                .then(() =>
+                    resetForksLifetimeInterval());
         });
     }
 }
 initStorage();
 
 function saveForksInStorage(forksList) {
-    forks.pushArray(forksList);
-    let json = JSON.stringify(forks);
+    try{
+        forks.pushArray(forksList);
+        let json = JSON.stringify(forks);
 
-    sessionStorage.setItem("forks", json);
-    //console.log('saved in storage');
+        sessionStorage.setItem("forks", json);
+    } catch (error) {
+        console.error(error);
+
+        sessionStorage.removeItem("forks");
+        sessionStorage.removeItem("init");
+        console.log("initiate cache sync");
+        window.location.reload();
+    }
 }
 
 function removeForkFromStorageById(forkId) {
@@ -153,16 +169,38 @@ function removeForkFromStorageById(forkId) {
 }
 
 function renderFilteredForks(forks) {
-    let sorted =
-        forks.sort((a,b) =>
-            new Date(b.recieveDate) - new Date(a.recieveDate));
-    let filtered = sorted
+    let filtered = forks
         .filter(f => isFilteredFork(f))
         .slice(0, maxForkCount);
+    filtered.sort((a,b) =>
+        new Date(b.recieveDate) - new Date(a.recieveDate));
+
+    if(filtered.length > 0){
+        let forksDivs = Array.from(document.querySelectorAll('[fork-id]'));
+        forksDivs
+            .slice(Math.abs(forksDivs.length - filtered.length))
+            .forEach(f => f.remove());
+
+        let html = filtered.map(f => getForkHTML(f)).join("");
+
+        document.querySelector("#container")
+            .insertAdjacentHTML("afterbegin", html);
+    }
+}
+
+function refreshForksFromSettings() {
+    let filtered =
+        forks.concat(cachedForks)
+            .filter(f => isFilteredFork(f))
+            .slice(0, maxForkCount);
+    filtered.sort((a,b) =>
+        new Date(b.recieveDate) - new Date(a.recieveDate));
 
     let html = filtered.map(f => getForkHTML(f)).join("");
 
-    $('#container').prepend(html);
+    document.querySelector("#container").innerHTML = "";
+    document.querySelector("#container")
+        .insertAdjacentHTML("afterbegin", html);
 
     resetForksLifetimeInterval();
 }
@@ -194,8 +232,8 @@ function getForkHTML(fork) {
         '        <p><i class="chart line icon"></i>$' + fork.token.quote.usdPrice.volume24h.toLocaleString() + '</p>' +
         '    </div>' +
         '    <div class="exchanges">' +
-        '        <textarea rows="3">' + fork.firstPair.exchange.title + ': ' + fork.firstPair.title + '&#13;&#10;VOL: $' + fork.firstPair.volume24h.toLocaleString() + '&#13;&#10;P: $' + fork.firstPair.price + '</textarea>' +
-        '        <textarea rows="3">' + fork.secondPair.exchange.title + ': ' + fork.secondPair.title + '&#13;&#10;VOL: $' + fork.secondPair.volume24h.toLocaleString() + '&#13;&#10;P: $' + fork.secondPair.price + '</textarea>' +
+        '        <p class="pair"><a href="'+fork.firstPair.url+'" target="_blank">' + fork.firstPair.exchange.title + ': ' + fork.firstPair.title + '</a><br>VOL: $' + fork.firstPair.volume24h.toLocaleString() + '<br>P: $' + fork.firstPair.price + '</p>' +
+        '        <p class="pair"><a href="'+fork.secondPair.url+'" target="_blank">' + fork.secondPair.exchange.title + ': ' + fork.secondPair.title + '</a><br>VOL: $' + fork.secondPair.volume24h.toLocaleString() + '<br>P: $' + fork.secondPair.price + '</p>' +
         '    </div>' +
         '    <div class="profit">' +
         '        <div class="percent" style="color:' + color + ';">' + fork.profitPercent + '<i class="small icon percent"></i></div>' +
