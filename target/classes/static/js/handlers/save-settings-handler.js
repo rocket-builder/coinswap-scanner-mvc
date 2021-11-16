@@ -1,10 +1,10 @@
 
 //TODO create exchange titles component
-$('#inp-exchange-titles').load(function () {
-  let exchanges = settings.exchanges.fromCsv();
 
-  //TODO load exchanges array to page component
-});
+let exchanges =  currentUser.settings.exchanges.fromCsv();
+console.log(exchanges);
+//TODO load exchanges array to page component
+
 
 $('#open-settings-btn').click(function () {
   $('#settings-form')
