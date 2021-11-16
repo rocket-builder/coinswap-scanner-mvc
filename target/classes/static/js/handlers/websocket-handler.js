@@ -74,6 +74,9 @@ Number.prototype.isRangeMatch = function(min, max){
 String.prototype.isBannedPair = function (bannedPairs) {
     return bannedPairs.find(pair => pair.title.trim() === this.trim()) !== undefined;
 }
+String.prototype.containExchange = function (exchange) {
+    return this.length > 0? this.includes(exchange.title) : true;
+}
 
 function isFilteredFork(fork) {
     let settings = currentUser.settings;
@@ -88,7 +91,10 @@ function isFilteredFork(fork) {
         fork.token.quote.usdPrice.volume24h.isRangeMatch(settings.minTokenVolume, settings.maxTokenVolume) &&
 
         !fork.firstPair.title.isBannedPair(settings.bannedPairs) &&
-        !fork.secondPair.title.isBannedPair(settings.bannedPairs)
+        !fork.secondPair.title.isBannedPair(settings.bannedPairs) &&
+
+        settings.exchanges.containExchange(fork.firstPair.exchange) ||
+        settings.exchanges.containExchange(fork.secondPair.exchange)
     ){
         matched = true;
     }
@@ -145,7 +151,7 @@ function initStorage() {
 initStorage();
 
 function saveForksInStorage(forksList) {
-    try{
+    try {
         forks.pushArray(forksList);
         let json = JSON.stringify(forks);
 

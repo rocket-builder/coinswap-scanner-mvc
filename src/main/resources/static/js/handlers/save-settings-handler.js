@@ -1,3 +1,11 @@
+
+//TODO create exchange titles component
+
+let exchanges =  currentUser.settings.exchanges.fromCsv();
+console.log(exchanges);
+//TODO load exchanges array to page component
+
+
 $('#open-settings-btn').click(function () {
   $('#settings-form')
       .modal({
@@ -59,7 +67,9 @@ function getSettingsFromFields(id) {
 
     maxForkCountOnPage: $('#inp-max-forks-count').val(),
 
-    bannedPairs: currentUser.settings.bannedPairs
+    bannedPairs: currentUser.settings.bannedPairs,
+
+    exchanges: "" //TODO get String array of exchange titles from page and use toCsv()
   };
 }
 
