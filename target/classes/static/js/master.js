@@ -84,3 +84,10 @@ function generateUUID() { // Public Domain/MIT
   });
 }
 
+String.prototype.fromCsv = function() {
+  return this.split(';');
+}
+Array.prototype.toCsv = function () {
+  return this.join(";");
+}
+
