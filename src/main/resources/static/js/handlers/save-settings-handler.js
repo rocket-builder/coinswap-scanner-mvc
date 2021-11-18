@@ -11,11 +11,11 @@ $.each(exchanges, function ( index, value ){
   $('.stock-market-template .stock-market-template__name').empty(); // Опустошаем имя в шаблоне
   $('.stock-market-template .stock-market-template__name').text( value ); //Вставляем имя в шаблон
   $( ".stock-market-template" ).clone().removeClass('stock-market-template') //Копируем шаблон, убираем класс шаблона
-      .addClass('stock-markets-list__item').appendTo( ".stock-markets-list" );//Добавляем класс элемента, кидаем в конец списка
+      .addClass('stock-market').children().first().removeClass('stock-market-template__name')//Меняем класс шаблона для дочернего элемента
+      .addClass('stock-market__name').parent().appendTo( ".stock-markets" );// кидаем в конец списка бирж
 })
-
-let stockMarketsListItem = document.querySelectorAll('.stock-markets-list__item'); //Находим все добавленные биржи
-$('.stock-markets-list__item').on('click',function () { //Если нажали на биржу
+let stockMarketsListItem = document.querySelectorAll('.stock-markets'); //Находим все добавленные биржи
+$('.stock-market').on('click',function () { //Если нажали на биржу
   $( this ).remove(); //Она удаляется
 })
 
@@ -23,13 +23,17 @@ $('.stock-markets-list__item').on('click',function () { //Если нажали 
 
 $('.add-stock-markets-button').click(function () { //По клику на кнопку добавления биржи
   let inputValue = $('.stock-markets-search__input').val(); //Считываем значение внутри инпута
+  if (inputValue == '') { //Ecли инпут пустой, прерываем добавление пустой биржи
+    return false;
+  }
   $('.stock-markets-search__input').val(''); //Очищаем инпут
   $('.stock-market-template .stock-market-template__name').empty(); //Опустошаем имя в шаблоне
   $('.stock-market-template .stock-market-template__name').text(inputValue); //Вставляем имя в шаблон
   $( ".stock-market-template" ).clone().removeClass('stock-market-template') //Копируем шаблон, убираем класс шаблона
-      .addClass('stock-markets-list__item').appendTo( ".stock-markets-list" );//Добавляем класс элемента, кидаем в конец списка
-  let stockMarketsListItem = document.querySelectorAll('.stock-markets-list__item'); //Пересчитываем количество бирж
-  $('.stock-markets-list__item').on('click',function () { //Если нажали на биржу
+      .addClass('stock-market').children().first().removeClass('stock-market-template__name')
+      .addClass('stock-market__name').parent().appendTo( ".stock-markets" );//Добавляем класс элемента, кидаем в конец списка
+  let stockMarketsListItem = document.querySelectorAll('.stock-market'); //Пересчитываем количество бирж
+  $('.stock-market').on('click',function () { //Если нажали на биржу
     $( this ).remove(); //Она удаляется
   })
 
@@ -103,7 +107,7 @@ function getSettingsFromFields(id) {
 
     bannedPairs: currentUser.settings.bannedPairs,
     //TODO get String array of exchange titles from page and use toCsv()
-    exchanges: ($.map( $('.stock-markets-list__item .stock-market-template__name'), function( element, index ) {
+    exchanges: ($.map( $('.stock-market__name'), function( element, index ) {
       return element.innerText ;
     })).toCsv()  //Вытаскиваем массив имен бирж, для каждого находим его innerText и обрабатываем toCsv
   };

@@ -609,13 +609,13 @@ input.custom {
     flex-wrap: wrap;
 }
 
-.stock-markets-list {
+.stock-markets {
     display: flex;
     flex-wrap: wrap;
     max-width: 400px;
 }
 
-.stock-markets-list__item   {
+.stock-market  {
     background-color: #1FC58E;
     display: inline-flex;
     justify-content: space-between;
