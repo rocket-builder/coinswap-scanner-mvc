@@ -57,6 +57,29 @@
                         th:attr="pair-id=${pair.id}" th:value="${pair.title}" th:text="${pair.title}"></option>
             </select>
         </div>
+        <div class="field stock-markets-search-field">
+            <!--<input id="inp-stock-markets-names" type="text" placeholder="Markets">-->
+            <!--<select class="ui fluid search dropdown stock-markets-search-dropdown" multiple="">
+                <option value="Abobus">Add stock markets</option>
+                <option value="BN">Binance</option>
+                <option value="FN">Finance</option>
+                <option value="GN">Ginance</option>
+            </select>-->
+            <div class="ui icon input stock-markets-search">
+                <input class="stock-markets-search__input" type="text" placeholder="Add stock markets">
+            </div>
+            <div class="ui icon button add-stock-markets-button" tabindex="0">
+                <i class="plus square icon"></i>
+            </div>
+        </div>
+        <div class="field stock-markets-list">
+        </div>
+
+        <div class="stock-market-template">
+            <span class="stock-market-template__name">Binфыавфыафыафыафавance</span>
+            <i class="trash icon stock-market-template__icon"></i>
+        </div>
+
         <p style="font-size: 1em;color: rgba(0, 0, 0, 0.25);">Не беспокойтесь, другие настройки будут добавлены позже <i class="handshake outline icon"></i></p>
         <div class="ui segment settings-form-actions">
             <div class="ui blue vertical animated button main-btn" id="btn-save-settings"

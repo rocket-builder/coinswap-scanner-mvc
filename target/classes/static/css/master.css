@@ -315,9 +315,21 @@ text-align: center;
   font-weight: 600!important;
 }
 
+.stock-markets-search-field {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+
 .button{
   font-size: 1.25em!important;
 }
+
+.add-stock-markets-button   {
+    max-height: 55px !important;
+}
+
 
 .item{
   transition: 0.3s !important;
@@ -590,6 +602,54 @@ input.custom {
     padding-left: 0.5em;
     padding-right: 0.5em;
 }
+
+.stock-markets-search {
+    max-width:303px !important;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.stock-markets-list {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 400px;
+}
+
+.stock-markets-list__item   {
+    background-color: #1FC58E;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 3em;
+    padding: 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.stock-market-template  {
+    display: none;
+    /*display: inline-flex;*/
+    justify-content: space-between;
+    align-items: center;
+    height: 3em;
+    padding: 10px;
+
+    border-radius: 5px;
+    background: red;
+
+}
+
+.stock-market-template__name  {
+    white-space: normal;
+    max-width: 80%;
+}
+
+.stock-market-template__icon    {
+    font-size: 2em;
+}
+
+
 
 input.custom:focus {
     border-bottom: 3px solid #1FC58E;

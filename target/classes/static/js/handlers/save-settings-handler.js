@@ -3,7 +3,44 @@
 
 let exchanges =  currentUser.settings.exchanges.fromCsv();
 console.log(exchanges);
+
+let fictionalExchanges =  ["Aboba", "Abeba", "Ababa"];
+
+$.each(fictionalExchanges, function ( index, value ){
+  $('.stock-market-template .stock-market-template__name').empty(); // Опустошаем имя в шаблоне
+  $('.stock-market-template .stock-market-template__name').text( value ); //Вставляем имя в шаблон
+  $( ".stock-market-template" ).clone().removeClass('stock-market-template') //Копируем шаблон, убираем класс шаблона
+      .addClass('stock-markets-list__item').appendTo( ".stock-markets-list" );//Добавляем класс элемента, кидаем в конец списка
+})
+
+let stockMarketsListItem = document.querySelectorAll('.stock-markets-list__item'); //Находим все добавленные биржи
+$('.stock-markets-list__item').on('click',function () { //Если нажали на биржу
+  $( this ).remove(); //Она удаляется
+})
+console.log('Количество бирж' + stockMarketsListItem.length);
+
+
+
 //TODO load exchanges array to page component
+
+$('.add-stock-markets-button').click(function () { //По клику на кнопку добавления биржи
+  let inputValue = $('.stock-markets-search__input').val(); //Считываем значение внутри инпута
+  $('.stock-markets-search__input').val(''); //Очищаем инпут
+  $('.stock-market-template .stock-market-template__name').empty(); //Опустошаем имя в шаблоне
+  $('.stock-market-template .stock-market-template__name').text(inputValue); //Вставляем имя в шаблон
+  $( ".stock-market-template" ).clone().removeClass('stock-market-template') //Копируем шаблон, убираем класс шаблона
+      .addClass('stock-markets-list__item').appendTo( ".stock-markets-list" );//Добавляем класс элемента, кидаем в конец списка
+  let stockMarketsListItem = document.querySelectorAll('.stock-markets-list__item'); //Находим все добавленные биржи
+  console.log('Количество бирж' + stockMarketsListItem.length)
+  $('.stock-markets-list__item').on('click',function () { //Если нажали на биржу
+    $( this ).remove(); //Она удаляется
+  })
+  
+
+});
+
+
+
 
 
 $('#open-settings-btn').click(function () {
