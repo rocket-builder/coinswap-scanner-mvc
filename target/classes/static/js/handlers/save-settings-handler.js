@@ -1,10 +1,49 @@
 
 //TODO create exchange titles component
 
-let exchanges =  currentUser.settings.exchanges.fromCsv();
+let exchanges = currentUser.settings.exchanges.fromCsv();
 console.log(exchanges);
-//TODO load exchanges array to page component
 
+function getExchangeHtml(exchange){
+  return '<div class="stock-market">' +
+      '            <span class="stock-market__name">'+exchange+'</span>' +
+      '            <i class="times circle outline icon stock-market-template__icon" onclick="removeExchange(this)"></i>' +
+      '        </div>';
+}
+
+function renderExchanges(exchanges){
+  let html = exchanges
+      .filter(e => !e.isBlank())
+      .map(e => getExchangeHtml(e)).join('');
+  $('.stock-markets').html(html);
+}
+renderExchanges(exchanges);
+
+function removeExchange(element){
+  $(element).parent().transition({
+    animation  : 'fade out',
+    onComplete : function() {
+      $(element).parent().remove();
+    }
+  });
+}
+
+$('#inp-markets').on('keydown', function(e) {
+  if (e.which == 13 && !e.shiftKey) {
+    e.preventDefault();
+
+    let exchange = $(this).val();
+    $('.stock-markets').prepend(
+        getExchangeHtml(exchange));
+    $(this).val('');
+  }
+});
+$('#btn-add-market').click(function () {
+  let exchange = $('#inp-markets').val();
+  $('.stock-markets').prepend(
+      getExchangeHtml(exchange));
+  $('#inp-markets').val('');
+});
 
 $('#open-settings-btn').click(function () {
   $('#settings-form')
@@ -69,7 +108,7 @@ function getSettingsFromFields(id) {
 
     bannedPairs: currentUser.settings.bannedPairs,
 
-    exchanges: "" //TODO get String array of exchange titles from page and use toCsv()
+    exchanges: Array.from($('.stock-market__name')).map(e => e.innerText).toCsv()
   };
 }
 
@@ -105,3 +144,5 @@ $('#btn-clear-banned-pairs').click(function () {
 //   }
 //   return valid;
 // }
+
+

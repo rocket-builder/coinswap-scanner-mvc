@@ -84,6 +84,9 @@ function generateUUID() { // Public Domain/MIT
   });
 }
 
+String.prototype.isBlank = function(){
+  return (!this || /^\s*$/.test(this));
+}
 String.prototype.fromCsv = function() {
   return this.split(';');
 }
