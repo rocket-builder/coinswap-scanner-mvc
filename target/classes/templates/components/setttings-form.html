@@ -57,6 +57,15 @@
                         th:attr="pair-id=${pair.id}" th:value="${pair.title}" th:text="${pair.title}"></option>
             </select>
         </div>
+        <div class="field" style="font-size: 1em!important;">
+            <div class="ui action input">
+                <input class="stock-markets-search__input" type="text" placeholder="Add exchange" id="inp-markets">
+                <button class="ui button" id="btn-add-market"><i class="ui plus icon"></i></button>
+            </div>
+        </div>
+        <div class="field stock-markets">
+        </div>
+
         <p style="font-size: 1em;color: rgba(0, 0, 0, 0.25);">Не беспокойтесь, другие настройки будут добавлены позже <i class="handshake outline icon"></i></p>
         <div class="ui segment settings-form-actions">
             <div class="ui blue vertical animated button main-btn" id="btn-save-settings"
