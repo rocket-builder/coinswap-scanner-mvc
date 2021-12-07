@@ -61,6 +61,7 @@ function isFilteredFork(fork) {
 
 var forks = [];
 var cachedForks = [];
+var allForks = [];
 
 var init = Boolean(sessionStorage.getItem("init"));
 
@@ -91,14 +92,15 @@ function initStorage() {
         caches.open(cacheStore).then(async (cache) => {
             cache.match(forksStoreUrl)
                 .then(response => response.json())
-                .then(cachedForks => {
+                .then(cache => {
+                    cachedForks = cache;
                     forks = JSON.parse(sessionStorage.getItem("forks"));
-                    let forRender = forks.concat(cachedForks);
+                    allForks = forks.concat(cachedForks);
 
-                    console.log(forRender);
+                    console.log(allForks);
                     console.log("retrieve storage");
 
-                    renderFilteredForks(forRender);
+                    renderFilteredForks(allForks);
                 }).then(() =>
                     startSignalR())
                 .then(() =>

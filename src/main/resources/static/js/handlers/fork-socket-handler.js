@@ -106,6 +106,7 @@ function startUpdatesSocket() {
 
             console.log('update');
             console.log(forkList);
+
             // saveForksInStorage(forkList.items);
             //
             // let forks = forkList.items
