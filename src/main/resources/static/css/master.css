@@ -606,13 +606,13 @@ input.custom {
     padding-right: 0.5em;
 }
 
-.stock-markets {
+.stock-items {
     display: flex;
     flex-wrap: wrap;
     max-width: 400px;
 }
 
-.stock-market  {
+.stock-item  {
     background-color: rgba(224, 225, 226, 255);
     display: inline-flex;
     justify-content: space-between;

@@ -1,54 +1,11 @@
 const storeUrl = "https://coinswap-scanner-store.herokuapp.com/";
 
-//const socketUrl = "https://coinswap-scanner.azurewebsites.net/ws/forks";
-//const socketUrl = "https://localhost:5001/ws/forks";
-const socketUrl = "https://coinswapscanner.ngrok.io/ws/forks";
-
 const forksStoreUrl = storeUrl + "forks";
 const cacheStore = "forks";
 
 const maxForkCount = currentUser.settings.maxForkCountOnPage;
 
-const hubConnection = new signalR.HubConnectionBuilder()
-    .withUrl(socketUrl, {
-        skipNegotiation: true,
-        transport: signalR.HttpTransportType.WebSockets
-    })
-    //.withAutomaticReconnect()
-    .build();
 
-hubConnection.on("Send", function (forkList) {
-    console.log(forkList);
-    saveForksInStorage(forkList.items);
-
-    let forks = forkList.items
-        .filter(f => isFilteredFork(f));
-    if(forks.length > 0){
-        $('#signal-lamp').transition('flash', '300ms');
-        renderFilteredForks(forks);
-        resetForksLifetimeInterval();
-
-        $('#container').transition('fade in', '300ms');
-    }
-});
-
-function startSignalR() {
-    try{
-        hubConnection.start();
-    } catch (error) {
-        console.log(error);
-        reconnect();
-    }
-}
-function reconnect(){
-    setTimeout(function () {
-        hubConnection.start();
-    }, 5000);
-}
-hubConnection.onclose(function() {
-    console.log('restart signalR connection');
-    reconnect();
-});
 
 Array.prototype.removeById = function(forkId){
     const index = this.findIndex(fork => fork.id.trim() === forkId.trim());
@@ -74,8 +31,8 @@ Number.prototype.isRangeMatch = function(min, max){
 String.prototype.isBannedPair = function (bannedPairs) {
     return bannedPairs.find(pair => pair.title.trim() === this.trim()) !== undefined;
 }
-String.prototype.containExchange = function (exchange) {
-    return this.length > 0? this.toLowerCase().includes(exchange.title.toLowerCase()) : true;
+String.prototype.containsIgnoreCase = function (title) {
+    return this.length > 0? this.toLowerCase().includes(title.toLowerCase()) : true;
 }
 
 function isFilteredFork(fork) {
@@ -93,8 +50,9 @@ function isFilteredFork(fork) {
         !fork.firstPair.title.isBannedPair(settings.bannedPairs) &&
         !fork.secondPair.title.isBannedPair(settings.bannedPairs) &&
 
-        settings.exchanges.containExchange(fork.firstPair.exchange) &&
-        settings.exchanges.containExchange(fork.secondPair.exchange)
+        settings.exchanges.containsIgnoreCase(fork.firstPair.exchange.title) &&
+        settings.exchanges.containsIgnoreCase(fork.secondPair.exchange.title) &&
+        settings.platforms.containsIgnoreCase(fork.token.platform.title)
     ){
         matched = true;
     }

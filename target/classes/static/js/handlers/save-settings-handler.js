@@ -4,9 +4,12 @@
 let exchanges = currentUser.settings.exchanges.fromCsv();
 console.log(exchanges);
 
-function getExchangeHtml(exchange){
-  return '<div class="stock-market">' +
-      '            <span class="stock-market__name">'+exchange+'</span>' +
+let platforms = currentUser.settings.platforms.fromCsv();
+console.log(platforms);
+
+function getStockItemHtml(title){
+  return '<div class="stock-item">' +
+      '            <span class="stock-market__name">'+title+'</span>' +
       '            <i class="times circle outline icon stock-market-template__icon" onclick="removeExchange(this)"></i>' +
       '        </div>';
 }
@@ -14,10 +17,17 @@ function getExchangeHtml(exchange){
 function renderExchanges(exchanges){
   let html = exchanges
       .filter(e => !e.isBlank())
-      .map(e => getExchangeHtml(e)).join('');
-  $('.stock-markets').html(html);
+      .map(e => getStockItemHtml(e)).join('');
+  $('#markets').html(html);
+}
+function renderPlatforms(platforms){
+  let html = platforms
+      .filter(e => !e.isBlank())
+      .map(e => getStockItemHtml(e)).join('');
+  $('#platforms').html(html);
 }
 renderExchanges(exchanges);
+renderPlatforms(platforms);
 
 function removeExchange(element){
   $(element).parent().transition({
@@ -33,16 +43,32 @@ $('#inp-markets').on('keydown', function(e) {
     e.preventDefault();
 
     let exchange = $(this).val();
-    $('.stock-markets').prepend(
-        getExchangeHtml(exchange));
+    $('#markets.stock-items').prepend(
+        getStockItemHtml(exchange));
     $(this).val('');
   }
 });
 $('#btn-add-market').click(function () {
   let exchange = $('#inp-markets').val();
-  $('.stock-markets').prepend(
-      getExchangeHtml(exchange));
+  $('#markets.stock-items').prepend(
+      getStockItemHtml(exchange));
   $('#inp-markets').val('');
+});
+$('#btn-add-platform').click(function () {
+  let exchange = $('#inp-platforms').val();
+  $('#platforms.stock-items').prepend(
+      getStockItemHtml(exchange));
+  $('#inp-platforms').val('');
+});
+$('#inp-platforms').on('keydown', function(e) {
+  if (e.which == 13 && !e.shiftKey) {
+    e.preventDefault();
+
+    let exchange = $(this).val();
+    $('#platforms.stock-items').prepend(
+        getStockItemHtml(exchange));
+    $(this).val('');
+  }
 });
 
 $('#open-settings-btn').click(function () {
@@ -77,7 +103,7 @@ $('#btn-save-settings').click(function() {
 
         user.settings = response;
         currentUser.settings = response;
-        console.log("updated: " + currentUser);
+        console.log("updated: " + currentUser.settings);
 
         if($('#settings-form').hasClass('settings-need-filter')){
           refreshForksFromSettings();
@@ -108,7 +134,8 @@ function getSettingsFromFields(id) {
 
     bannedPairs: currentUser.settings.bannedPairs,
 
-    exchanges: Array.from($('.stock-market__name')).map(e => e.innerText).toCsv()
+    platforms: Array.from($('#platforms .stock-market__name')).map(e => e.innerText).toCsv(),
+    exchanges: Array.from($('#markets .stock-market__name')).map(e => e.innerText).toCsv()
   };
 }
 

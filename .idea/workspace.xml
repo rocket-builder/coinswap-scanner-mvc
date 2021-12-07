@@ -2,11 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1dace837-c407-4795-8ec7-ff457828a6d5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/handlers/fork-socket-handler.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/libs/sockjs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/libs/stomp.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/components/fork-template.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/anthill/coinswapscannermvc/beans/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/anthill/coinswapscannermvc/beans/Settings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/master.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/master.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/handlers/save-settings-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/handlers/save-settings-handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/master.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/master.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/handlers/websocket-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/handlers/fork-handler.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/components/setttings-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/components/setttings-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/master.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/master.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/handlers/save-settings-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/handlers/save-settings-handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/handlers/websocket-handler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/components/setttings-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/components/setttings-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/profile.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +29,8 @@
       <list>
         <option value="Enum" />
         <option value="Class" />
-        <option value="JavaScript File" />
         <option value="Interface" />
+        <option value="JavaScript File" />
         <option value="HTML File" />
       </list>
     </option>
@@ -43,7 +54,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../coinswap-scanner-store" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static/js" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -60,11 +71,11 @@
       <recent name="com.anthill.coinswapscannerstore.configuration" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\rocket\Documents\GitHub\coinswap-scanner-mvc\src\main\resources\static\js" />
       <recent name="C:\Users\rocket\Documents\GitHub\coinswap-scanner-mvc\src\main\java\com\anthill\coinswapscannermvc\configuration" />
       <recent name="C:\Users\rocket\Documents\GitHub\coinswap-scanner-mvc\src\main\resources\templates" />
       <recent name="C:\Users\rocket\Documents\GitHub\coinswap-scanner-mvc\src\main\resources\static\js\handlers" />
       <recent name="C:\Users\rocket\Documents\GitHub\coinswap-scanner-mvc\src\main\java\com\anthill\coinswapscannermvc\controllers" />
-      <recent name="C:\Users\rocket\Documents\GitHub\coinswap-scanner-mvc\src\main\java\com\anthill\coinswapscannermvc\repos" />
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.CoinswapScannerMvcApplication">
@@ -180,6 +191,16 @@
       <workItem from="1637152534250" duration="5000" />
       <workItem from="1637168062770" duration="128000" />
       <workItem from="1637344653848" duration="5145000" />
+      <workItem from="1637519731538" duration="33000" />
+      <workItem from="1637689317825" duration="57000" />
+      <workItem from="1637694461317" duration="19000" />
+      <workItem from="1637694657479" duration="34000" />
+      <workItem from="1638210626226" duration="7890000" />
+      <workItem from="1638295677209" duration="358000" />
+      <workItem from="1638300618190" duration="918000" />
+      <workItem from="1638303529757" duration="850000" />
+      <workItem from="1638901207841" duration="5333000" />
+      <workItem from="1638909009007" duration="936000" />
     </task>
     <task id="LOCAL-00001" summary="first build">
       <created>1631304184725</created>
@@ -259,50 +280,50 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="574" y="146" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1631828737451" />
-    <state x="740" y="275" width="440" height="490" key="FileChooserDialogImpl" timestamp="1637346677746">
+    <state x="740" y="275" width="440" height="490" key="FileChooserDialogImpl" timestamp="1637519762570">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" width="440" height="490" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1637346677746" />
-    <state width="1877" height="262" key="GridCell.Tab.0.bottom" timestamp="1637349506073">
+    <state x="740" y="275" width="440" height="490" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1637519762570" />
+    <state width="1877" height="262" key="GridCell.Tab.0.bottom" timestamp="1638906747855">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="387" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1635193393119" />
-    <state width="1877" height="262" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1637349506073" />
-    <state width="1877" height="262" key="GridCell.Tab.0.center" timestamp="1637349506073">
+    <state width="1877" height="262" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1638906747855" />
+    <state width="1877" height="262" key="GridCell.Tab.0.center" timestamp="1638906747855">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="387" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1635193393118" />
-    <state width="1877" height="262" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1637349506073" />
-    <state width="1877" height="262" key="GridCell.Tab.0.left" timestamp="1637349506073">
+    <state width="1877" height="262" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1638906747855" />
+    <state width="1877" height="262" key="GridCell.Tab.0.left" timestamp="1638906747855">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="387" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1635193393118" />
-    <state width="1877" height="262" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1637349506073" />
-    <state width="1877" height="262" key="GridCell.Tab.0.right" timestamp="1637349506073">
+    <state width="1877" height="262" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1638906747855" />
+    <state width="1877" height="262" key="GridCell.Tab.0.right" timestamp="1638906747855">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="387" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1635193393119" />
-    <state width="1877" height="262" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1637349506073" />
-    <state width="1877" height="262" key="GridCell.Tab.1.bottom" timestamp="1637349506073">
+    <state width="1877" height="262" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1638906747855" />
+    <state width="1877" height="262" key="GridCell.Tab.1.bottom" timestamp="1638906747856">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="387" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1635193393119" />
-    <state width="1877" height="262" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1637349506073" />
-    <state width="1877" height="262" key="GridCell.Tab.1.center" timestamp="1637349506073">
+    <state width="1877" height="262" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1638906747856" />
+    <state width="1877" height="262" key="GridCell.Tab.1.center" timestamp="1638906747855">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="387" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1635193393119" />
-    <state width="1877" height="262" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1637349506073" />
-    <state width="1877" height="262" key="GridCell.Tab.1.left" timestamp="1637349506073">
+    <state width="1877" height="262" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1638906747855" />
+    <state width="1877" height="262" key="GridCell.Tab.1.left" timestamp="1638906747855">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="387" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1635193393119" />
-    <state width="1877" height="262" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1637349506073" />
-    <state width="1877" height="262" key="GridCell.Tab.1.right" timestamp="1637349506073">
+    <state width="1877" height="262" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1638906747855" />
+    <state width="1877" height="262" key="GridCell.Tab.1.right" timestamp="1638906747855">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="387" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1635193393119" />
-    <state width="1877" height="262" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1637349506073" />
+    <state width="1877" height="262" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1638906747855" />
     <state width="1493" height="261" key="GridCell.Tab.2.bottom" timestamp="1633743617548">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

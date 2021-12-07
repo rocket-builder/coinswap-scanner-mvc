@@ -52,10 +52,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.7/signalr.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0-rc.2/jquery-ui.js"></script>
+<script th:src="@{/js/libs/sockjs.js}"></script>
+<script th:src="@{/js/libs/stomp.min.js}"></script>
 <script th:src="@{/js/master.js}"></script>
 <script th:src="@{/js/handlers/fork-lifetime-util.js}"></script>
 <script th:src="@{/js/handlers/fork-db-utils.js}"></script>
-<script th:src="@{/js/handlers/websocket-handler.js}"></script>
+<script th:src="@{/js/handlers/fork-handler.js}"></script>
+<script th:src="@{/js/handlers/fork-socket-handler.js}"></script>
 <script th:src="@{/js/handlers/fork-card-actions-handler.js}"></script>
 <script th:src="@{/js/handlers/save-settings-handler.js}"></script>
 </body>
