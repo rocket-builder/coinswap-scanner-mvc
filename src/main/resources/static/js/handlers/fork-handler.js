@@ -4,15 +4,6 @@ const forksStoreUrl = storeUrl + "forks";
 const cacheStore = "forks";
 
 const maxForkCount = currentUser.settings.maxForkCountOnPage;
-
-
-
-Array.prototype.removeById = function(forkId){
-    const index = this.findIndex(fork => fork.id.trim() === forkId.trim());
-    if (index > -1) {
-        this.splice(index, 1);
-    }
-}
 Number.prototype.isRangeMatch = function(min, max){
     let value = Number(this);
 
@@ -33,6 +24,9 @@ String.prototype.isBannedPair = function (bannedPairs) {
 }
 String.prototype.containsIgnoreCase = function (title) {
     return this.length > 0? this.toLowerCase().includes(title.toLowerCase()) : true;
+}
+Map.prototype.concat = function (map) {
+    return new Map([...this, ...map]);
 }
 
 function isFilteredFork(fork) {
@@ -59,12 +53,11 @@ function isFilteredFork(fork) {
     return matched;
 }
 
-var forks = [];
-var cachedForks = [];
-var allForks = [];
+var forks = new Map();
+var cachedForks = new Map();
+var allForks = new Map();
 
 var init = Boolean(sessionStorage.getItem("init"));
-
 function initStorage() {
     if(init === false){
         $('#container').addClass("form loading");
@@ -74,11 +67,12 @@ function initStorage() {
             cache.match(forksStoreUrl)
                 .then(response => response.json())
                 .then(storageForks => {
+                    storageForks = new Map(Object.entries(storageForks));
                     sessionStorage.setItem("init", "true");
-                    sessionStorage.setItem("forks", "[]");
+                    sessionStorage.setItem("forks", "{}");
 
-                    console.log(storageForks);
-                    renderFilteredForks(storageForks);
+                    console.log("Received " + storageForks.size + " forks");
+                    renderFilteredForks(Array.from(storageForks.entries()));
 
                     $('#container').removeClass("form loading");
 
@@ -93,14 +87,14 @@ function initStorage() {
             cache.match(forksStoreUrl)
                 .then(response => response.json())
                 .then(cache => {
-                    cachedForks = cache;
-                    forks = JSON.parse(sessionStorage.getItem("forks"));
+                    cachedForks = new Map(Object.entries(cache));
+                    forks = new Map(
+                        Object.entries(JSON.parse(sessionStorage.getItem("forks"))));
                     allForks = forks.concat(cachedForks);
 
-                    console.log(allForks);
-                    console.log("retrieve storage");
+                    console.log("retrieved " + allForks.size + " forks from storage");
 
-                    renderFilteredForks(allForks);
+                    renderFilteredForks(Array.from(allForks.entries()));
                 }).then(() =>
                     startSignalR())
                 .then(() =>
@@ -112,7 +106,8 @@ initStorage();
 
 function saveForksInStorage(forksList) {
     try {
-        forks.pushArray(forksList);
+        forks = forks.concat(forksList);
+
         let json = JSON.stringify(forks);
 
         sessionStorage.setItem("forks", json);
@@ -127,7 +122,7 @@ function saveForksInStorage(forksList) {
 }
 
 function removeForkFromStorageById(forkId) {
-    forks.removeById(forkId);
+    forks.delete(forkId)
     let json = JSON.stringify(forks);
 
     sessionStorage.setItem("forks", json);
@@ -135,11 +130,16 @@ function removeForkFromStorageById(forkId) {
 }
 
 function renderFilteredForks(forks) {
-    let filtered = forks
-        .filter(f => isFilteredFork(f))
+    console.log(forks);
+
+    let filtered = forks.filter(pair => {
+            console.log(pair);
+            return isFilteredFork(pair[1]);
+        })
         .slice(0, maxForkCount);
+
     filtered.sort((a,b) =>
-        new Date(b.recieveDate) - new Date(a.recieveDate));
+        new Date(b[1].recieveDate) - new Date(a[1].recieveDate));
 
     if(filtered.length > 0){
         let forksDivs = Array.from(document.querySelectorAll('[fork-id]'));
@@ -147,7 +147,7 @@ function renderFilteredForks(forks) {
             .slice(Math.abs(forksDivs.length - filtered.length))
             .forEach(f => f.remove());
 
-        let html = filtered.map(f => getForkHTML(f)).join("");
+        let html = filtered.map(pair => getForkHTML(pair)).join("");
 
         document.querySelector("#container")
             .insertAdjacentHTML("afterbegin", html);
@@ -156,13 +156,13 @@ function renderFilteredForks(forks) {
 
 function refreshForksFromSettings() {
     let filtered =
-        forks.concat(cachedForks)
-            .filter(f => isFilteredFork(f))
+        Array.from(forks.concat(cachedForks).entries())
+            .filter(pair => isFilteredFork(pair[1]))
             .slice(0, maxForkCount);
     filtered.sort((a,b) =>
-        new Date(b.recieveDate) - new Date(a.recieveDate));
+        new Date(b[1].recieveDate) - new Date(a[1].recieveDate));
 
-    let html = filtered.map(f => getForkHTML(f)).join("");
+    let html = filtered.map(pair => getForkHTML(pair)).join("");
 
     document.querySelector("#container").innerHTML = "";
     document.querySelector("#container")
@@ -185,11 +185,13 @@ function getColorByProfit(percent) {
 
     return color;
 }
-function getForkHTML(fork) {
+function getForkHTML(pair) {
+    let id = pair[0];
+    let fork = pair[1];
     let percent = Number(fork.profitPercent);
     let color = getColorByProfit(percent);
 
-    let html = '<div class="column forked" fork-id="'+fork.id+'">' +
+    let html = '<div class="column forked" fork-id="'+id+'">' +
         '        <div class="token-fork">' +
         '           <input class="fork-lifetime" size="6" maxlength="9" value="'+getCurrentLifetimeString(fork.recieveDate)+'" receive-date="'+fork.recieveDate+'" disabled/>' +
         '        <div class="token">' +
