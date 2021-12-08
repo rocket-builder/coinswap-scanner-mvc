@@ -772,6 +772,44 @@ body::selection {
     flex-direction: column;
 }
 
+.fork-template  {
+
+}
+
+.fork-template__headers {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #f8f8f8;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 23px;
+}
+
+.fork-template__cell  {
+    font-size: 16px;
+    line-height: 18px;
+}
+
+.fork-template__part {
+    padding: 23px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.fork-template__part .fork-template__cell   {
+    font-weight: 350;
+}
+
+.fork-template__benefit {
+    border-radius: 4px;
+    background: #51A784;
+    color: white;
+    min-width: 60px;
+    text-align: center;
+}
+
 @media screen and (max-device-width: 1000px) {
   .only_mobile {
     display: none!important;

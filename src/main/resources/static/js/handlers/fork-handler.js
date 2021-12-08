@@ -187,7 +187,7 @@ function getForkHTML(fork) {
     let percent = Number(fork.profitPercent);
     let color = getColorByProfit(percent);
 
-    let html = '<div class="column forked" fork-id="'+fork.id+'">' +
+    /*let html = '<div class="column forked" fork-id="'+fork.id+'">' +
         '        <div class="token-fork">' +
         '           <input class="fork-lifetime" size="6" maxlength="9" value="'+getCurrentLifetimeString(fork.recieveDate)+'" receive-date="'+fork.recieveDate+'" disabled/>' +
         '        <div class="token">' +
@@ -213,5 +213,7 @@ function getForkHTML(fork) {
         '        </a>' +
         '        </div>' +
         '        </div>';
+
+     */
     return html;
 }
