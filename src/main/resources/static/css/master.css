@@ -783,13 +783,16 @@ body::selection {
     align-items: center;
     flex-basis: 561px;
     flex-grow: 1.1;
+    margin-left: 5px;
 }
 
 .template__header-name  {
-    margin-right: 36px;
+    /*margin-right: 36px;*/
     display: flex;
     flex-direction: row;
     flex-basis: 150px;
+    align-items: center;
+    justify-content: space-evenlyf;
 }
 
 .template__token-title  {
@@ -819,6 +822,7 @@ body::selection {
     font-weight: 350;
     flex-basis: 350px;
     font-size: 24px;
+    text-align: center;
 }
 
 .template__token-platform-title::before {
@@ -862,6 +866,7 @@ body::selection {
 }
 
 .fork  {
+    background: white;
     width: 100%;
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -898,6 +903,8 @@ body::selection {
 }
 
 .fork-template__buy    {
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
     padding-bottom: 13px;
     padding-top: 13px;
     background: #F8F8F8;
@@ -909,9 +916,11 @@ body::selection {
 }
 
 .fork-template__sell {
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
     border: 1px solid #DADADA;
-    padding-top: 3.25px;
-    padding-bottom: 3.25px;
+    padding-top: 6.5px;
+    padding-bottom: 6.5px;
 }
 
 
@@ -920,6 +929,7 @@ body::selection {
 }
 
 .fork-template__operation-name  {
+    margin-left: 24px;
     flex-basis: 138px;
     font-weight: 700px;
     text-transform: uppercase;
@@ -957,6 +967,9 @@ body::selection {
 
 .fork-template__icons   {
     flex-basis: 132px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 @media screen and (max-device-width: 1000px) {
