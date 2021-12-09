@@ -226,9 +226,13 @@ function getForkHTML(pair) {
     elem.classList.add("fork"); //Добавляем класс "fork"
     elem.append(tmpl.content.cloneNode(true)); // Клонируем содержимое шаблона для того, чтобы переиспользовать его несколько раз
 
+    $(elem).attr('fork-id', id);
+    $(elem).find('.fork-template__first-token-name a').text(fork.firstPair.exchange.title + ': ' + fork.firstPair.title);
+    $(elem).find('.fork-template__first-token-name a').attr('href', fork.firstPair.url);
 
-    $(elem).find('.fork-template__first-token-name a').text(fork.firstPair.exchange.title + ': ' + fork.firstPair.title); //Если не работает - добавим exchange
     $(elem).find('.fork-template__second-token-name a').text(fork.secondPair.exchange.title + ': ' + fork.secondPair.title);
+    $(elem).find('.fork-template__second-token-name a').attr('href', fork.secondPair.url);
+
     $(elem).find('.fork-template__first-volume').text('VOL: $' + fork.firstPair.volume24h.toLocaleString());
     $(elem).find('.fork-template__second-volume').text('VOL: $' + fork.secondPair.volume24h.toLocaleString());
     $(elem).find('.fork-template__first-price').text('P: $' + fork.firstPair.price);
@@ -240,10 +244,13 @@ function getForkHTML(pair) {
     $(elem).find('.template__token-symbol').text(fork.token.symbol); //Добвляем символьное представление биржи
     $(elem).find('.template__token-platform-title').text(fork.token.platform.title); //Добавляем заголовок платформы
     $(elem).find('.template__token-price').text(fork.token.quote.usdPrice.volume24h.toLocaleString());
-    $(elem).find('.template__token-time').text(getCurrentLifetimeString(fork.recieveDate));
 
+    $(elem).find('.template__token-time').attr('value', getCurrentLifetimeString(fork.recieveDate));
+    $(elem).find('.template__token-time').attr('receive-date', fork.recieveDate);
 
+    $(elem).find('.fork-link').attr('href', fork.url);
+    $(elem).find('.remove-fork-btn').attr('onclick', "deleteFork(this)");
+    $(elem).find('.hide-fork-btn').attr('onclick', "banPairs(this)");
 
     $('#container').append(elem); //Добавляем контейнеру вилку
-
 }
