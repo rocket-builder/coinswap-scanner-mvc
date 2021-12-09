@@ -88,10 +88,7 @@ function startSocket(){
             saveForksInStorage(forkList);
 
             let forks = Array.from(forkList.entries())
-                .filter(pair => {
-                    console.log(pair);
-                    return isFilteredFork(pair[1]);
-                });
+                .filter(pair => isFilteredFork(pair[1]));
             if(forks.length > 0){
                 $('#signal-lamp').transition('flash', '300ms');
                 renderFilteredForks(forks);
@@ -113,6 +110,20 @@ function startUpdatesSocket() {
 
             console.log('received ' + updates.size + " fork updates");
 
+            Array.from(updates.entries()).forEach(pair => {
+               let id = pair[0];
+               let update = pair[1];
+               if(forks.has(id)){
+                   console.log("update fork from session");
+                   console.log(update);
+                   forks.set(id, update);
+               }
+               let forkElement = document.querySelector('[fork-id="'+id+'"]');
+               if(forkElement != null){
+                   //TODO RERENDER FORK UPDATE
+                   console.log("rerender fork element here");
+               }
+            });
             // saveForksInStorage(forkList.items);
             //
             // let forks = forkList.items
@@ -127,16 +138,16 @@ function startUpdatesSocket() {
         });
     });
 }
-Object.prototype.updateFork = function (update) {
-    this.token.quote = update.token.quote;
+function refreshForkData(old, update) {
+    old.token.quote = update.token.quote;
 
-    this.firstPair.price = update.firstPair.price;
-    this.firstPair.volume24h = update.firstPair.volume24h;
-    this.firstPair.updated = update.firstPair.updated;
+    old.firstPair.price = update.firstPair.price;
+    old.firstPair.volume24h = update.firstPair.volume24h;
+    old.firstPair.updated = update.firstPair.updated;
 
-    this.secondPair.price = update.secondPair.price;
-    this.secondPair.volume24h = update.secondPair.volume24h;
-    this.secondPair.updated = update.secondPair.updated;
+    old.secondPair.price = update.secondPair.price;
+    old.secondPair.volume24h = update.secondPair.volume24h;
+    old.secondPair.updated = update.secondPair.updated;
 
-    this.profitPercent = update.profitPercent;
+    old.profitPercent = update.profitPercent;
 }

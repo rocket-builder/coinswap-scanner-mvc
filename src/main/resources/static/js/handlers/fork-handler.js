@@ -132,10 +132,8 @@ function removeForkFromStorageById(forkId) {
 function renderFilteredForks(forks) {
     console.log(forks);
 
-    let filtered = forks.filter(pair => {
-            console.log(pair);
-            return isFilteredFork(pair[1]);
-        })
+    let filtered = forks
+        .filter(pair => isFilteredFork(pair[1]))
         .slice(0, maxForkCount);
 
     filtered.sort((a,b) =>
