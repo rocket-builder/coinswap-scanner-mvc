@@ -190,6 +190,7 @@ textarea.user-info{
     display: inline-block;
     position: relative;
 }
+
 .pair a:after {
     bottom: 0;
     content: "";
@@ -770,6 +771,232 @@ body::selection {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.template   {
+    padding: 10px;
+}
+
+
+.template__header  {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-basis: 561px;
+    flex-grow: 1.1;
+    margin-left: 5px;
+}
+
+.template__header-name  {
+    /*margin-right: 36px;*/
+    display: flex;
+    flex-direction: row;
+    flex-basis: 150px;
+    align-items: center;
+    justify-content: space-evenlyf;
+}
+
+.template__token-title  {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    text-transform: uppercase;
+    color: black;
+    margin-right: 10px;
+}
+
+.template__token-symbol {
+    display: block;
+    max-width: 89px;
+    max-height: 35px;
+    padding: 6px;
+    font-weight: 700;
+    font-size: 12px;
+    text-align: center;
+    letter-spacing: 0.05em;
+    color: #F9E72B;
+    background: black;
+    border-radius: 4px;
+}
+
+.template__token-platform-title {
+    font-weight: 350;
+    flex-basis: 350px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.template__token-platform-title::before {
+    content: "[";
+    color: #f0d800;
+}
+
+.template__token-platform-title::after  {
+    content: "]";
+    color: #f0d800;
+}
+
+.template__token-price  {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    flex-basis: 120px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.template__token-price::after  {
+    display: block;
+    width: 30px;
+    height: 20px;
+    content: ' ';
+    background-repeat: no-repeat;
+    background-image: url("../res/lightning.svg");
+    transform: translate(30%, 16%);
+}
+
+.template__token-time   {
+    font-weight: 350;
+    font-size:24px;
+    line-height: 28px;
+    color: #DADADA;
+    justify-content: end;
+    flex-basis: 100px;
+    margin-right: 10px;
+}
+
+.fork  {
+    background: white;
+    width: 100%;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    border: 1px solid rgba(0, 0, 0, .055);
+    border-radius: 25px;
+    box-shadow: 0 0 24px 0 rgba(0, 0, 0, .06);
+    margin-bottom: 10px;
+}
+
+
+
+.template__headers {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+
+
+
+
+.fork-template__cell  {
+    font-size: 16px;
+    line-height: 18px;
+}
+
+.fork-template__part {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 10px;
+}
+
+.fork-template__buy    {
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    padding-bottom: 13px;
+    padding-top: 13px;
+    background: #F8F8F8;
+    border-top: 1px solid #DADADA;
+    border-left: 1px solid #DADADA;
+    border-right: 1px solid #DADADA;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+.fork-template__sell {
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border: 1px solid #DADADA;
+    padding-top: 6.5px;
+    padding-bottom: 6.5px;
+}
+
+
+.fork-template__part .fork-template__cell   {
+    font-weight: 350;
+}
+
+.fork-template__operation-name  {
+    margin-left: 24px;
+    flex-basis: 138px;
+    font-weight: 700px;
+    text-transform: uppercase;
+    font-size: 16px;
+    color: #000000;
+}
+
+.fork-template__token-name  {
+    flex-basis: 224px;
+    position: relative;
+}
+
+.fork-template__token-name a {
+    color: inherit!important;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+}
+
+.fork-template__token-name a:after {
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: #FAE62D;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+.fork-template__token-name a:hover:after {
+    width: 100%;
+    left: 0;
+}
+
+.fork-template__volume  {
+    flex-basis: 197px;
+}
+
+.fork-template__price   {
+    flex-basis: 100px;
+}
+
+
+.fork-template__benefit {
+
+    min-width: 60px;
+    text-align: center;
+    padding-top: 6px;
+    margin-right: 60px;
+    padding-bottom: 6px;
+}
+
+.fork-template__sale-benefit {
+    border-radius: 4px;
+    background: #51A784;
+    color: white;
+}
+
+.fork-template__icons   {
+    flex-basis: 154px;
+    justify-content: space-evenly;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 @media screen and (max-device-width: 1000px) {

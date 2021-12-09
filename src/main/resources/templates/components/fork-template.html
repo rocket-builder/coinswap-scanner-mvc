@@ -1,3 +1,52 @@
 <div class="fork-template" th:fragment="add-user-modal">
+    <template id="tmpl">
+        <div class="template">
+            <div class="template__headers">
+                <div class="template__header">
+                    <div class="template__header-name">
+                        <div class="template__token-title">
+                        </div>
+                        <div class="template__token-symbol">
+                        </div>
+                    </div>
+                    <div class="template__token-platform-title">
+                    </div>
+                    <div class=" template__token-price">
+                    </div>
+                </div>
 
+                <div class="template__header template__token-time">
+
+                </div>
+            </div>
+            <div class="template__content">
+                <div class="fork-template__part fork-template__buy">
+                    <div class="fork-template__operation-name">Покупка</div>
+                    <div class="fork-template__token-name fork-template__first-token-name fork-template__сell">
+                        <a></a>
+                    </div>
+                    <div class="fork-template__volume fork-template__first-volume fork-template__сell"></div>
+                    <div class="fork-template__price fork-template__first-price fork-template__сell"></div>
+                    <div class="fork-template__benefit fork-template__buy-benefit fork-template__сell"></div>
+                    <div class="fork-template__icons fork-template__сell">
+
+                    </div>
+                </div>
+                <div class="fork-template__part fork-template__sell">
+                    <div class="fork-template__operation-name">Продажа</div>
+                    <div class="fork-template__token-name fork-template__second-token-name fork-template__сell">
+                        <a></a>
+                    </div>
+                    <div class="fork-template__volume fork-template__second-volume fork-template__сell"></div>
+                    <div class="fork-template__price fork-template__second-price fork-template__сell"></div>
+                    <div class="fork-template__benefit fork-template__sale-benefit fork-template__сell"></div>
+                    <div class="fork-template__icons fork-template__сell">
+                        <img th:src="@{/res/trashCanIcon.svg}"/>
+                        <img th:src="@{/res/eyeSlashIcon.svg}"/>
+                        <img th:src="@{/res/cryptowallet.svg}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
 </div>

@@ -183,13 +183,18 @@ function getColorByProfit(percent) {
 
     return color;
 }
+
+jQuery.fn.outer = function() {
+    return $($('<div></div>').html(this.clone())).html();
+}
+
 function getForkHTML(pair) {
     let id = pair[0];
     let fork = pair[1];
     let percent = Number(fork.profitPercent);
     let color = getColorByProfit(percent);
-
-    let html = '<div class="column forked" fork-id="'+id+'">' +
+    /*
+    let html = '<div class="column forked" fork-id="'+fork.id+'">' +
         '        <div class="token-fork">' +
         '           <input class="fork-lifetime" size="6" maxlength="9" value="'+getCurrentLifetimeString(fork.recieveDate)+'" receive-date="'+fork.recieveDate+'" disabled/>' +
         '        <div class="token">' +
@@ -215,5 +220,30 @@ function getForkHTML(pair) {
         '        </a>' +
         '        </div>' +
         '        </div>';
-    return html;
+        return html
+    */
+    let elem = document.createElement('div'); //Cоздаем элемент
+    elem.classList.add("fork"); //Добавляем класс "fork"
+    elem.append(tmpl.content.cloneNode(true)); // Клонируем содержимое шаблона для того, чтобы переиспользовать его несколько раз
+
+
+    $(elem).find('.fork-template__first-token-name a').text(fork.firstPair.exchange.title + ': ' + fork.firstPair.title); //Если не работает - добавим exchange
+    $(elem).find('.fork-template__second-token-name a').text(fork.secondPair.exchange.title + ': ' + fork.secondPair.title);
+    $(elem).find('.fork-template__first-volume').text('VOL: $' + fork.firstPair.volume24h.toLocaleString());
+    $(elem).find('.fork-template__second-volume').text('VOL: $' + fork.secondPair.volume24h.toLocaleString());
+    $(elem).find('.fork-template__first-price').text('P: $' + fork.firstPair.price);
+    $(elem).find('.fork-template__second-price').text('P: $' + fork.secondPair.price);
+    $(elem).find('.fork-template__sale-benefit').text(fork.profitPercent + '%');
+    /*$(elem).find('.fork-template__time').text(getCurrentLifetimeString(fork.recieveDate));*/
+
+    $(elem).find('.template__token-title').text(fork.token.title);//Добавляем названия биржи
+    $(elem).find('.template__token-symbol').text(fork.token.symbol); //Добвляем символьное представление биржи
+    $(elem).find('.template__token-platform-title').text(fork.token.platform.title); //Добавляем заголовок платформы
+    $(elem).find('.template__token-price').text(fork.token.quote.usdPrice.volume24h.toLocaleString());
+    $(elem).find('.template__token-time').text(getCurrentLifetimeString(fork.recieveDate));
+
+
+
+    $('#container').append(elem); //Добавляем контейнеру вилку
+
 }
