@@ -806,7 +806,7 @@ body::selection {
 
 .template__token-symbol {
     display: block;
-    max-width: 63px;
+    max-width: 89px;
     max-height: 35px;
     padding: 6px;
     font-weight: 700;
