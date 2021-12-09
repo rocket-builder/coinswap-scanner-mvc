@@ -966,7 +966,8 @@ body::selection {
 }
 
 .fork-template__icons   {
-    flex-basis: 132px;
+    flex-basis: 154px;
+    justify-content: space-evenly;
     display: flex;
     flex-direction: row;
     align-items: center;
