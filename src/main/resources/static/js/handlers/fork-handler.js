@@ -190,7 +190,9 @@ jQuery.fn.outer = function() {
     return $($('<div></div>').html(this.clone())).html();
 }
 
-function getForkHTML(fork) {
+function getForkHTML(pair) {
+    let id = pair[0];
+    let fork = pair[1];
     let percent = Number(fork.profitPercent);
     let color = getColorByProfit(percent);
     /*
