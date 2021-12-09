@@ -49,9 +49,11 @@ const socketUrl = "https://coinswap-scanner-store.herokuapp.com/";
 console.log("connecting to socket...");
 stompClientNew = Stomp.over(
     new SockJS(socketUrl + "new"));
+stompClientNew.debug = () => {};
 
 var stompClientUpdate = Stomp.over(
     new SockJS(socketUrl + "update"));
+stompClientUpdate.debug = () => {};
 
 function startSignalR(){
     try{
@@ -80,13 +82,16 @@ function startSocket(){
         console.log("connected to: " + frame);
 
         stompClientNew.subscribe("/forks/new/", function (response) {
-            let forkList = JSON.parse(response.body);
+            let forkList = new Map(Object.entries(JSON.parse(response.body)));
 
             console.log(forkList);
             saveForksInStorage(forkList);
 
-            let forks = forkList
-                .filter(f => isFilteredFork(f));
+            let forks = Array.from(forkList.entries())
+                .filter(pair => {
+                    console.log(pair);
+                    return isFilteredFork(pair[1]);
+                });
             if(forks.length > 0){
                 $('#signal-lamp').transition('flash', '300ms');
                 renderFilteredForks(forks);
@@ -97,15 +102,17 @@ function startSocket(){
         });
     });
 }
+
+
 function startUpdatesSocket() {
     stompClientUpdate.connect({}, function (frame) {
         console.log("connected to: " + frame);
 
         stompClientUpdate.subscribe("/forks/update/", function (response) {
-            let forkList = JSON.parse(response.body);
+            let updates = new Map(Object.entries(JSON.parse(response.body)));
 
-            console.log('update');
-            console.log(forkList);
+            console.log('received ' + updates.size + " fork updates");
+
             // saveForksInStorage(forkList.items);
             //
             // let forks = forkList.items
@@ -119,4 +126,17 @@ function startUpdatesSocket() {
             // }
         });
     });
+}
+Object.prototype.updateFork = function (update) {
+    this.token.quote = update.token.quote;
+
+    this.firstPair.price = update.firstPair.price;
+    this.firstPair.volume24h = update.firstPair.volume24h;
+    this.firstPair.updated = update.firstPair.updated;
+
+    this.secondPair.price = update.secondPair.price;
+    this.secondPair.volume24h = update.secondPair.volume24h;
+    this.secondPair.updated = update.secondPair.updated;
+
+    this.profitPercent = update.profitPercent;
 }

@@ -2,22 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1dace837-c407-4795-8ec7-ff457828a6d5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/handlers/fork-socket-handler.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/libs/sockjs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/libs/stomp.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/components/fork-template.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/anthill/coinswapscannermvc/beans/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/anthill/coinswapscannermvc/beans/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/master.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/master.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/handlers/save-settings-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/handlers/save-settings-handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/handlers/websocket-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/handlers/fork-handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/components/setttings-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/components/setttings-form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/master.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/master.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/js/handlers/save-settings-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/handlers/save-settings-handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/js/handlers/websocket-handler.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/components/setttings-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/components/setttings-form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/handlers/fork-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/handlers/fork-handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/handlers/fork-socket-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/handlers/fork-socket-handler.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
