@@ -772,19 +772,24 @@ body::selection {
     flex-direction: column;
 }
 
+.template   {
+    padding: 10px;
+}
+
 
 .template__header  {
     display: flex;
     flex-direction: row;
     align-items: center;
     flex-basis: 561px;
+    flex-grow: 1.1;
 }
 
 .template__header-name  {
     margin-right: 36px;
     display: flex;
     flex-direction: row;
-    flex-basis: 250px;
+    flex-basis: 150px;
 }
 
 .template__token-title  {
@@ -812,8 +817,8 @@ body::selection {
 
 .template__token-platform-title {
     font-weight: 350;
-    margin-right: 36px;
-    flex-basis: 250px;
+    flex-basis: 350px;
+    font-size: 24px;
 }
 
 .template__token-platform-title::before {
@@ -852,32 +857,28 @@ body::selection {
     line-height: 28px;
     color: #DADADA;
     justify-content: end;
+    flex-basis: 100px;
+    margin-right: 10px;
 }
 
 .fork  {
     width: 100%;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
     border: 1px solid rgba(0, 0, 0, .055);
     border-radius: 25px;
     box-shadow: 0 0 24px 0 rgba(0, 0, 0, .06);
     margin-bottom: 10px;
 }
 
-.fork:nth-of-type(2n) {
-    background-color: white;
-}
 
-.fork:nth-of-type(2n+1) {
-    background-color: lightgray;
-}
-
-.fork:nth-of-type(2n+1) .template__token-time {
-    color: black;
-}
 
 .template__headers {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 25px;
 }
 
 
@@ -890,22 +891,29 @@ body::selection {
 }
 
 .fork-template__part {
-    padding-bottom: 13px;
-    padding-top: 13px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
 
-.fork-template__sale    {
-    /*background: #F8F8F8;
-    border: 1px solid #DADADA;
+.fork-template__buy    {
+    padding-bottom: 13px;
+    padding-top: 13px;
+    background: #F8F8F8;
+    border-top: 1px solid #DADADA;
+    border-left: 1px solid #DADADA;
+    border-right: 1px solid #DADADA;
     box-sizing: border-box;
-
-     */
     justify-content: space-between;
 }
+
+.fork-template__sell {
+    border: 1px solid #DADADA;
+    padding-top: 3.25px;
+    padding-bottom: 3.25px;
+}
+
 
 .fork-template__part .fork-template__cell   {
     font-weight: 350;
