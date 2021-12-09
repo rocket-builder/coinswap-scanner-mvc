@@ -229,8 +229,8 @@ function getForkHTML(pair) {
     elem.append(tmpl.content.cloneNode(true)); // Клонируем содержимое шаблона для того, чтобы переиспользовать его несколько раз
 
 
-    $(elem).find('.fork-template__first-token-name').text(fork.firstPair.exchange.title + ': ' + fork.firstPair.title); //Если не работает - добавим exchange
-    $(elem).find('.fork-template__second-token-name').text(fork.secondPair.exchange.title + ': ' + fork.secondPair.title);
+    $(elem).find('.fork-template__first-token-name span').text(fork.firstPair.exchange.title + ': ' + fork.firstPair.title); //Если не работает - добавим exchange
+    $(elem).find('.fork-template__second-token-name span').text(fork.secondPair.exchange.title + ': ' + fork.secondPair.title);
     $(elem).find('.fork-template__first-volume').text('VOL: $' + fork.firstPair.volume24h.toLocaleString());
     $(elem).find('.fork-template__second-volume').text('VOL: $' + fork.secondPair.volume24h.toLocaleString());
     $(elem).find('.fork-template__first-price').text('P: $' + fork.firstPair.price);
