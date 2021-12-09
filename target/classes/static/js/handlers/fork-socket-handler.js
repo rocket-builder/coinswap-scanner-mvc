@@ -120,7 +120,7 @@ function startUpdatesSocket() {
                }
                let forkElement = document.querySelector('[fork-id="'+id+'"]');
                if(forkElement != null){
-                   //TODO RERENDER FORK UPDATE
+                   //TODO RERENDER FORK UPDATE?
                    console.log("rerender fork element here");
                }
             });
@@ -137,17 +137,4 @@ function startUpdatesSocket() {
             // }
         });
     });
-}
-function refreshForkData(old, update) {
-    old.token.quote = update.token.quote;
-
-    old.firstPair.price = update.firstPair.price;
-    old.firstPair.volume24h = update.firstPair.volume24h;
-    old.firstPair.updated = update.firstPair.updated;
-
-    old.secondPair.price = update.secondPair.price;
-    old.secondPair.volume24h = update.secondPair.volume24h;
-    old.secondPair.updated = update.secondPair.updated;
-
-    old.profitPercent = update.profitPercent;
 }

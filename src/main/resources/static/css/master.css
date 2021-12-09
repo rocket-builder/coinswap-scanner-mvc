@@ -190,6 +190,7 @@ textarea.user-info{
     display: inline-block;
     position: relative;
 }
+
 .pair a:after {
     bottom: 0;
     content: "";
@@ -940,20 +941,28 @@ body::selection {
 
 .fork-template__token-name  {
     flex-basis: 224px;
+    position: relative;
 }
 
-.fork-template__token-name span:after {
+.fork-template__token-name a {
+    color: inherit!important;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+}
+
+.fork-template__token-name a:after {
     bottom: 0;
     content: "";
     display: block;
     height: 2px;
     left: 50%;
-    position: relative;
+    position: absolute;
     background: #FAE62D;
     transition: width 0.3s ease 0s, left 0.3s ease 0s;
     width: 0;
 }
-.fork-template__token-name span:hover:after {
+.fork-template__token-name a:hover:after {
     width: 100%;
     left: 0;
 }
