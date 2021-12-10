@@ -233,5 +233,5 @@ function getForkHTML(pair) {
     $(elem).find('.hide-fork-btn').attr('onclick', "banPairs(this)");
     $(elem).find('.hide-fork-btn').attr('fork-pairs', minPair.title + ";" + maxPair.title);
 
-    $('#container').append(elem); //Добавляем контейнеру вилку
+    $('#container').prepend(elem); //Добавляем контейнеру вилку
 }
