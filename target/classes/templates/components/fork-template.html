@@ -1,6 +1,6 @@
 <div class="fork-template" th:fragment="add-user-modal">
     <template id="tmpl">
-        <div class="template" fork-id>
+        <div class="template">
             <div class="template__headers">
                 <div class="template__header">
                     <div class="template__header-name">
@@ -42,12 +42,12 @@
                     <div class="fork-template__price fork-template__second-price fork-template__сell"></div>
                     <div class="fork-template__benefit fork-template__sale-benefit fork-template__сell"></div>
                     <div class="fork-template__icons fork-template__сell">
-                        <a class="fork-link" href="" target="_blank" >
+                        <div class="fork-link">
                             <img class="remove-fork-btn" th:src="@{/res/trashCanIcon.svg}"/>
-                        </a>
-                        <a class="fork-link" href="" target="_blank">
-                            <img class="hide-fork-btn" th:src="@{/res/eyeSlashIcon.svg}"/>
-                        </a>
+                        </div>
+                        <div class="fork-link">
+                            <img class="hide-fork-btn" th:src="@{/res/eyeSlashIcon.svg}" fork-pairs/>
+                        </div>
                         <a class="fork-link" href="" target="_blank">
                             <img th:src="@{/res/cryptowallet.svg}"/>
                         </a>

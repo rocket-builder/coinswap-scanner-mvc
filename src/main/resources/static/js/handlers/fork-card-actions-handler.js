@@ -21,7 +21,8 @@ function removeForkFromPageById(forkId) {
     });
 }
 function deleteFork(component){
-    let forkId = $(component).parents().eq(1).attr('fork-id');
+    let forkId = $(component).parent().closest('.fork[fork-id]').attr('fork-id');
+
     removeForkFromStorageById(forkId);
     removeForkFromPageById(forkId);
     console.log('fork ' + forkId + " deleted");
@@ -31,7 +32,6 @@ $.expr[':']['hasText'] = function(node, index, props){
     return node.innerHTML.includes(props[3]);
 }
 function banPairs(component) {
-
     let pairs = $(component).attr('fork-pairs').split(';');
     console.log(pairs);
 

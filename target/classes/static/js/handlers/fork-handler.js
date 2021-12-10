@@ -192,51 +192,31 @@ function getForkHTML(pair) {
     let id = pair[0];
     let fork = pair[1];
     let percent = Number(fork.profitPercent);
-    let color = getColorByProfit(percent);
-    /*
-    let html = '<div class="column forked" fork-id="'+fork.id+'">' +
-        '        <div class="token-fork">' +
-        '           <input class="fork-lifetime" size="6" maxlength="9" value="'+getCurrentLifetimeString(fork.recieveDate)+'" receive-date="'+fork.recieveDate+'" disabled/>' +
-        '        <div class="token">' +
-        '        ' + fork.token.title + ' <span>' + fork.token.symbol + '</span><br>' +
-        '        <span>[</span>' + fork.token.platform.title + '<span>]</span>' +
-        '        <p><i class="chart line icon"></i>$' + fork.token.quote.usdPrice.volume24h.toLocaleString() + '</p>' +
-        '    </div>' +
-        '    <div class="exchanges">' +
-        '        <p class="pair"><a href="'+fork.firstPair.url+'" target="_blank">' + fork.firstPair.exchange.title + ': ' + fork.firstPair.title + '</a><br>VOL: $' + fork.firstPair.volume24h.toLocaleString() + '<br>P: $' + fork.firstPair.price + '</p>' +
-        '        <p class="pair"><a href="'+fork.secondPair.url+'" target="_blank">' + fork.secondPair.exchange.title + ': ' + fork.secondPair.title + '</a><br>VOL: $' + fork.secondPair.volume24h.toLocaleString() + '<br>P: $' + fork.secondPair.price + '</p>' +
-        '    </div>' +
-        '    <div class="profit">' +
-        '        <div class="percent" style="color:' + color + ';">' + fork.profitPercent + '<i class="small icon percent"></i></div>' +
-        '    </div>' +
-        '    <a class="ui small button token-btn btn-delete-fork" onclick="deleteFork(this)">' +
-        '        <i class="icon trash alternate outline token-open"></i>' +
-        '        </a>' +
-        '    <a class="ui small button token-btn btn-ban-fork" fork-pairs="'+fork.firstPair.title+';'+fork.secondPair.title+'" onclick="banPairs(this)">' +
-        '        <i class="icon eye slash outline token-open"></i>' +
-        '        </a>' +
-        '    <a class="ui small button token-btn open-link" href="' + fork.url + '" target="_blank">' +
-        '        <i class="icon arrow right token-open"></i>' +
-        '        </a>' +
-        '        </div>' +
-        '        </div>';
-        return html
-    */
+    //let color = getColorByProfit(percent);
+
     let elem = document.createElement('div'); //Cоздаем элемент
-    elem.classList.add("fork"); //Добавляем класс "fork"
+    elem.classList.add("fork");
+    elem.classList.add("forked");//Добавляем класс "fork"
     elem.append(tmpl.content.cloneNode(true)); // Клонируем содержимое шаблона для того, чтобы переиспользовать его несколько раз
 
+    let minPair = fork.firstPair;
+    let maxPair = fork.secondPair;
+    if(fork.firstPair.price > fork.secondPair.price){
+        minPair = fork.secondPair;
+        maxPair = fork.firstPair;
+    }
+
     $(elem).attr('fork-id', id);
-    $(elem).find('.fork-template__first-token-name a').text(fork.firstPair.exchange.title + ': ' + fork.firstPair.title);
-    $(elem).find('.fork-template__first-token-name a').attr('href', fork.firstPair.url);
+    $(elem).find('.fork-template__first-token-name a').text(minPair.exchange.title + ': ' + minPair.title);
+    $(elem).find('.fork-template__first-token-name a').attr('href', minPair.url);
 
-    $(elem).find('.fork-template__second-token-name a').text(fork.secondPair.exchange.title + ': ' + fork.secondPair.title);
-    $(elem).find('.fork-template__second-token-name a').attr('href', fork.secondPair.url);
+    $(elem).find('.fork-template__second-token-name a').text(maxPair.exchange.title + ': ' + maxPair.title);
+    $(elem).find('.fork-template__second-token-name a').attr('href', maxPair.url);
 
-    $(elem).find('.fork-template__first-volume').text('VOL: $' + fork.firstPair.volume24h.toLocaleString());
-    $(elem).find('.fork-template__second-volume').text('VOL: $' + fork.secondPair.volume24h.toLocaleString());
-    $(elem).find('.fork-template__first-price').text('P: $' + fork.firstPair.price);
-    $(elem).find('.fork-template__second-price').text('P: $' + fork.secondPair.price);
+    $(elem).find('.fork-template__first-volume').text('VOL: $' + minPair.volume24h.toLocaleString());
+    $(elem).find('.fork-template__second-volume').text('VOL: $' + maxPair.volume24h.toLocaleString());
+    $(elem).find('.fork-template__first-price').text('P: $' + minPair.price);
+    $(elem).find('.fork-template__second-price').text('P: $' + maxPair.price);
     $(elem).find('.fork-template__sale-benefit').text(fork.profitPercent + '%');
     /*$(elem).find('.fork-template__time').text(getCurrentLifetimeString(fork.recieveDate));*/
 
@@ -248,9 +228,10 @@ function getForkHTML(pair) {
     $(elem).find('.template__token-time').attr('value', getCurrentLifetimeString(fork.recieveDate));
     $(elem).find('.template__token-time').attr('receive-date', fork.recieveDate);
 
-    $(elem).find('.fork-link').attr('href', fork.url);
+    $(elem).find('a.fork-link').attr('href', fork.url);
     $(elem).find('.remove-fork-btn').attr('onclick', "deleteFork(this)");
     $(elem).find('.hide-fork-btn').attr('onclick', "banPairs(this)");
+    $(elem).find('.hide-fork-btn').attr('fork-pairs', minPair.title + ";" + maxPair.title);
 
     $('#container').append(elem); //Добавляем контейнеру вилку
 }
