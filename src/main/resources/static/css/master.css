@@ -851,7 +851,17 @@ body::selection {
     content: ' ';
     background-repeat: no-repeat;
     background-image: url("../res/lightning.svg");
-    transform: translate(30%, 16%);
+    transform: translate(3%, 16%);
+}
+
+.template__token-thumbtack {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.thumbtack-icon {
+    font-size: 2em;
 }
 
 .template__token-time   {
@@ -995,6 +1005,12 @@ body::selection {
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.fork-link  {
+    display: block;
+    width: 32px;
+    height: 32px;
 }
 
 @media screen and (max-device-width: 1000px) {
