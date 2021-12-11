@@ -28,6 +28,7 @@ public class Settings extends AbstractEntity{
     private int maxForkCountOnPage = 100;
 
     private String exchanges = "";
+    private String excludedExchanges = "";
     private String platforms = "";
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
