@@ -100,7 +100,7 @@ function pinFork()  {
 }
 
 $( document ).ready(function() {
-  sessionStorage.setItem("forksIds","[]");
+  sessionStorage.setItem("pinnedForksIds","[]");
   let numberOfPinnedPosts = 0;
 
   console.log($('.thumbtack-icon'));
@@ -115,10 +115,10 @@ $( document ).ready(function() {
     console.log(fork);
     $(fork).find('.thumbtack-icon').removeClass('thumbtack-icon').addClass("thumbtack-icon-active");
 
-    let forksIds = JSON.parse( sessionStorage.getItem('forksIds') ); //Получаем массив по ключу
+    let pinnedForksIds = JSON.parse( sessionStorage.getItem('pinnedForksIds') ); //Получаем массив по ключу
     let id = $(this).closest('.fork').attr("fork-id");
-    forksIds.unshift(id); //Добавляем id вилки
-    sessionStorage.setItem( 'forksIds', JSON.stringify(forksIds) ); //Отправляем массив
+    pinnedForksIds.unshift(id); //Добавляем id вилки
+    sessionStorage.setItem( 'pinnedForksIds', JSON.stringify(pinnedForksIds) ); //Отправляем массив
 
     $(fork).find('.thumbtack-icon-active').click(unPinFork);
     numberOfPinnedPosts++;
@@ -137,10 +137,10 @@ $( document ).ready(function() {
    console.log(fork);
    $(fork).find('.thumbtack-icon-active').removeClass("thumbtack-icon-active").addClass("thumbtack-icon");
 
-   let forksIds = JSON.parse( sessionStorage.getItem('forksIds') ); //Получаем массив по ключу
+   let pinnedForksIds = JSON.parse( sessionStorage.getItem('pinnedForksIds') ); //Получаем массив по ключу
    let id = $(this).closest('.fork').attr("fork-id");
-   forksIds.splice( forksIds.indexOf(id), 1 ); //Начиная с позиции индекса идентификатора, удаляем один элемент
-   sessionStorage.setItem( 'forksIds', JSON.stringify(forksIds) ); //Отправляем массив
+   pinnedForksIds.splice( pinnedForksIds.indexOf(id), 1 ); //Начиная с позиции индекса идентификатора, удаляем один элемент
+   sessionStorage.setItem( 'pinnedForksIds', JSON.stringify(pinnedForksIds) ); //Отправляем массив
 
    $(fork).find('.thumbtack-icon').click(pinFork);
    numberOfPinnedPosts--;
