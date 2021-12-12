@@ -96,6 +96,7 @@ let json = ' [\n' +
     '        ]';
 
 
+
 console.log(json);
 for (let i = 0 ; i < 20; i ++)  {
     getForkHTML(JSON.parse(json));
@@ -295,9 +296,11 @@ function getForkHTML(pair) {
     $(elem).find('.fork-template__first-price').text('P: $' + minPair.price);
     $(elem).find('.fork-template__second-price').text('P: $' + maxPair.price);
     $(elem).find('.fork-template__sale-benefit').text(fork.profitPercent + '%');
-    /*$(elem).find('.fork-template__time').text(getCurrentLifetimeString(fork.recieveDate));*/
 
-    $(elem).find('.template__token-title').text(fork.token.title);//Добавляем названия биржи
+
+    /*$(elem).find('.template__token-title').text(fork.token.title);//Добавляем названия биржи*/
+    /*Рандомайзер имени вилки */
+    $(elem).find('.template__token-title').text(Math.floor(Math.random() * 1000) + 1);//Добавляем названия биржи
     $(elem).find('.template__token-symbol').text(fork.token.symbol); //Добвляем символьное представление биржи
     $(elem).find('.template__token-platform-title').text(fork.token.platform.title); //Добавляем заголовок платформы
     $(elem).find('.template__token-price').text(fork.token.quote.usdPrice.volume24h.toLocaleString());
