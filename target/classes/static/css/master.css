@@ -137,7 +137,6 @@ textarea.user-info{
 }
 .fork-lifetime{
     border: none!important;
-    text-align: end!important;
     background: transparent!important;
 }
 .token-fork{
@@ -780,8 +779,8 @@ body::selection {
     display: flex;
     flex-direction: row;
     align-items: center;
-    flex-basis: 561px;
-    flex-grow: 1.1;
+    /*flex-basis: 561px;
+    flex-grow: 1.1;*/
     margin-left: 5px;
 }
 
@@ -791,7 +790,7 @@ body::selection {
     flex-direction: row;
     flex-basis: 150px;
     align-items: center;
-    justify-content: space-evenlyf;
+    justify-content: space-evenly;
 }
 
 .template__token-title  {
@@ -799,13 +798,14 @@ body::selection {
     font-size: 24px;
     line-height: 28px;
     text-transform: uppercase;
+    white-space: nowrap;
     color: black;
     margin-right: 10px;
 }
 
 .template__token-symbol {
     display: block;
-    max-width: 89px;
+    max-width: 100px;
     max-height: 35px;
     padding: 6px;
     font-weight: 700;
@@ -819,7 +819,9 @@ body::selection {
 
 .template__token-platform-title {
     font-weight: 350;
-    flex-basis: 350px;
+    margin-right: 18px;
+    margin-left: 18px;
+    white-space: nowrap;
     font-size: 24px;
     text-align: center;
 }
@@ -865,14 +867,16 @@ body::selection {
 }
 
 .template__token-time   {
+    width: 100px;
     font-weight: 350;
     font-size:24px;
     line-height: 28px;
     color: #DADADA;
-    justify-content: end;
     flex-basis: 100px;
     margin-right: 10px;
 }
+
+
 
 .fork  {
     background: white;
