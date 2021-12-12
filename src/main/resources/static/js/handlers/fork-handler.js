@@ -284,7 +284,8 @@ function getForkHTML(pair) {
         maxPair = fork.firstPair;
     }
 
-    $(elem).attr('fork-id', id);
+    /*$(elem).attr('fork-id', id);*/
+    $(elem).attr('fork-id', Math.floor(Math.random() * 1000000) + 1); //Рандомайзер идентификатора вилки
     $(elem).find('.fork-template__first-token-name a').text(minPair.exchange.title + ': ' + minPair.title);
     $(elem).find('.fork-template__first-token-name a').attr('href', minPair.url);
 
@@ -299,8 +300,7 @@ function getForkHTML(pair) {
 
 
     /*$(elem).find('.template__token-title').text(fork.token.title);//Добавляем названия биржи*/
-    /*Рандомайзер имени вилки */
-    $(elem).find('.template__token-title').text(Math.floor(Math.random() * 1000) + 1);//Добавляем названия биржи
+    $(elem).find('.template__token-title').text(Math.floor(Math.random() * 1000) + 1);//Рандомайзер имени вилки
     $(elem).find('.template__token-symbol').text(fork.token.symbol); //Добвляем символьное представление биржи
     $(elem).find('.template__token-platform-title').text(fork.token.platform.title); //Добавляем заголовок платформы
     $(elem).find('.template__token-price').text(fork.token.quote.usdPrice.volume24h.toLocaleString());
