@@ -25,6 +25,9 @@ String.prototype.isBannedPair = function (bannedPairs) {
 String.prototype.containsIgnoreCase = function (title) {
     return this.length > 0? this.toLowerCase().includes(title.toLowerCase()) : true;
 }
+String.prototype.excludesIgnoreCase = function (title) {
+    return this.length > 0? (!this.toLowerCase().includes(title.toLowerCase())) : true;
+}
 Map.prototype.concat = function (map) {
     return new Map([...this, ...map]);
 }
@@ -46,7 +49,9 @@ function isFilteredFork(fork) {
 
         settings.exchanges.containsIgnoreCase(fork.firstPair.exchange.title) &&
         settings.exchanges.containsIgnoreCase(fork.secondPair.exchange.title) &&
-        settings.platforms.containsIgnoreCase(fork.token.platform.title)
+        settings.platforms.containsIgnoreCase(fork.token.platform.title) &&
+        settings.excludedExchanges.excludesIgnoreCase(fork.firstPair.exchange.title) &&
+        settings.excludedExchanges.excludesIgnoreCase(fork.secondPair.exchange.title)
     ){
         matched = true;
     }
