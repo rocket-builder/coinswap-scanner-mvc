@@ -863,7 +863,17 @@ body::selection {
 }
 
 .thumbtack-icon {
-    font-size: 2em;
+    font-size: 2em !important;
+    color: lightgray;
+    cursor: pointer;
+}
+
+.thumbtack-icon.active  {
+    color: yellow;
+}
+
+.thumbtack-icon:hover  {
+    color: lightgray;
 }
 
 .template__token-time   {

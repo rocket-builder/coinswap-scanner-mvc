@@ -94,3 +94,38 @@ Array.prototype.toCsv = function () {
   return this.join(";");
 }
 
+$( document ).ready(function() {
+  let numberOfPinnedPosts = 0;
+  console.log($('.thumbtack-icon'));
+  console.log('Количество незакрепленных иконок после загрузки: ' + $('.thumbtack-icon').length);
+  console.log('Количество закрепленных постов после загрузки: ' + $('.thumbtack-icon.active').length);
+  console.log($('.thumbtack-icon.active'));
+  $( '.thumbtack-icon' ).click(function() {
+    let fork = $(this).closest('.fork').clone();
+    $(this).closest('.fork').remove();
+    console.log(fork);
+    $(fork).find('.thumbtack-icon').addClass("active");
+    numberOfPinnedPosts++;
+    $(fork).prependTo("#container");
+    console.log('Количество незакрепленных постов: ' + $('.thumbtack-icon').length);
+    console.log('Количество закрепленных постов: ' + $('.thumbtack-icon.active').length);
+    console.log($('.thumbtack-icon.active'));
+    $('.thumbtack-icon.active').click(function () {
+      let fork = $(this).closest('.fork').clone();
+      $(this).closest('.fork').remove();
+      console.log(fork);
+      $(fork).find('.thumbtack-icon').removeClass("active");
+      $(fork).find('.thumbtack-icon').css("color", "orange");
+      numberOfPinnedPosts--;
+      $(".fork:nth-child(" + numberOfPinnedPosts + ")").after($(fork));
+      /*$(".sm1:nth-of-type(" + i + ")");*/
+      /*$('.fork:nth-of-type(3)').after($(fork));*/
+      $(fork).prependTo("#container");
+      console.log('Количество незакрепленных постов' + $('.thumbtack-icon').length);
+      console.log('Количество закрепленных постов' + numberOfPinnedPosts);
+    })
+  });
+});
+
+
+

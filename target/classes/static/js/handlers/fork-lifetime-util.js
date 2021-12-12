@@ -27,8 +27,7 @@ function resetForksLifetime(){
     $('.fork-lifetime').each(function () {
         let dateString = $(this).attr('receive-date').toString();
         let receiveDate = new Date(dateString);
-
-        let lifetimeString = getCurrentLifetimeString(receiveDate);
+        let lifetimeString = getCurrentLifetimeString(dateString);
         $(this).val(lifetimeString);
     });
 }
