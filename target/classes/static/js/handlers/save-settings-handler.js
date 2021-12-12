@@ -135,7 +135,8 @@ function getSettingsFromFields(id) {
     bannedPairs: currentUser.settings.bannedPairs,
 
     platforms: Array.from($('#platforms .stock-market__name')).map(e => e.innerText).toCsv(),
-    exchanges: Array.from($('#markets .stock-market__name')).map(e => e.innerText).toCsv()
+    exchanges: Array.from($('#markets .stock-market__name')).map(e => e.innerText).toCsv(),
+    excludedExchanges: Array.from($('#excludedMarkets .stock-market__name')).map(e => e.innerText).toCsv()
   };
 }
 

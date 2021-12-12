@@ -8,6 +8,7 @@ let platforms = currentUser.settings.platforms.fromCsv();
 console.log(platforms);
 
 let excludedExchanges = currentUser.settings.platforms.fromCsv();
+console.log(excludedExchanges);
 
 function getStockItemHtml(title){
   return '<div class="stock-item">' +
