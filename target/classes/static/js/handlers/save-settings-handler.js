@@ -80,7 +80,6 @@ $('#inp-platforms').on('keydown', function(e) {
     $(this).val('');
   }
 });
-//Исправить внизу
 $('#inp-excluded-markets').on('keydown', function(e) {
   if (e.which == 13 && !e.shiftKey) {
     e.preventDefault();

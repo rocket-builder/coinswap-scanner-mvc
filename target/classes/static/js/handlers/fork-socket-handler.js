@@ -57,8 +57,8 @@ stompClientUpdate.debug = () => {};
 
 function startSignalR(){
     try{
-        //startSocket();
-        //startUpdatesSocket();
+        startSocket();
+        startUpdatesSocket();
     }
     catch (e) {
         console.error(e);
@@ -68,7 +68,7 @@ function startSignalR(){
 }
 function reconnect(){
     setTimeout(function () {
-        //startSocket();
+        startSocket();
     }, 5000);
 }
 function reconnectUpdates(){
