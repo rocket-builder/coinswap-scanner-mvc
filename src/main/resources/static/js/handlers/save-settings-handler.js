@@ -7,6 +7,8 @@ console.log(exchanges);
 let platforms = currentUser.settings.platforms.fromCsv();
 console.log(platforms);
 
+let excludedExchanges = currentUser.settings.platforms.fromCsv();
+
 function getStockItemHtml(title){
   return '<div class="stock-item">' +
       '            <span class="stock-market__name">'+title+'</span>' +
@@ -26,8 +28,15 @@ function renderPlatforms(platforms){
       .map(e => getStockItemHtml(e)).join('');
   $('#platforms').html(html);
 }
+function renderExcludedExchanges(excludedExchanges){
+  let html = excludedExchanges
+      .filter(e => !e.isBlank())
+      .map(e => getStockItemHtml(e)).join('');
+  $('#excludedMarkets').html(html);
+}
 renderExchanges(exchanges);
 renderPlatforms(platforms);
+renderExcludedExchanges(excludedExchanges);
 
 function removeExchange(element){
   $(element).parent().transition({
@@ -69,6 +78,23 @@ $('#inp-platforms').on('keydown', function(e) {
         getStockItemHtml(exchange));
     $(this).val('');
   }
+});
+//Исправить внизу
+$('#inp-excluded-markets').on('keydown', function(e) {
+  if (e.which == 13 && !e.shiftKey) {
+    e.preventDefault();
+
+    let excludedExchange = $(this).val();
+    $('#excludedMarkets.stock-items').prepend(
+        getStockItemHtml(excludedExchange));
+    $(this).val('');
+  }
+});
+$('#btn-exclude-market').click(function () {
+  let exchange = $('#inp-excluded-markets').val();
+  $('#excludedMarkets.stock-items').prepend(
+      getStockItemHtml(exchange));
+  $('#inp-excluded-markets').val('');
 });
 
 $('#open-settings-btn').click(function () {
@@ -135,7 +161,8 @@ function getSettingsFromFields(id) {
     bannedPairs: currentUser.settings.bannedPairs,
 
     platforms: Array.from($('#platforms .stock-market__name')).map(e => e.innerText).toCsv(),
-    exchanges: Array.from($('#markets .stock-market__name')).map(e => e.innerText).toCsv()
+    exchanges: Array.from($('#markets .stock-market__name')).map(e => e.innerText).toCsv(),
+    excludedExchanges: Array.from($('#excludedMarkets .stock-market__name')).map(e => e.innerText).toCsv()
   };
 }
 
