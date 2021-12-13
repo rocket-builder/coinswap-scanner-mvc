@@ -32,79 +32,6 @@ Map.prototype.concat = function (map) {
     return new Map([...this, ...map]);
 }
 
-/*let json = ' [\n' +
-    '            "55877",\n' +
-    '            {\n' +
-    '                "token": {\n' +
-    '                    "id": 122,\n' +
-    '                    "title": "Synthetix",\n' +
-    '                    "slug": "synthetix-network-token",\n' +
-    '                    "symbol": "SNX",\n' +
-    '                    "platform": {\n' +
-    '                        "id": 0,\n' +
-    '                        "type": 0,\n' +
-    '                        "title": "Ethereum"\n' +
-    '                    },\n' +
-    '                    "quote": {\n' +
-    '                        "usdPrice": {\n' +
-    '                            "price": 5.54,\n' +
-    '                            "volume24h": 58974572,\n' +
-    '                            "updated": 1639228967770\n' +
-    '                        }\n' +
-    '                    }\n' +
-    '                },\n' +
-    '                "firstPair": {\n' +
-    '                    "title": "SNX/USDT",\n' +
-    '                    "url": "https://www.bitget.com/en/swap/cmt_snxusdt",\n' +
-    '                    "exchange": {\n' +
-    '                        "id": 0,\n' +
-    '                        "title": "Bitget",\n' +
-    '                        "quote": {\n' +
-    '                            "usdPrice": {\n' +
-    '                                "price": 0,\n' +
-    '                                "volume24h": 0,\n' +
-    '                                "updated": 1639228967736\n' +
-    '                            }\n' +
-    '                        }\n' +
-    '                    },\n' +
-    '                    "updated": 1639228967736,\n' +
-    '                    "price": 5.51,\n' +
-    '                    "volume24h": 108899\n' +
-    '                },\n' +
-    '                "secondPair": {\n' +
-    '                    "title": "SNX/USDT",\n' +
-    '                    "url": "https://www.bvnex.com/#/trade/snx_usdt",\n' +
-    '                    "exchange": {\n' +
-    '                        "id": 0,\n' +
-    '                        "title": "Bvnex",\n' +
-    '                        "quote": {\n' +
-    '                            "usdPrice": {\n' +
-    '                                "price": 0,\n' +
-    '                                "volume24h": 0,\n' +
-    '                                "updated": 1639228967738\n' +
-    '                            }\n' +
-    '                        }\n' +
-    '                    },\n' +
-    '                    "updated": 1639228967738,\n' +
-    '                    "price": 12.3,\n' +
-    '                    "volume24h": 1303729\n' +
-    '                },\n' +
-    '                "profitPercent": 76.249,\n' +
-    '                "url": "https://coinmarketcap.com/currencies/synthetix-network-token/markets/",\n' +
-    '                "recieveDate": 1639228967950\n' +
-    '            }\n' +
-    '        ]';
-
-
-
-console.log(json);
-for (let i = 0 ; i < 20; i ++)  {
-    getForkHTML(JSON.parse(json));
-}
-let html = getForkHTML(JSON.parse(json));
-*/
-
-
 function isFilteredFork(fork) {
     let settings = currentUser.settings;
     let matched = false;
@@ -268,20 +195,18 @@ let numberOfPinnedPosts = 0;
 
 function pinFork()  {
     let fork = $(this).closest('.fork').clone();
-    console.log('Индекс закрепляемого элемента: ' + $(this).closest('.fork').index());
     let indexOfFork = $(this).closest('.fork').index();
     if (indexOfFork === 0)  {
         $(this).closest('.fork').remove();
     } else  {
         $(this).closest('.fork').fadeOutAndRemove('fast');
     }
-    console.log(fork);
     $(fork).find('.thumbtack-icon').removeClass('thumbtack-icon').addClass("thumbtack-icon-active");
 
-    let pinnedForksIds = JSON.parse( sessionStorage.getItem('pinnedForksIds') ); //Получаем массив по ключу
+    let pinnedForksIds = JSON.parse( sessionStorage.getItem('pinnedForksIds') );
     let id = $(this).closest('.fork').attr("fork-id");
     pinnedForksIds.unshift(id); //Добавляем id вилки
-    sessionStorage.setItem( 'pinnedForksIds', JSON.stringify(pinnedForksIds) ); //Отправляем массив
+    sessionStorage.setItem( 'pinnedForksIds', JSON.stringify(pinnedForksIds) );
 
     $(fork).find('.thumbtack-icon-active').click(unPinFork);
     numberOfPinnedPosts++;
@@ -291,17 +216,10 @@ function pinFork()  {
     } else  {
         $(fork).prependTo("#container").hide().fadeIn('fast');
     }
-
-    console.log('Количество незакрепленных постов: ' + $('.thumbtack-icon').length);
-    console.log('Количество закрепленных постов: ' + $('.thumbtack-icon-active').length);
-    console.log('Переменная закрепленных постов: ' + numberOfPinnedPosts);
-    console.log($('.thumbtack-icon.active'));
-
 }
 
 function unPinFork() {
     let fork = $(this).closest('.fork').clone();
-    console.log('Индекс  открепляемого элемента: ' + $(this).closest('.fork').index());
     let indexOfFork = $(this).closest('.fork').index();
 
     if (indexOfFork === 0) {
@@ -317,14 +235,12 @@ function unPinFork() {
             $(this).closest('.fork').remove().fadeOutAndRemove('fast');
         }
     }
-
-    console.log(fork);
     $(fork).find('.thumbtack-icon-active').removeClass("thumbtack-icon-active").addClass("thumbtack-icon");
 
-    let pinnedForksIds = JSON.parse( sessionStorage.getItem('pinnedForksIds') ); //Получаем массив по ключу
+    let pinnedForksIds = JSON.parse( sessionStorage.getItem('pinnedForksIds') );
     let id = $(this).closest('.fork').attr("fork-id");
-    pinnedForksIds.splice( pinnedForksIds.indexOf(id), 1 ); //Начиная с позиции индекса идентификатора, удаляем один элемент
-    sessionStorage.setItem( 'pinnedForksIds', JSON.stringify(pinnedForksIds) ); //Отправляем массив
+    pinnedForksIds.splice( pinnedForksIds.indexOf(id), 1 );
+    sessionStorage.setItem( 'pinnedForksIds', JSON.stringify(pinnedForksIds) );
 
     $(fork).find('.thumbtack-icon').click(pinFork);
 
@@ -333,8 +249,6 @@ function unPinFork() {
             $(fork).prependTo("#container");
         } else {
             $(".fork:nth-child(" + (numberOfPinnedPosts - 1 )  + ")").after($(fork)).hide().fadeIn('fast');
-            console.log($(".fork:nth-child(" + (numberOfPinnedPosts - 1)  + ")").find('.template-token-title'));
-            let x = $(".fork:nth-child(" + (numberOfPinnedPosts - 1)  + ")").find('.template-token-title').text();
         }
     } else  {
         if (numberOfPinnedPosts - 1 === indexOfFork) {
@@ -344,9 +258,6 @@ function unPinFork() {
     }
 
     numberOfPinnedPosts--;
-    console.log('Количество незакрепленных постов' + $('.thumbtack-icon').length);
-    console.log('Количество закрепленных постов' + $('.thumbtack-icon-active').length);
-    console.log('Переменная закрепленных постов: ' + numberOfPinnedPosts);
 }
 
 function getForkHTML(pair) {
@@ -367,8 +278,7 @@ function getForkHTML(pair) {
         maxPair = fork.firstPair;
     }
 
-    /*$(elem).attr('fork-id', id);*/
-    $(elem).attr('fork-id', Math.floor(Math.random() * 1000000) + 1); //Рандомайзер идентификатора вилки
+    $(elem).attr('fork-id', id);
     $(elem).find('.fork-template__first-token-name a').text(minPair.exchange.title + ': ' + minPair.title);
     $(elem).find('.fork-template__first-token-name a').attr('href', minPair.url);
 
