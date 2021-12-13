@@ -32,7 +32,7 @@ Map.prototype.concat = function (map) {
     return new Map([...this, ...map]);
 }
 
-let json = ' [\n' +
+/*let json = ' [\n' +
     '            "55877",\n' +
     '            {\n' +
     '                "token": {\n' +
@@ -102,7 +102,7 @@ for (let i = 0 ; i < 20; i ++)  {
     getForkHTML(JSON.parse(json));
 }
 let html = getForkHTML(JSON.parse(json));
-
+*/
 
 
 function isFilteredFork(fork) {
@@ -263,8 +263,96 @@ function getColorByProfit(percent) {
     return color;
 }
 
-jQuery.fn.outer = function() {
-    return $($('<div></div>').html(this.clone())).html();
+
+let numberOfPinnedPosts = 0;
+
+console.log($('.thumbtack-icon'));
+console.log('Количество незакрепленных иконок после загрузки: ' + $('.thumbtack-icon').length);
+console.log('Количество закрепленных постов после загрузки: ' + $('.thumbtack-icon-active').length);
+console.log('Переменная закрепленных постов после загрузки: ' + numberOfPinnedPosts);
+console.log($('.thumbtack-icon-active'));
+
+function pinFork()  {
+    let fork = $(this).closest('.fork').clone();
+    console.log('Индекс закрепляемого элемента: ' + $(this).closest('.fork').index());
+    let indexOfFork = $(this).closest('.fork').index();
+    if (indexOfFork === 0)  {
+        $(this).closest('.fork').remove();
+    } else  {
+        $(this).closest('.fork').fadeOutAndRemove('fast');
+    }
+    console.log(fork);
+    $(fork).find('.thumbtack-icon').removeClass('thumbtack-icon').addClass("thumbtack-icon-active");
+
+    let pinnedForksIds = JSON.parse( sessionStorage.getItem('pinnedForksIds') ); //Получаем массив по ключу
+    let id = $(this).closest('.fork').attr("fork-id");
+    pinnedForksIds.unshift(id); //Добавляем id вилки
+    sessionStorage.setItem( 'pinnedForksIds', JSON.stringify(pinnedForksIds) ); //Отправляем массив
+
+    $(fork).find('.thumbtack-icon-active').click(unPinFork);
+    numberOfPinnedPosts++;
+
+    if (indexOfFork === 0)  {
+        $(fork).prependTo("#container");
+    } else  {
+        $(fork).prependTo("#container").hide().fadeIn('fast');
+    }
+
+    console.log('Количество незакрепленных постов: ' + $('.thumbtack-icon').length);
+    console.log('Количество закрепленных постов: ' + $('.thumbtack-icon-active').length);
+    console.log('Переменная закрепленных постов: ' + numberOfPinnedPosts);
+    console.log($('.thumbtack-icon.active'));
+
+}
+
+function unPinFork() {
+    let fork = $(this).closest('.fork').clone();
+    console.log('Индекс  открепляемого элемента: ' + $(this).closest('.fork').index());
+    let indexOfFork = $(this).closest('.fork').index();
+
+    if (indexOfFork === 0) {
+        if (numberOfPinnedPosts === 1) {
+            $(this).closest('.fork').remove();
+        } else {
+            $(this).closest('.fork').remove().fadeOutAndRemove('fast');
+        }
+    } else {
+        if (numberOfPinnedPosts - 1 === indexOfFork)  {
+            $(this).closest('.fork').remove();
+        } else {
+            $(this).closest('.fork').remove().fadeOutAndRemove('fast');
+        }
+    }
+
+    console.log(fork);
+    $(fork).find('.thumbtack-icon-active').removeClass("thumbtack-icon-active").addClass("thumbtack-icon");
+
+    let pinnedForksIds = JSON.parse( sessionStorage.getItem('pinnedForksIds') ); //Получаем массив по ключу
+    let id = $(this).closest('.fork').attr("fork-id");
+    pinnedForksIds.splice( pinnedForksIds.indexOf(id), 1 ); //Начиная с позиции индекса идентификатора, удаляем один элемент
+    sessionStorage.setItem( 'pinnedForksIds', JSON.stringify(pinnedForksIds) ); //Отправляем массив
+
+    $(fork).find('.thumbtack-icon').click(pinFork);
+
+    if (indexOfFork === 0)  {
+        if (numberOfPinnedPosts === 1) {
+            $(fork).prependTo("#container");
+        } else {
+            $(".fork:nth-child(" + (numberOfPinnedPosts - 1 )  + ")").after($(fork)).hide().fadeIn('fast');
+            console.log($(".fork:nth-child(" + (numberOfPinnedPosts - 1)  + ")").find('.template-token-title'));
+            let x = $(".fork:nth-child(" + (numberOfPinnedPosts - 1)  + ")").find('.template-token-title').text();
+        }
+    } else  {
+        if (numberOfPinnedPosts - 1 === indexOfFork) {
+            $(".fork:nth-child(" + (numberOfPinnedPosts - 1) + ")").after($(fork));
+        }
+        $(".fork:nth-child(" + (numberOfPinnedPosts - 1) + ")").after($(fork)).hide().fadeIn('fast');
+    }
+
+    numberOfPinnedPosts--;
+    console.log('Количество незакрепленных постов' + $('.thumbtack-icon').length);
+    console.log('Количество закрепленных постов' + $('.thumbtack-icon-active').length);
+    console.log('Переменная закрепленных постов: ' + numberOfPinnedPosts);
 }
 
 function getForkHTML(pair) {
@@ -313,6 +401,17 @@ function getForkHTML(pair) {
     $(elem).find('.remove-fork-btn').attr('onclick', "deleteFork(this)");
     $(elem).find('.hide-fork-btn').attr('onclick', "banPairs(this)");
     $(elem).find('.hide-fork-btn').attr('fork-pairs', minPair.title + ";" + maxPair.title);
+    
+    $(elem).find('.thumbtack-icon').click(pinFork);
 
-    $('#container').prepend(elem); //Добавляем контейнеру вилку
+    let countOfPinnedForks = $('.thumbtack-icon-active').length;
+    let countOfUnPinnedForks = $('.thumbtack-icon').length;
+    console.log('Количество закрепленных вилок: ' + countOfPinnedForks);
+    console.log('Количество незакрепленных вилок: ' + countOfUnPinnedForks)
+    if ( countOfPinnedForks === 0) {
+        $('#container').prepend(elem);
+    } else {
+        $(".fork:nth-child(" + countOfPinnedForks  + ")").after(elem);
+    }
 }
+

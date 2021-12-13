@@ -100,14 +100,14 @@ jQuery.fn.fadeOutAndRemove = function(speed){
   })
 }
 
-$( document ).ready(function() {
+/*$( document ).ready(function() {
   let numberOfPinnedPosts = 0;
 
   console.log($('.thumbtack-icon'));
   console.log('Количество незакрепленных иконок после загрузки: ' + $('.thumbtack-icon').length);
   console.log('Количество закрепленных постов после загрузки: ' + $('.thumbtack-icon-active').length);
   console.log('Переменная закрепленных постов после загрузки: ' + numberOfPinnedPosts);
-  console.log($('.thumbtack-icon.active'));
+  console.log($('.thumbtack-icon-active'));
 
   function pinFork()  {
     let fork = $(this).closest('.fork').clone();
@@ -143,7 +143,6 @@ $( document ).ready(function() {
   }
 
  function unPinFork() {
-    debugger;
    let fork = $(this).closest('.fork').clone();
    console.log('Индекс  открепляемого элемента: ' + $(this).closest('.fork').index());
    let indexOfFork = $(this).closest('.fork').index();
@@ -198,6 +197,6 @@ $( document ).ready(function() {
   $('.thumbtack-icon-active').click(unPinFork);
 
 });
-
+*/
 
 
