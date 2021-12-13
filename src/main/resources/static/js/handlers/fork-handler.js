@@ -266,12 +266,6 @@ function getColorByProfit(percent) {
 
 let numberOfPinnedPosts = 0;
 
-console.log($('.thumbtack-icon'));
-console.log('Количество незакрепленных иконок после загрузки: ' + $('.thumbtack-icon').length);
-console.log('Количество закрепленных постов после загрузки: ' + $('.thumbtack-icon-active').length);
-console.log('Переменная закрепленных постов после загрузки: ' + numberOfPinnedPosts);
-console.log($('.thumbtack-icon-active'));
-
 function pinFork()  {
     let fork = $(this).closest('.fork').clone();
     console.log('Индекс закрепляемого элемента: ' + $(this).closest('.fork').index());
@@ -388,10 +382,9 @@ function getForkHTML(pair) {
     $(elem).find('.fork-template__sale-benefit').text(fork.profitPercent + '%');
 
 
-    /*$(elem).find('.template__token-title').text(fork.token.title);//Добавляем названия биржи*/
-    $(elem).find('.template__token-title').text(Math.floor(Math.random() * 1000) + 1);//Рандомайзер имени вилки
-    $(elem).find('.template__token-symbol').text(fork.token.symbol); //Добвляем символьное представление биржи
-    $(elem).find('.template__token-platform-title').text(fork.token.platform.title); //Добавляем заголовок платформы
+    $(elem).find('.template__token-title').text(fork.token.title);
+    $(elem).find('.template__token-symbol').text(fork.token.symbol);
+    $(elem).find('.template__token-platform-title').text(fork.token.platform.title);
     $(elem).find('.template__token-price').text(fork.token.quote.usdPrice.volume24h.toLocaleString());
 
     $(elem).find('.template__token-time').attr('value', getCurrentLifetimeString(fork.recieveDate));
@@ -401,13 +394,10 @@ function getForkHTML(pair) {
     $(elem).find('.remove-fork-btn').attr('onclick', "deleteFork(this)");
     $(elem).find('.hide-fork-btn').attr('onclick', "banPairs(this)");
     $(elem).find('.hide-fork-btn').attr('fork-pairs', minPair.title + ";" + maxPair.title);
-    
+
     $(elem).find('.thumbtack-icon').click(pinFork);
 
     let countOfPinnedForks = $('.thumbtack-icon-active').length;
-    let countOfUnPinnedForks = $('.thumbtack-icon').length;
-    console.log('Количество закрепленных вилок: ' + countOfPinnedForks);
-    console.log('Количество незакрепленных вилок: ' + countOfUnPinnedForks)
     if ( countOfPinnedForks === 0) {
         $('#container').prepend(elem);
     } else {
