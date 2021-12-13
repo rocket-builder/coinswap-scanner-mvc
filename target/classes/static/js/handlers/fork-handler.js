@@ -148,7 +148,8 @@ function initStorage() {
                     storageForks = new Map(Object.entries(storageForks));
                     sessionStorage.setItem("init", "true");
                     sessionStorage.setItem("forks", "{}");
-
+                    sessionStorage.setItem("pinnedForksIds","[]");
+                    
                     console.log("Received " + storageForks.size + " forks");
                     renderFilteredForks(Array.from(storageForks.entries()));
 

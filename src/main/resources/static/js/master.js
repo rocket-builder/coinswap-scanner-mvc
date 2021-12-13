@@ -100,7 +100,6 @@ function pinFork()  {
 }
 
 $( document ).ready(function() {
-  sessionStorage.setItem("pinnedForksIds","[]");
   let numberOfPinnedPosts = 0;
 
   console.log($('.thumbtack-icon'));
