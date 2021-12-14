@@ -195,7 +195,6 @@ let numberOfPinnedPosts = 0;
 
 function pinFork()  {
     let fork = $(this).closest('.fork').clone();
-    console.log('Индекс закрепляемого элемента: ' + $(this).closest('.fork').index());
     let indexOfFork = $(this).closest('.fork').index();
     if (indexOfFork === 0)  {
         $(this).closest('.fork').remove();
@@ -206,10 +205,10 @@ function pinFork()  {
 
     let pinnedForksIds = JSON.parse( sessionStorage.getItem('pinnedForksIds') );
     let id = $(this).closest('.fork').attr("fork-id");
-    pinnedForksIds.unshift(id); //Добавляем id вилки
+    pinnedForksIds.unshift(id);
     sessionStorage.setItem( 'pinnedForksIds', JSON.stringify(pinnedForksIds) );
 
-    $(fork).find('.thumbtack-icon-active').click(unPinFork);
+    $(fork).find('.thumbtack-icon-active').click(unpinFork);
     numberOfPinnedPosts++;
 
     if (indexOfFork === 0)  {
@@ -219,7 +218,7 @@ function pinFork()  {
     }
 }
 
-function unPinFork() {
+function unpinFork() {
     let fork = $(this).closest('.fork').clone();
     let indexOfFork = $(this).closest('.fork').index();
 
@@ -267,10 +266,10 @@ function getForkHTML(pair) {
     let percent = Number(fork.profitPercent);
     //let color = getColorByProfit(percent);
 
-    let elem = document.createElement('div'); //Cоздаем элемент
+    let elem = document.createElement('div');
     elem.classList.add("fork");
-    elem.classList.add("forked");//Добавляем класс "fork"
-    elem.append(tmpl.content.cloneNode(true)); // Клонируем содержимое шаблона для того, чтобы переиспользовать его несколько раз
+    elem.classList.add("forked");
+    elem.append(tmpl.content.cloneNode(true));
 
     let minPair = fork.firstPair;
     let maxPair = fork.secondPair;

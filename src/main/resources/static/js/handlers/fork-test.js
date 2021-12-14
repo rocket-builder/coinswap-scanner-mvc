@@ -1,4 +1,4 @@
-/*let json = ' [\n' +
+let json = ' [\n' +
     '            "55877",\n' +
     '            {\n' +
     '                "token": {\n' +
@@ -61,12 +61,8 @@
     '            }\n' +
     '        ]';
 
-
-
-console.log(json);
-for (let i = 0 ; i < 20; i ++)  {
-    let x = JSON.parse(json);
-    getForkHTML(JSON.parse(json));
+function renderTestForks (count, json) {
+    for (let i = 0; i < count; i++) {
+        getForkHTML(JSON.parse(json));
+    }
 }
-let html = getForkHTML(JSON.parse(json));
-*/
