@@ -75,6 +75,7 @@ function initStorage() {
                     storageForks = new Map(Object.entries(storageForks));
                     sessionStorage.setItem("init", "true");
                     sessionStorage.setItem("forks", "{}");
+                    sessionStorage.setItem("pinnedForksIds","[]");
 
                     console.log("Received " + storageForks.size + " forks");
                     renderFilteredForks(Array.from(storageForks.entries()));
@@ -189,8 +190,74 @@ function getColorByProfit(percent) {
     return color;
 }
 
-jQuery.fn.outer = function() {
-    return $($('<div></div>').html(this.clone())).html();
+
+let numberOfPinnedPosts = 0;
+
+function pinFork()  {
+    let fork = $(this).closest('.fork').clone();
+    let indexOfFork = $(this).closest('.fork').index();
+    if (indexOfFork === 0)  {
+        $(this).closest('.fork').remove();
+    } else  {
+        $(this).closest('.fork').fadeOutAndRemove('fast');
+    }
+    $(fork).find('.thumbtack-icon').removeClass('thumbtack-icon').addClass("thumbtack-icon-active");
+
+    let pinnedForksIds = JSON.parse( sessionStorage.getItem('pinnedForksIds') );
+    let id = $(this).closest('.fork').attr("fork-id");
+    pinnedForksIds.unshift(id); //Добавляем id вилки
+    sessionStorage.setItem( 'pinnedForksIds', JSON.stringify(pinnedForksIds) );
+
+    $(fork).find('.thumbtack-icon-active').click(unPinFork);
+    numberOfPinnedPosts++;
+
+    if (indexOfFork === 0)  {
+        $(fork).prependTo("#container");
+    } else  {
+        $(fork).prependTo("#container").hide().fadeIn('fast');
+    }
+}
+
+function unPinFork() {
+    let fork = $(this).closest('.fork').clone();
+    let indexOfFork = $(this).closest('.fork').index();
+
+    if (indexOfFork === 0) {
+        if (numberOfPinnedPosts === 1) {
+            $(this).closest('.fork').remove();
+        } else {
+            $(this).closest('.fork').remove().fadeOutAndRemove('fast');
+        }
+    } else {
+        if (numberOfPinnedPosts - 1 === indexOfFork)  {
+            $(this).closest('.fork').remove();
+        } else {
+            $(this).closest('.fork').remove().fadeOutAndRemove('fast');
+        }
+    }
+    $(fork).find('.thumbtack-icon-active').removeClass("thumbtack-icon-active").addClass("thumbtack-icon");
+
+    let pinnedForksIds = JSON.parse( sessionStorage.getItem('pinnedForksIds') );
+    let id = $(this).closest('.fork').attr("fork-id");
+    pinnedForksIds.splice( pinnedForksIds.indexOf(id), 1 );
+    sessionStorage.setItem( 'pinnedForksIds', JSON.stringify(pinnedForksIds) );
+
+    $(fork).find('.thumbtack-icon').click(pinFork);
+
+    if (indexOfFork === 0)  {
+        if (numberOfPinnedPosts === 1) {
+            $(fork).prependTo("#container");
+        } else {
+            $(".fork:nth-child(" + (numberOfPinnedPosts - 1 )  + ")").after($(fork)).hide().fadeIn('fast');
+        }
+    } else  {
+        if (numberOfPinnedPosts - 1 === indexOfFork) {
+            $(".fork:nth-child(" + (numberOfPinnedPosts - 1) + ")").after($(fork));
+        }
+        $(".fork:nth-child(" + (numberOfPinnedPosts - 1) + ")").after($(fork)).hide().fadeIn('fast');
+    }
+
+    numberOfPinnedPosts--;
 }
 
 function getForkHTML(pair) {
@@ -223,11 +290,11 @@ function getForkHTML(pair) {
     $(elem).find('.fork-template__first-price').text('P: $' + minPair.price);
     $(elem).find('.fork-template__second-price').text('P: $' + maxPair.price);
     $(elem).find('.fork-template__sale-benefit').text(fork.profitPercent + '%');
-    /*$(elem).find('.fork-template__time').text(getCurrentLifetimeString(fork.recieveDate));*/
 
-    $(elem).find('.template__token-title').text(fork.token.title);//Добавляем названия биржи
-    $(elem).find('.template__token-symbol').text(fork.token.symbol); //Добвляем символьное представление биржи
-    $(elem).find('.template__token-platform-title').text(fork.token.platform.title); //Добавляем заголовок платформы
+
+    $(elem).find('.template__token-title').text(fork.token.title);
+    $(elem).find('.template__token-symbol').text(fork.token.symbol);
+    $(elem).find('.template__token-platform-title').text(fork.token.platform.title);
     $(elem).find('.template__token-price').text(fork.token.quote.usdPrice.volume24h.toLocaleString());
 
     $(elem).find('.template__token-time').attr('value', getCurrentLifetimeString(fork.recieveDate));
@@ -238,5 +305,13 @@ function getForkHTML(pair) {
     $(elem).find('.hide-fork-btn').attr('onclick', "banPairs(this)");
     $(elem).find('.hide-fork-btn').attr('fork-pairs', minPair.title + ";" + maxPair.title);
 
-    $('#container').prepend(elem); //Добавляем контейнеру вилку
+    $(elem).find('.thumbtack-icon').click(pinFork);
+
+    let countOfPinnedForks = $('.thumbtack-icon-active').length;
+    if ( countOfPinnedForks === 0) {
+        $('#container').prepend(elem);
+    } else {
+        $(".fork:nth-child(" + countOfPinnedForks  + ")").after(elem);
+    }
 }
+

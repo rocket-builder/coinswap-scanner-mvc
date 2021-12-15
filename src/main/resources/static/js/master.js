@@ -94,3 +94,11 @@ Array.prototype.toCsv = function () {
   return this.join(";");
 }
 
+jQuery.fn.fadeOutAndRemove = function(speed){
+  $(this).fadeOut(speed,function(){
+    $(this).remove();
+  })
+}
+
+
+

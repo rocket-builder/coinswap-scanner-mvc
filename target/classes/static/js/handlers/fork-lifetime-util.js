@@ -28,7 +28,8 @@ function resetForksLifetime(){
         let dateString = $(this).attr('receive-date').toString();
         let receiveDate = new Date(dateString);
 
-        let lifetimeString = getCurrentLifetimeString(receiveDate);
+        /*let lifetimeString = getCurrentLifetimeString(receiveDate); old code */
+        let lifetimeString = getCurrentLifetimeString(dateString);
         $(this).val(lifetimeString);
     });
 }
