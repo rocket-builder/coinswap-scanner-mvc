@@ -66,15 +66,14 @@ function renderTestForks (count, json) {
     console.log(json);
     let parsedJSON = JSON.parse(json);
     for (let i = 0; i < count; i++) {
-        //parsedJSON[1].token.title = (Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, Math.floor(Math.random() * 20) + 1) + ' ').repeat(Math.floor(Math.random() * 5) + 1);
-        parsedJSON[1].token.title = "GSPI SHOPPING.IO GOVERNANCE";
-        //parsedJSON[1].token.symbol= (Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, Math.floor(Math.random() * 20) + 1) + ' ').repeat(Math.floor(Math.random() * 5) + 1);
-        parsedJSON[1].token.symbol = "SSFSF"
-        //parsedJSON[1].token.platform.title = (Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, Math.floor(Math.random() * 20) + 1) + ' ').repeat(Math.floor(Math.random() * 5) + 1);
-        parsedJSON[1].token.platform.title = "BINANCE SMART CHAIN";
+        parsedJSON[1].token.title = (Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, Math.floor(Math.random() * 20) + 1) + ' ').repeat(Math.floor(Math.random() * 5) + 1);
+        //parsedJSON[1].token.title = "GSPI SHOPPING.IO GOVERNANCE";
+        parsedJSON[1].token.symbol= (Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, Math.floor(Math.random() * 20) + 1) + ' ').repeat(Math.floor(Math.random() * 5) + 1);
+        //parsedJSON[1].token.symbol = "SSFSF"
+        parsedJSON[1].token.platform.title = (Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, Math.floor(Math.random() * 20) + 1) + ' ').repeat(Math.floor(Math.random() * 5) + 1);
+        //parsedJSON[1].token.platform.title = "BINANCE SMART CHAIN";
         console.log(parsedJSON);
         getForkHTML(JSON.parse(JSON.stringify(parsedJSON)));
     }
 }
 
-renderTestForks(100, json);
