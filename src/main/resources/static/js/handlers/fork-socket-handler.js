@@ -68,7 +68,7 @@ function startSignalR(){
 }
 function reconnect(){
     setTimeout(function () {
-        startSocket();
+            startSocket();
     }, 5000);
 }
 function reconnectUpdates(){

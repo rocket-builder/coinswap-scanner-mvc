@@ -116,7 +116,19 @@ textarea.user-info{
   .settings-form{
     max-width: 90%!important;
   }
+
 }
+
+@media (max-width: 1360px) {
+  .template__token-title  {
+    white-space: pre-line;
+  }
+
+  .template__token-platform-title {
+    white-space: pre-line;
+  }
+}
+
 .no-display{
     display: none!important;
 }
@@ -788,17 +800,17 @@ body::selection {
     /*margin-right: 36px;*/
     display: flex;
     flex-direction: row;
-    flex-basis: 150px;
+
     align-items: center;
     justify-content: space-evenly;
 }
 
 .template__token-title  {
+    text-align: left;
     font-weight: 700;
     font-size: 24px;
     line-height: 28px;
     text-transform: uppercase;
-    white-space: nowrap;
     color: black;
     margin-right: 10px;
 }
@@ -806,7 +818,7 @@ body::selection {
 .template__token-symbol {
     display: block;
     max-width: 100px;
-    max-height: 35px;
+    min-height: 35px;
     padding: 6px;
     font-weight: 700;
     font-size: 12px;
@@ -818,12 +830,11 @@ body::selection {
 }
 
 .template__token-platform-title {
+    text-align: center;
     font-weight: 350;
     margin-right: 18px;
     margin-left: 18px;
-    white-space: nowrap;
     font-size: 24px;
-    text-align: center;
 }
 
 .template__token-platform-title::before {
@@ -885,7 +896,6 @@ body::selection {
     font-size:24px;
     line-height: 28px;
     color: #DADADA;
-    flex-basis: 100px;
     margin-right: 10px;
 }
 
@@ -894,7 +904,7 @@ body::selection {
 .fork  {
     background: white;
     width: 100%;
-    max-height: 15em;
+    min-height: 15em;
     padding-left: 0 !important;
     padding-right: 0 !important;
     border: 1px solid rgba(0, 0, 0, .055);
@@ -1030,8 +1040,14 @@ body::selection {
     cursor: pointer;
 }
 
+
+
 @media screen and (max-device-width: 1000px) {
   .only_mobile {
     display: none!important;
   }
 }
+
+
+
+
