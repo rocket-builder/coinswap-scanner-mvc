@@ -137,7 +137,6 @@ function removeForkFromStorageById(forkId) {
 
 function renderFilteredForks(forks) {
     console.log(forks);
-
     let filtered = forks
         .filter(pair => isFilteredFork(pair[1]))
         .slice(0, maxForkCount);
@@ -150,7 +149,7 @@ function renderFilteredForks(forks) {
         forksDivs
             .slice(Math.abs(forksDivs.length - filtered.length))
             .forEach(f => f.remove());
-
+        console.log("filtered in render function: "+ filtered);
         let html = filtered.map(pair => getForkHTML(pair)).join("");
 
         document.querySelector("#container")
@@ -159,6 +158,7 @@ function renderFilteredForks(forks) {
 }
 
 function refreshForksFromSettings() {
+    document.querySelector("#container").innerHTML = "";
     let filtered =
         Array.from(forks.concat(cachedForks).entries())
             .filter(pair => isFilteredFork(pair[1]))
@@ -166,9 +166,9 @@ function refreshForksFromSettings() {
     filtered.sort((a,b) =>
         new Date(b[1].recieveDate) - new Date(a[1].recieveDate));
 
+    console.log("filtered in refresh function" + filtered);
     let html = filtered.map(pair => getForkHTML(pair)).join("");
 
-    document.querySelector("#container").innerHTML = "";
     document.querySelector("#container")
         .insertAdjacentHTML("afterbegin", html);
 
@@ -261,6 +261,7 @@ function unpinFork() {
 }
 
 function getForkHTML(pair) {
+    debugger;
     let id = pair[0];
     let fork = pair[1];
     let percent = Number(fork.profitPercent);
@@ -305,13 +306,27 @@ function getForkHTML(pair) {
     $(elem).find('.hide-fork-btn').attr('onclick', "banPairs(this)");
     $(elem).find('.hide-fork-btn').attr('fork-pairs', minPair.title + ";" + maxPair.title);
 
-    $(elem).find('.thumbtack-icon').click(pinFork);
 
-    let countOfPinnedForks = $('.thumbtack-icon-active').length;
-    if ( countOfPinnedForks === 0) {
-        $('#container').prepend(elem);
-    } else {
-        $(".fork:nth-child(" + countOfPinnedForks  + ")").after(elem);
+    if (sessionStorage.getItem("pinnedForksIds") !== null)  { //Если хранилище закрепленных вилок не пустое
+        let pinnedForksArray = JSON.parse( sessionStorage.getItem('pinnedForksIds') );
+        console.log($(elem).attr('fork-id'));
+        if (pinnedForksArray.includes($(elem).attr('fork-id')) == true )   {
+            $(elem).find('.thumbtack-icon').removeClass('thumbtack-icon').addClass("thumbtack-icon-active");//cообщаем класс иконки
+            $(elem).find('.thumbtack-icon-active').click(unpinFork);//сообщаем onClick UnpinFork
+            $('#container').prepend(elem);
+        } else  {
+            $(elem).find('.thumbtack-icon').click(pinFork);
+            let countOfPinnedForks = $('.thumbtack-icon-active').length;
+            if ( countOfPinnedForks === 0) {
+                $('#container').prepend(elem);
+            } else {
+                $(".fork:nth-child(" + countOfPinnedForks  + ")").after(elem);
+            }
+        }
+
     }
+
+
+
 }
 
