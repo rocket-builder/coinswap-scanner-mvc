@@ -3021,7 +3021,7 @@
 // not very stable over SSL. Most likely a ws connection requires a
 // separate SSL connection, in which case 2 round trips are an
 // absolute minumum.
-            WebSocketTransport.roundTrips = 10;
+            WebSocketTransport.roundTrips = 2;
 
             module.exports = WebSocketTransport;
 
