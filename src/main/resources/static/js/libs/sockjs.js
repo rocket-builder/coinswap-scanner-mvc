@@ -819,7 +819,8 @@
                     }
 
                     // calculate timeout based on RTO and round trips. Default to 5s
-                    var timeoutMs = Math.max(this._timeout, (this._rto * Transport.roundTrips) || 5000);
+                    //var timeoutMs = Math.max(this._timeout, (this._rto * Transport.roundTrips) || 5000);
+                    var timeoutMs = 5000;
                     this._transportTimeoutId = setTimeout(this._transportTimeout.bind(this), timeoutMs);
                     debug('using timeout', timeoutMs);
 
@@ -3021,7 +3022,7 @@
 // not very stable over SSL. Most likely a ws connection requires a
 // separate SSL connection, in which case 2 round trips are an
 // absolute minumum.
-            WebSocketTransport.roundTrips = 10;
+            WebSocketTransport.roundTrips = 2;
 
             module.exports = WebSocketTransport;
 

@@ -136,6 +136,7 @@ function removeForkFromStorageById(forkId) {
 }
 
 function renderFilteredForks(forks) {
+    debugger;
     console.log(forks);
     let filtered = forks
         .filter(pair => isFilteredFork(pair[1]))
@@ -152,8 +153,10 @@ function renderFilteredForks(forks) {
         console.log("filtered in render function: "+ filtered);
         let html = filtered.map(pair => getForkHTML(pair)).join("");
 
-        document.querySelector("#container")
+        /*document.querySelector("#container")
             .insertAdjacentHTML("afterbegin", html);
+
+         */
     }
 }
 
@@ -169,9 +172,10 @@ function refreshForksFromSettings() {
     console.log("filtered in refresh function" + filtered);
     let html = filtered.map(pair => getForkHTML(pair)).join("");
 
+    /*
     document.querySelector("#container")
         .insertAdjacentHTML("afterbegin", html);
-
+    */
     resetForksLifetimeInterval();
 }
 
