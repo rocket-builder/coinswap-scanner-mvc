@@ -298,12 +298,11 @@ function getForkHTML(pair) {
     $(elem).find('.hide-fork-btn').attr('fork-pairs', minPair.title + ";" + maxPair.title);
 
 
-    if (sessionStorage.getItem("pinnedForksIds") !== null)  { //Если хранилище закрепленных вилок не пустое
+    if (sessionStorage.getItem("pinnedForksIds") !== null)  {
         let pinnedForksArray = JSON.parse( sessionStorage.getItem('pinnedForksIds') );
-        console.log($(elem).attr('fork-id'));
         if (pinnedForksArray.includes($(elem).attr('fork-id')) == true )   {
-            $(elem).find('.thumbtack-icon').removeClass('thumbtack-icon').addClass("thumbtack-icon-active");//cообщаем класс иконки
-            $(elem).find('.thumbtack-icon-active').click(unpinFork);//сообщаем onClick UnpinFork
+            $(elem).find('.thumbtack-icon').removeClass('thumbtack-icon').addClass("thumbtack-icon-active");
+            $(elem).find('.thumbtack-icon-active').click(unpinFork);
             $('#container').prepend(elem);
         } else  {
             $(elem).find('.thumbtack-icon').click(pinFork);
