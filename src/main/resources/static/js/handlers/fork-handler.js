@@ -137,7 +137,6 @@ function removeForkFromStorageById(forkId) {
 
 function renderFilteredForks(forks) {
     console.log(forks);
-
     let filtered = forks
         .filter(pair => isFilteredFork(pair[1]))
         .slice(0, maxForkCount);
@@ -150,15 +149,12 @@ function renderFilteredForks(forks) {
         forksDivs
             .slice(Math.abs(forksDivs.length - filtered.length))
             .forEach(f => f.remove());
-
         let html = filtered.map(pair => getForkHTML(pair)).join("");
-
-        document.querySelector("#container")
-            .insertAdjacentHTML("afterbegin", html);
     }
 }
 
 function refreshForksFromSettings() {
+    document.querySelector("#container").innerHTML = "";
     let filtered =
         Array.from(forks.concat(cachedForks).entries())
             .filter(pair => isFilteredFork(pair[1]))
@@ -166,12 +162,8 @@ function refreshForksFromSettings() {
     filtered.sort((a,b) =>
         new Date(b[1].recieveDate) - new Date(a[1].recieveDate));
 
+    console.log("filtered in refresh function" + filtered);
     let html = filtered.map(pair => getForkHTML(pair)).join("");
-
-    document.querySelector("#container").innerHTML = "";
-    document.querySelector("#container")
-        .insertAdjacentHTML("afterbegin", html);
-
     resetForksLifetimeInterval();
 }
 
@@ -305,13 +297,26 @@ function getForkHTML(pair) {
     $(elem).find('.hide-fork-btn').attr('onclick', "banPairs(this)");
     $(elem).find('.hide-fork-btn').attr('fork-pairs', minPair.title + ";" + maxPair.title);
 
-    $(elem).find('.thumbtack-icon').click(pinFork);
 
-    let countOfPinnedForks = $('.thumbtack-icon-active').length;
-    if ( countOfPinnedForks === 0) {
-        $('#container').prepend(elem);
-    } else {
-        $(".fork:nth-child(" + countOfPinnedForks  + ")").after(elem);
+    if (sessionStorage.getItem("pinnedForksIds") !== null)  {
+        let pinnedForksArray = JSON.parse( sessionStorage.getItem('pinnedForksIds') );
+        if (pinnedForksArray.includes($(elem).attr('fork-id')) == true )   {
+            $(elem).find('.thumbtack-icon').removeClass('thumbtack-icon').addClass("thumbtack-icon-active");
+            $(elem).find('.thumbtack-icon-active').click(unpinFork);
+            $('#container').prepend(elem);
+        } else  {
+            $(elem).find('.thumbtack-icon').click(pinFork);
+            let countOfPinnedForks = $('.thumbtack-icon-active').length;
+            if ( countOfPinnedForks === 0) {
+                $('#container').prepend(elem);
+            } else {
+                $(".fork:nth-child(" + countOfPinnedForks  + ")").after(elem);
+            }
+        }
+
     }
+
+
+
 }
 

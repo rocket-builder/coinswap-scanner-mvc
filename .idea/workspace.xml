@@ -6,8 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="1dace837-c407-4795-8ec7-ff457828a6d5" name="Default Changelist" comment="add fork lifetime, add forks count limit to 100 on page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/master.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/master.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/handlers/fork-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/handlers/fork-handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/handlers/fork-test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/handlers/fork-test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/handlers/save-settings-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/handlers/save-settings-handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/libs/sockjs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/libs/sockjs.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/static/js/handlers/fork-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/handlers/fork-handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/handlers/fork-socket-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/handlers/fork-socket-handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/handlers/save-settings-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/handlers/save-settings-handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/libs/sockjs.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/libs/sockjs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/profile.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +34,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="1xufdRBKsyOe8rn2uAHhfdZLVcw" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -194,6 +204,7 @@
       <workItem from="1638901207841" duration="5333000" />
       <workItem from="1638909009007" duration="936000" />
       <workItem from="1639406121480" duration="8505000" />
+      <workItem from="1639910938752" duration="6163000" />
     </task>
     <task id="LOCAL-00001" summary="first build">
       <created>1631304184725</created>
@@ -237,7 +248,15 @@
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
-    <option name="oldMeFiltersMigrated" value="true" />
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first build" />

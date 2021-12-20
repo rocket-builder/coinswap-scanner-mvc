@@ -61,7 +61,6 @@ let json = ' [\n' +
     '            }\n' +
     '        ]';
 
-
 function renderTestForks (count, json) {
     console.log(json);
     let parsedJSON = JSON.parse(json);

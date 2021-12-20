@@ -106,7 +106,6 @@ $('#open-settings-btn').click(function () {
 });
 
 $('#btn-save-settings').click(function() {
-
   const settingsId = $(this).attr('settings-id');
   const settings = getSettingsFromFields(settingsId);
   console.log(settings);
