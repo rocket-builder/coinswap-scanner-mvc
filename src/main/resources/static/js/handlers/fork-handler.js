@@ -79,6 +79,7 @@ function initStorage() {
 
                     console.log("Received " + storageForks.size + " forks");
                     renderFilteredForks(Array.from(storageForks.entries()));
+                    refreshPaginator(filterForks(Array.from(storageForks.entries())).length);
 
                     $('#container').removeClass("form loading");
 
@@ -97,10 +98,10 @@ function initStorage() {
                     forks = new Map(
                         Object.entries(JSON.parse(sessionStorage.getItem("forks"))));
                     allForks = forks.concat(cachedForks);
-
                     console.log("retrieved " + allForks.size + " forks from storage");
 
                     renderFilteredForks(Array.from(allForks.entries()));
+                    refreshPaginator(filterForks(Array.from(allForks.entries())).length);
                 }).then(() =>
                     startSignalR())
                 .then(() =>
@@ -134,23 +135,46 @@ function removeForkFromStorageById(forkId) {
     sessionStorage.setItem("forks", json);
     //console.log('deleted from storage');
 }
+function paginate(element, page) {
+    let filtered = filterForks(Array.from(allForks.entries()));
+    let ranged = filtered.range(page * maxForkCount, (page * maxForkCount + maxForkCount) - 1);
+    $('#container').html('');
+    renderForks(ranged);
+    $('.fork-page').removeClass('active');
+    $(element).addClass('active');
+}
+function refreshPaginator(forksCount) {
+    console.log('refresh paginator');
+    let pageCount = forksCount / maxForkCount;
+    console.log(pageCount);
 
-function renderFilteredForks(forks) {
-    console.log(forks);
-    let filtered = forks
-        .filter(pair => isFilteredFork(pair[1]))
-        .slice(0, maxForkCount);
+    for(let i = 1; i < pageCount;i++){
+        $('#fork-paginator').append('<span class="fork-page" onclick="paginate(this, '+i+')">'+i+'</span>');
+    }
+}
 
-    filtered.sort((a,b) =>
+function filterForks(forks) {
+    return forks
+        .filter(pair => isFilteredFork(pair[1]));
+}
+function renderForks(forks) {
+    forks.sort((a,b) =>
         new Date(b[1].recieveDate) - new Date(a[1].recieveDate));
 
-    if(filtered.length > 0){
+    if(forks.length > 0){
         let forksDivs = Array.from(document.querySelectorAll('[fork-id]'));
         forksDivs
-            .slice(Math.abs(forksDivs.length - filtered.length))
-            .forEach(f => f.remove());
-        let html = filtered.map(pair => getForkHTML(pair)).join("");
+            .slice(Math.abs(forksDivs.length - forks.length))
+            .forEach(f => f.remove())
+        let html = forks.map(pair => getForkHTML(pair)).join("");
     }
+}
+function renderFilteredForks(forks) {
+    console.log(forks);
+
+    let filtered = filterForks(forks)
+        .slice(0, maxForkCount);
+    renderForks(filtered);
 }
 
 function refreshForksFromSettings() {
@@ -166,22 +190,6 @@ function refreshForksFromSettings() {
     let html = filtered.map(pair => getForkHTML(pair)).join("");
     resetForksLifetimeInterval();
 }
-
-function getColorByProfit(percent) {
-    let color = "#1FC58E";
-    if (percent >= 20){
-        color = "#FF8C00";
-    }
-    if (percent >= 50){
-        color = "#DC143C";
-    }
-    if(percent >= 100){
-        color = "#8A2BE2";
-    }
-
-    return color;
-}
-
 
 let numberOfPinnedPosts = 0;
 
@@ -315,8 +323,5 @@ function getForkHTML(pair) {
         }
 
     }
-
-
-
 }
 

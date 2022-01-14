@@ -880,7 +880,7 @@ body::selection {
 }
 
 .thumbtack-icon:hover {
-    color: yellow;
+    color: #f0d800;
 }
 
 .thumbtack-icon-active  {
@@ -1009,9 +1009,7 @@ body::selection {
     flex-basis: 100px;
 }
 
-
 .fork-template__benefit {
-
     min-width: 60px;
     text-align: center;
     padding-top: 6px;
@@ -1040,8 +1038,21 @@ body::selection {
     cursor: pointer;
 }
 
-
-
+.paginator{
+    display: inline-flex;
+    width: 90%;
+    justify-content: center;
+    column-gap: 0.3em;
+    flex-wrap: wrap;
+    padding: 1em;
+}
+.fork-page{
+    color: #1FC58E;
+    cursor: pointer;
+}
+.fork-page.active{
+    color:red;
+}
 @media screen and (max-device-width: 1000px) {
   .only_mobile {
     display: none!important;

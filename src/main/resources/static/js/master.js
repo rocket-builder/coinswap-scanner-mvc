@@ -9,6 +9,13 @@ const currentUser = getCurrentUser();
 Array.prototype.pushArray = function(arr) {
   this.push.apply(this, arr);
 };
+Array.prototype.range = function(from, to){
+  let range = [];
+  for(let i = from; i <= to; i++){
+    range.push(this[i]);
+  }
+  return range;
+};
 
 function getSessionUser(){
   let usr = null;
